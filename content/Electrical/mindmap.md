@@ -23,5 +23,6 @@ Other componts that I have studied about
 1. operational amplifier and amplifier 
 2. Diodes
 
-Ciruits 
-non linear circuits (need to understand how they are made)
+Circuits
+ 
+Non linear circuits (need to understand how they are made)
