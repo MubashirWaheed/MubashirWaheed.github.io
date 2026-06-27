@@ -33,18 +33,28 @@ export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
       script: `
         const socket = new WebSocket('${wsUrl}')
         // reload(true) ensures resources like images and scripts are fetched again in firefox
-        socket.addEventListener('message', () => document.location.reload(true))
-      `,
-    })
-  }
-
-  return staticResources
+        socket.addEventListener('message', () => {
+  sessionStorage.setItem('qScroll', window.scrollY.toString())
+  document.location.reload()
+})
+const qy = sessionStorage.getItem('qScroll')
+if (qy !== null) {
+  window.scrollTo(0, parseInt(qy))
+  sessionStorage.removeItem('qScroll')
 }
-
-export * from "./transformers"
-export * from "./filters"
-export * from "./emitters"
-export * from "./types"
-export * from "./config"
-export * as PageTypes from "./pageTypes"
-export * as PluginLoader from "./loader"
+        `,
+      })
+    }
+    
+    return staticResources
+  }
+  
+  export * from "./transformers"
+  export * from "./filters"
+  export * from "./emitters"
+  export * from "./types"
+  export * from "./config"
+  export * as PageTypes from "./pageTypes"
+  export * as PluginLoader from "./loader"
+  
+  // socket.addEventListener('message', () => document.location.reload(true))
