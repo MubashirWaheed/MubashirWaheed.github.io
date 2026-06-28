@@ -1,3 +1,98 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+
+@media print {
+  // Hide everything that isn't the article
+  .sidebar,
+  .left,
+  .right,
+  .graph,
+  .toc,
+  .backlinks,
+  .explorer,
+  .breadcrumbs,
+  .search,
+  .darkmode,
+  .readermode,
+  footer {
+    display: none !important;
+  }
+
+  // Collapse the grid so the article takes full width
+  .page {
+    grid-template-columns: 1fr !important;
+  }
+  .center,
+  article,
+  .page-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  // Tighten everything for a dense, paper-saving cheat sheet
+  body {
+    font-size: 9pt !important;
+    line-height: 1.25 !important;
+  }
+  h1 { font-size: 13pt !important; margin: 0.3em 0 0.2em !important; }
+  h2 { font-size: 11pt !important; margin: 0.4em 0 0.15em !important; }
+  h3 { font-size: 10pt !important; margin: 0.3em 0 0.1em !important; }
+  article p, .center p, ul, ol { margin: 0.15em 0 !important; }
+
+  // Let wide math wrap instead of clipping horizontally
+  .katex-display {
+    overflow-x: visible !important;
+    white-space: normal !important;
+    margin: 0.2em 0 !important;
+  }
+
+  // KEY FIX: high-specificity selectors (article/.center) override Quartz's
+  // @layer quartz-base rules. Keep each equation paragraph whole so block
+  // formulas and their subscripts are never sliced at a page boundary.
+  article p,
+  .center p {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    overflow: visible !important;
+  }
+
+  article .katex,
+  .center .katex {
+    display: inline-block !important;
+    white-space: normal !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    overflow: visible !important;
+  }
+
+  // Block-display equations as unbreakable block units
+  .katex-display,
+  .katex-display > .katex {
+    display: block !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  // Keep other atomic blocks intact
+  pre, table, img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  // Keep a heading glued to the content right after it
+  h1, h2, h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  // Anti-clipping: nothing hidden by overflow or fixed heights
+  body, .center, article, .page-content, .katex-display {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+}
