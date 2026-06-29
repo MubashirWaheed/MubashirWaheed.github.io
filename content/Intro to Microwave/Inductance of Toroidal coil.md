@@ -8,15 +8,13 @@ date: 28-06-2026
 
 $$L = \mu_0\ \mu_r\ \frac{N^2\ A}{l_m}$$,  area given by $$A = \pi\ r^2$$, circumference length $$l_m = 2\pi r_m$$
 
+$r_m​$ = mean radius (to the middle of the core ring)
 
-**Paramagnetic**: weakly attracted to a magnet only while a magnet is nearby.
 
-**Ferromagnetic**: strongly attracted to a magnet and can stay magnetic on its own(real magnet)
-
-**Curie temperature T_C**: heat a magnet past this temperature and it stops being magnetic. $$u_r$$ drops to zero at this temp.
 
 ### Temperature coefficient ($TK_\mu$)
-
+It's just the relative (fractional) change of quantity $X$ per $°C$.
+$X$ can be any property eg permeability, inducatnce, capacitance, resoannce frequency or even conuctivity
 general idea: the fractional change of something per degree. 
 of permeability tells you the relative (fractional) change in permeability per degree of temperature change.
 
@@ -29,6 +27,14 @@ $$u_r$$ has direction realtion with inductacne( $$L$$) so higher  the permeabili
 $$TK_X = \frac{1}{X}\cdot\frac{dX}{dT}$$
 
 it can be anything eg  $TK$ of inductane or capactance or reistance 
+
+**General Linear Temperature Model**
+
+$$X(T) = X_N \left(1 + TK_X \cdot (T - T_N)\right)$$
+
+For capacitance 
+
+$$C(T) = C_N \left(1 + TK_C \cdot (T - T_N)\right)$$
 
 ### Loss tangent ($$tanδ$$):
 
@@ -59,9 +65,13 @@ $$R_{DC} = \frac{\ell}{r^2\,\pi\,\sigma} = \frac{\rho\,\ell}{r^2\,\pi} $$; where
 
 $$R_{HF} \approx \frac{\ell}{\sigma\,2\pi r \delta}$$; where $r$ is the radius of wire, $\sigma$ is conductivity of meterial
 
-#### Skin depth
+#### Quality factor($Q$) and Skin depth
 
-$$\delta = \frac{1}{\sqrt{f\pi\mu_0\sigma_K}} $$
+$$\delta = \sqrt{\frac{\rho}{\pi\ f\ \mu_0\ \mu_r}} = \frac{1}{\sqrt{\pi\ f\ \mu_0\ \mu_r\ \sigma}}$$
+
+Skin depth can also be written with angular frequncy 
+
+$$\delta = \sqrt{\frac{2\ \rho}{\omega\ \mu}} = \sqrt{\frac{2}{\omega\ \mu\ \sigma}}$$
 
 $$Q_L = \frac{1}{\tan\delta_\mu + \tan\delta_K}$$; $Q$ quality factor, $\tan\delta_\mu$ loss tangent(factor) of core/ferrite material, 
 $\tan\delta_K$ wire material loss tangent wrapped around core
@@ -69,13 +79,32 @@ $\tan\delta_K$ wire material loss tangent wrapped around core
 So the idea is order to find the quality factor($Q$) of coil(material) we find the quality factor of both coil and wire warpped around it and take
  the inverse.Since a wire is wrapped around  we have to check the skin effect and for that we calculate the skin depth ($\delta$) if the skin 
 depth greater than wire radius than current fills the whole cross section hence skin effect neglected. This can also be done using the
- $R_{HF}$ and $R_{DC}$. If $R_{HF}$ resistance very small compared to the $R_{DC}$ we can neglect the skin effect and $R_{DC}$ to calculate the 
-loss tangent of wire.
+ $R_{HF}$ and $R_{DC}$.
 
-| If the question asks about... | You're working with... |
-|---|---|
-| Inductance $L$, permeability, flux, air gap effect(part of core removed ) | Reluctance (magnetic) |
-| Quality factor $Q$, losses, $\tan\delta$, heating | Resistance (electric) |
+if $ R_{HF} \approx R_{DC}$  equivalently $$ \iff (  \delta \gg r ) \;\Rightarrow\; \text{skin effect negligible, use } R_{DC}$$;
+
+where $r$ is radius of wire
+
+Here is the thing at times we quality factor of circuit instead of indiviual elements(capacior or indcutor) so we follow the base formula
+
+$$Q = \frac{X_L}{R} = \frac{\text{the inductor's opposition (stores energy)}}{\text{the resistors' opposition (waste energy)}}$$
+
+Example at resonance frequency a circuit  wih series inductor, load and capacitor so we follow 
+
+Reactance $X_L$ is the part of inductor where energy is stored hence in the numerator for the quality factor formula 
+
+$$X_L = 2\pi f_{res,N} L_N$$
+
+$$Q_L = \frac{2\pi f_{res,N} L_N}{R_c + R_L + R_{Load}}$$ 
+
+At $f_{res}$ energy stored in inductor and capacitor is same hence we only take one reatance(in this case of inductor) 
+
+### Transformer ratio 
+
+Using this formula we can figureout the turns on coil required for system adn load impedance
+
+$$\frac{Z_1}{Z_2} = n^2 = \left(\frac{N_1}{N_2}\right)^2$$
+
 
 ### Magnetic Reluctane 
 
@@ -105,7 +134,10 @@ $$\mu_{r,eff} = \frac{\mu_r\,(\ell_{Fe} + \ell_S)}{\ell_{Fe} + \mu_r \ell_S}$$; 
 
 $$ \ell_{Fe} = 2\pi r_m - \ell_S$$
 
-inductance directly propaartional to the relative p[ermeability so  use $\mu_{r,eff}$ to find new overall induatce with air and core 
+inductance directly propaartional to the relative p[ermeability so  use $\mu_{r,eff}$ to find new overall induatce with air and core.
+
+Adding an air gap decreases the inductance.
+The reason: the air gap introduces a large reluctance in series with the magnetic path. 
 
 $$L_L = \frac{\mu_{r,eff}}{\mu_r}\,L$$  ; &nbsp; &nbsp; &nbsp; where $L$ inductane without air part cut, $L_L$ new inductance with air part cut
 
@@ -118,7 +150,7 @@ $$V_m = H \cdot \ell$$ ; &nbsp; &nbsp;  where magnetic voltage = (magnetic field
 
 Idea: add magnetic voltage of air part and toroid coil part and equate to *electromtive force*
 
-$$H_{Fe}\,\ell_{Fe} + H_S\,\ell_S = N\hat{I}$$
+$$H_{Fe}\,\ell_{Fe} + H_S\,\ell_S = N\hat{I}$$ ; &nbsp; where subscript $s$ for $H$ represnet air part
 
 the boundary condition (continuity of $B$)
 $$\vec{n}\cdot(\vec{B}_{Fe} - \vec{B}_S) = 0 \quad\Rightarrow\quad B_{Fe} = B_S$$
@@ -129,6 +161,34 @@ $$\mu_0\mu_r H_{Fe} = \mu_0 H_S \quad\Rightarrow\quad H_S = \mu_r H_{Fe}$$
 
 $$\frac{H_S}{\mu_r}\,\ell_{Fe} + H_S\,\ell_S = N\hat{I}$$ ; &nbsp; combined two laws 
 
-$$H_S\left(\frac{\ell_{Fe}}{\mu_r} + \ell_S\right) = N\hat{I}$$ ;where subscript $s$ for $H$ represent air part 
+$$H_S\left(\frac{\ell_{Fe}}{\mu_r} + \ell_S\right) = N\hat{I}$$ 
 
 $$H_S = \frac{N\hat{I}}{\dfrac{\ell_{Fe}}{\mu_r} + \ell_S}$$ ; &nbsp; where $I$ represnet the current passing through the wire wrapped on coil
+
+**Why use a toroidal coil instead of a solenoid in EMC-sensitive electronics?**
+
+In a toroidal coil the field lines close on themselves inside the core, so the external stray field is very small. This makes it both a 
+weaker source of interference and less susceptible to external fields than a solenoid, 
+which is why it is preferred in EMC-sensitive electronics.
+
+**Paramagnetic**: weakly attracted to a magnet only while a magnet is nearby.
+
+**Ferromagnetic**: strongly attracted to a magnet and can stay magnetic on its own(real magnet)
+
+**Curie temperature T_C**: heat a magnet past this temperature and it stops being magnetic. $$u_r$$ drops to zero at this temp.
+
+| If the question asks about... | You're working with... |
+|---|---|
+| Inductance $L$, permeability, flux, air gap effect(part of core removed ) | Reluctance (magnetic) |
+| Quality factor $Q$, losses, $\tan\delta$, heating | Resistance (electric) |
+
+
+**Real coil Concept**
+
+There can be parasitic capacitance in the real Coil at high frequency. Two paths offered between the same two nodes is the definition of a 
+parallel connection. That is why $C$  sits in parallel with $L$, not in series for an real coil and resonance can happen in real coil and in
+order to model the resistance of wire we put it in series with parallel elements (capacitor and inductor)
+
+
+**Series resonant circuit vs paralrl resonant circuit **
+In parraltrl resonant circuit at rsonacne resiatcen increase (max)
