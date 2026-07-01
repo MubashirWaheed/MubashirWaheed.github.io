@@ -77,6 +77,10 @@ Skin depth can also be written with angular frequncy
 
 $$\delta = \sqrt{\frac{2\ \rho}{\omega\ \mu}} = \sqrt{\frac{2}{\omega\ \mu\ \sigma}}$$
 
+**Important**: Copper is essentially non-magnetic so for copper wire use the permeability of free space:
+
+$$\mu = \mu_0 = 4\pi\times10^{-7}\ \text{H/m}$$; &nbsp;  and $\mu_r =1$
+
 $$Q_L = \frac{1}{\tan\delta_\mu + \tan\delta_K}$$; $Q$ quality factor, $\tan\delta_\mu$ loss tangent(factor) of core/ferrite material, 
 $\tan\delta_K$ wire material loss tangent wrapped around core
 
