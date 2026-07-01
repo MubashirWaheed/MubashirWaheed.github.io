@@ -61,11 +61,15 @@ $$\tan\delta = \omega R_s C = \frac{1}{\omega R_p C} = \frac{\epsilon''}{\epsilo
 
 
 ##### DC and HF Resistance (wire)
-$$R_{DC} = \frac{\ell}{r^2\,\pi\,\sigma} = \frac{\rho\,\ell}{r^2\,\pi} $$; where $\sigma$ is the conductivity of the material, $\rho$ resistivity of material
 
-$$R_{HF} \approx \frac{\ell}{\sigma\,2\pi r \delta}$$; where $r$ is the radius of wire, $\sigma$ is conductivity of meterial
+$$R_{\text{DC}} = \dfrac{\rho\ell}{\pi r^2} = \dfrac{\ell}{\sigma\pi r^2} = \dfrac{4\ell}{\sigma\pi D^2}$$
 
-#### Quality factor($Q$) and Skin depth
+$$R_{\text{HF}} = \dfrac{\rho\ell}{2\pi r\delta} = \dfrac{\ell}{2\pi r\sigma\delta} = \dfrac{\ell}{\pi D\sigma\delta} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r\sigma}}{2\pi r\sigma} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r\sigma}}{\pi D\sigma} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r/\sigma}}{\pi D}$$
+
+where $\sigma =$ material conductivity , $\rho =$ material resistivity, $r =$  wire radius, $D =$ wire diameter
+
+
+### Quality factor($Q$) and Skin depth
 
 $$\delta = \sqrt{\frac{\rho}{\pi\ f\ \mu_0\ \mu_r}} = \frac{1}{\sqrt{\pi\ f\ \mu_0\ \mu_r\ \sigma}}$$
 
@@ -85,25 +89,84 @@ if $ R_{HF} \approx R_{DC}$  equivalently $$ \iff (  \delta \gg r ) \;\Rightarro
 
 where $r$ is radius of wire
 
-Here is the thing at times we quality factor of circuit instead of indiviual elements(capacior or indcutor) so we follow the base formula
+At resonance, energy stored in $L$  equals energy stored in $C$, so only one reactance is needed in $Q$ (by convention, $X_L$).
 
-$$Q = \frac{X_L}{R} = \frac{\text{the inductor's opposition (stores energy)}}{\text{the resistors' opposition (waste energy)}}$$
+$$Q = \frac{X_L}{R} = \frac{\text{energy stored (reactance)}}{\text{energy wasted (resistance)}}$$
 
-Example at resonance frequency a circuit  wih series inductor, load and capacitor so we follow 
+Quality factor of circuit instead of indivual elements(inductor and capacitor) circuit can be found. Circuit can be in series or parallel. 
+
+#### Series RLC 
+
+$$Q_{\text{series}} = \frac{X_L}{R} = \frac{2\pi f_{\text{res}} L}{R_c+R_L+R_{\text{Load}}}$$
+
+$$Q_{\text{series}} = \frac{X_C}{R} = \frac{1}{2\pi f_{\text{res}} C (R_c+R_L+R_{\text{Load}})}$$
+
+#### Parallel RLC (loss element $R_{P}$, or admittance $Y_p=1/R_p$
+
+$$Q_{\text{parallel}} = \frac{R_{\text{P}}}{X_L} = \frac{1}{2\pi f L \cdot Y_{\text{P}}}$$
+
+$$Q_{\text{parallel}} = \frac{R_{\text{P}}}{X_C} = R_{\text{P}} \cdot 2\pi f_{\text{res}} C = \frac{2\pi f_{\text{res}} C}{Y_{\text{P}}}$$
 
 Reactance $X_L$ is the part of inductor where energy is stored hence in the numerator for the quality factor formula 
 
-$$X_L = 2\pi f_{res,N} L_N$$
+$$X_L = 2\pi f_{res} L$$
 
-$$Q_L = \frac{2\pi f_{res,N} L_N}{R_c + R_L + R_{Load}}$$ 
 
 At $f_{res}$ energy stored in inductor and capacitor is same hence we only take one reatance(in this case of inductor) 
+
+Quality factor of the *ideal* LC is inifnity because no resistance(energy loss). 
 
 ### Transformer ratio 
 
 Using this formula we can figureout the turns on coil required for system adn load impedance
 
 $$\frac{Z_1}{Z_2} = n^2 = \left(\frac{N_1}{N_2}\right)^2$$
+
+
+### (Transformer) — Coupling Factor, Mutual Inductance & Leakage Flux
+
+$$
+\begin{array}{|l|l|l|}
+\hline
+\textbf{Quantity} & \textbf{Formula} & \textbf{Meaning} \\
+\hline
+\Phi_{s1} & \text{(given)} & \text{leakage flux of coil 1 (from } I_1\text{, doesn't reach coil 2)} \\
+\hline
+\sigma_2 & \text{(given)} & \text{leakage factor of winding 2 (fraction not shared)} \\
+\hline
+K_{12} & \dfrac{\Phi}{\Phi+\Phi_{s1}} & \text{fraction of coil 1's flux reaching coil 2 (coupling factor, coil 1 → coil 2)} \\
+\hline
+K_{21} & 1-\sigma_2 & \text{fraction of coil 2's flux reaching coil 1} \\
+\hline
+K^2 & K_{12}\cdot K_{21} & \text{overall (squared) coupling coefficient} \\
+\hline
+M & K\sqrt{L_1 L_2} & \text{mutual inductance} \\
+\hline
+L_2 & \dfrac{M^2}{K^2 L_1} & \text{self-inductance of winding 2} \\
+\hline
+\end{array}
+$$
+
+$s1$ subcript means leakage flux of coil 1
+
+$Φ$ without any subscript is the shared (mutual) flux and related by 
+$\Phi_1 = \Phi + \Phi_{s1}$
+
+Point of transformer: the transformer changes how the load "looks" from the source's perspective.
+
+#### Reflected impedance (load seen from the primary side)
+
+$$Z_{source} = ü² · Z_{load} = (N1/N2)² · Z_{load}$$
+
+
+#### Maximum Power Transfer in Transformer (source sees a matached load)
+
+$$Z_1 = R_i$$
+
+#### Solving for the required secondary-side load:
+
+
+$$Z_{load} = \frac{Z_{source}}{\ddot{u}^2} = \frac{R_{load_i}}{(N_1/N_2)^2} = R_i\cdot\left(\frac{N_2}{N_1}\right)^2$$
 
 
 ### Magnetic Reluctane 
@@ -192,3 +255,5 @@ order to model the resistance of wire we put it in series with parallel elements
 
 **Series resonant circuit vs paralrl resonant circuit **
 In parraltrl resonant circuit at rsonacne resiatcen increase (max)
+
+
