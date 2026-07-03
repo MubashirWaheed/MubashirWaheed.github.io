@@ -118,3 +118,5 @@ whole ions move).
 
 - **Orientation Polarization:** The electric field rotates existing permanent dipoles (like polar molecules) to align with it, requires free rotational movement, so it's negligible 
 in rigid solids like ceramics.
+
+
