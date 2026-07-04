@@ -10,6 +10,13 @@ $$ Z_\ell = \frac{Z_0}{\sqrt{\varepsilon_r}} = \frac{60\ \Omega}{\sqrt{\varepsil
 
 $ε_r​$ (dielectric), $D$ (outer conductor inner diameter), $d$ (inner conductor outer diameter). $Z_0$ = impedance of free space
 
+
+### Resistance per unit length of Coaxial cable 
+
+$$R' = \frac{1}{2\pi}\sqrt{\frac{\pi f \mu}{\sigma}}\left(\frac{1}{a} + \frac{1}{b}\right)$$
+
+where $a$ = outer radius of inner conductor, $b$ inner radius of outer conductor
+
 ### Capacitance per unit length of a coaxial cable
 
 $$C' = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{D}{d}\right)} = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{r_a}{r_i}\right)}$$
@@ -85,6 +92,12 @@ $\lambda_0 = c_0/f_0$ : free-space wavelength at the resonant frequency
 
 $\sqrt{\varepsilon_r}$ : converts a physical length into an equivalent free-space (electrical) length, because the wave travels slower in the dielectric
 
+### $\lambda/4$ transformer impedance matching 
+
+### Short-circuited and open-circuited transmission line
+
+### Voltage profile on Coaxial cable
+
 
 ### Fields inside  coaxial cable
 
@@ -150,6 +163,15 @@ where $α:$ attenuation constant
 A -20dB drop means you can find the power ratio and equate that in the above formula to find the length of the transmission line after whioch that drop will happen. Given that 
 you have found the attenuation constant in previous part.
 
+### Minimum attenuation (minimizes conductor loss for a given outer radius)
+$$\frac{b}{a} \approx 3.591, \qquad Z_0 \approx 76.7\ \Omega \ \text{(air)}$$ 
+
+### Maximum power capacity (maximizes power before dielectric breakdown for a given outer radius):
+
+$$\frac{b}{a} = \sqrt{e} \approx 1.649, \qquad Z_0 \approx 30\ \Omega \ \text{(air)}$$
+
+Basically we adjust the ratio of inner($a$) and outer($b$) radius to have desired chacracteris impedance of coaxial cable for max 
+power or minimum attenuation. 
 
 ### Rectangular Coaxial cable treadted as plate capacitor 
 Finding capacitacne of each side using 
