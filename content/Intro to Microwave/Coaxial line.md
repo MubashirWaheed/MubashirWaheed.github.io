@@ -24,6 +24,8 @@ $$C' = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{D}{d}\right)} = \f
 where $r_i​$ (or $d/2$): radius of the inner conductor
 $r_a$ (or $D/2$): inner radius of the outer conductor (shield)
 
+# put the unit of the capacitance per unit length here
+
 ### Inductance per unit length of coaxial cable
 
 $$L' = \frac{\mu_0 \mu_r}{2\pi} \ln\left(\frac{r_a}{r_i}\right)$$

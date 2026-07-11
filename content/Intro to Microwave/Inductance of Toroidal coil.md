@@ -36,6 +36,7 @@ For capacitance
 
 $$C(T) = C_N \left(1 + TK_C \cdot (T - T_N)\right)$$
 
+unit $1/°C$ or $1/°K$ regardless of the quanity we are using eg  $L`$, $C`$
 ### Loss tangent ($$tanδ$$):
 
 Quantifies how much a dielectric material dissipates electromagnetic energy as heat versus storing it.
@@ -171,6 +172,14 @@ $$Z_1 = R_i$$
 
 
 $$Z_{load} = \frac{Z_{source}}{\ddot{u}^2} = \frac{R_{load_i}}{(N_1/N_2)^2} = R_i\cdot\left(\frac{N_2}{N_1}\right)^2$$
+
+#### Transformer Turns Ratio from Winding Inductances
+
+$$\ddot{u} = \frac{N_1}{N_2} = \frac{\sqrt{L_1}}{\sqrt{L_2}} = \sqrt{\frac{L_1}{L_2}}$$
+
+### Ideal Transformer: The Three Idealizing Assumptions
+An ideal transformer bundles three idealizations: perfect coupling ($k=1$, no leakage), no losses, and infinite inductance 
+($L \to \infty$). The last one is what forces the magnetizing current to zero so that $Z_{in} = \ddot{u}^2 Z_L$  holds exactly
 
 
 ### Magnetic Reluctane 

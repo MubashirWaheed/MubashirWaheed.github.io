@@ -2,6 +2,12 @@
 title: Parallel two-wire transmission line 
 ---
 
+
+### Resonant frequency in Hz
+$$f_0 = \frac{1}{2\pi\sqrt{LC}}$$
+
+$$\omega_0 = \frac{1}{\sqrt{L\ C}}$$
+
 ### Inductance formula for a parallel two-wire transmission line 
 
 $$L = \mu\,\frac{\ell}{\pi}\ln\!\left(\frac{2a_2}{D_2}\right)$$
@@ -52,8 +58,10 @@ $ \text{Valid only for low-loss lines}$: $R' \ll \omega L'$, $G' \ll \omega C'$
 
 When  line meets the load, any impedance mismatch reflects part of the wave:
 
+$$r_A = \frac{Z_A - Z_\ell}{Z_A + Z_\ell} \quad \text{where } Z_A$$
 
-$$r_A = \frac{Z_A - Z_\ell}{Z_A + Z_\ell} \quad \text{where } Z_A \text{ is the load impedance and } Z_\ell \text{ is the line impedance}$$
+is the load impedance and $Z_\ell$ is line impedance 
+
 
 ### Propagation constant γ
 
