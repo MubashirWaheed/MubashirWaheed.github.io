@@ -79,7 +79,59 @@ By formula
 
 $$|r| = \left| \frac{z - 1}{z + 1} \right| = \left| \frac{Z - Z_0}{Z + Z_0} \right|$$
 ### what is a quater wave transformer?
+$Z_1​$ is the characteristic impedance the λ/4 section must have for the match to work. It's the target value you design the physical line to hit,
+computed from:
 
-### When to use parallel short circited stub lines vs parallel open circuited stub lines?
+$$
+Z_1 = \sqrt{Z_S \cdot R}
+$$
+
+$$
+\underbrace{Z_S}_{\text{source side}} \longrightarrow \Big[\ \lambda/4,\ Z_1\ \Big] \longrightarrow \underbrace{R}_{\text{load side, real}} \longrightarrow [\ \text{extra line}\ ] \longrightarrow Z_A \text{ (complex)}
+$$
+
+$Z_S$ = source side impeadnce you want to match to 
+
+$R$ = the real impedance sitting at the output of the $λ/4$ transformer, on the load side. It is what the complex load $Z_A$ has been turned into
+after the extra line rotated it onto the real axis of the Smith chart. It must be purely real for the transformer to work.
+
+### Physical length of the transformer ($\ell$ = length to cut, $\lambda$ = the wavelength from above):
+$$
+\ell = \frac{\lambda}{4}
+$$
+
+### Wave length on line given by 
+
+$\lambda=$ wavelength on the transmission line, $c$ = speed of light, $f$ = frequency, $\varepsilon_r$ = relative permittivity of the dielectric):
+
+$$
+\lambda = \frac{c}{f \sqrt{\varepsilon_r}}
+$$
+
+### Concept: rotating the load with a line section
+A length of line is used to rotate the load impedance around the Smith chart (along a circle of constant $|\Gamma|$) until it lands on either 
+the $r=1$ circle or the $g=1$ circle. Once on that circle, the remaining reactive part is cancelled with a lumped element (capacitor or inductor, 
+in series or in parallel) to reach the center.Rotation along the constant $|\Gamma|$ circle changes both the real and the reactive 
+parts of the impedance. At the two points where this circle crosses the horizontal axis of the Smith chart, the reactance passes through zero, 
+so the impedance there is purely real.
+
+### Stub line 
+A stub is a piece of line whose only job is to present a pure reactance (or susceptance) at the point where it's connected. A parallel/shunt 
+stub adds a pure susceptance $jb$ to the main line, moving you along a constant-g circle, 
+
+## Parallel(shunt) stub 
+
+### When to use parallel short circuited vs parallel open circuited stub lines?
+ 
+**Shorted shunt stub**  starts at $y = \infty$ (short = infinite admittance), right edge.
+
+**Open shunt stub**  starts at $y = 0$ (open = zero admittance), left edge.
+
+When a component eg inductor or capacitor is replaced by stub line we have to deterrmine teh length of the line which produces the same 
+suseptance value as component and we always start at the termination of the stub and increase length. Rotation is always clockwise since 
+technically we are moving towards the generator. We mark the point on the outer rim(susceptance value) and start clockwise from $y=0$ left edge 
+or $y = \infty$ right edge which ever gives shorter path.
+
+Shorter legth = more bandwidth, lower loss
 
 ### Conversion of the conversion of the wavlength to rotational value for the smith chart?
