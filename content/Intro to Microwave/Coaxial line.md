@@ -27,6 +27,8 @@ where $a$ = outer radius of inner conductor, $b$ inner radius of outer conductor
 
 $$G' = \omega C' \tan\delta_\varepsilon = \frac{2\pi\omega\varepsilon_0\varepsilon_r'}{\ln\left(\frac{D_a}{D_i}\right)}\tan\delta_\varepsilon = \frac{2\pi\omega\varepsilon_0\varepsilon_r''}{\ln\left(\frac{D_a}{D_i}\right)} \quad \text{with } \varepsilon_r = \varepsilon_r' - j\varepsilon_r'' \text{ and } \tan\delta_\varepsilon = \frac{\varepsilon_r''}{\varepsilon_r'}$$
 
+unit: Siemens per meter $(S/m)$.
+
 ### Capacitance per unit length of a coaxial cable
 
 $$C' = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{D}{d}\right)} = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{r_a}{r_i}\right)}$$
@@ -34,17 +36,21 @@ $$C' = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{D}{d}\right)} = \f
 where $r_i​$ (or $d/2$): radius of the inner conductor
 $r_a$ (or $D/2$): inner radius of the outer conductor (shield)
 
-# put the unit of the capacitance per unit length here
+unit: Farads per meter $(F/m)$.
 
 ### Inductance per unit length of coaxial cable
 
 $$L' = \frac{\mu_0 \mu_r}{2\pi} \ln\left(\frac{r_a}{r_i}\right)$$
 
 
-### Phase velocity (coaxial line)
+### Phase velocity (propagation velocity) (coaxial line and simple line)
 
-$$v_{ph} = \frac{1}{\sqrt{L'C'}} = \frac{1}{\sqrt{\varepsilon_0\varepsilon_r'\mu_0\mu_r'}} = \frac{c_0}{\sqrt{\varepsilon_r'\mu_r'}}$$
+$$
 
+v_{ph} = \frac{1}{\sqrt{L'C'}} = \frac{1}{\sqrt{\varepsilon_0\varepsilon_r'\mu_0\mu_r'}} = \frac{c_0}{\sqrt{\varepsilon_r'\mu_r'}}
+
+$$
+unit: $m/s$
 ### Field wave impedance
 
 $$Z_F = \frac{Z_{F0}}{\sqrt{\varepsilon_r}} = \frac{120\pi\ \Omega}{\sqrt{\varepsilon_r}} = \frac{\sqrt{\mu_0/\varepsilon_0}}{\sqrt{\varepsilon_r}}$$
@@ -109,7 +115,6 @@ $\lambda_0 = c_0/f_0$ : free-space wavelength at the resonant frequency
 
 $\sqrt{\varepsilon_r}$ : converts a physical length into an equivalent free-space (electrical) length, because the wave travels slower in the dielectric
 
-### $\lambda/4$ transformer impedance matching 
 
 ### Short-circuited and open-circuited transmission line
 
@@ -148,8 +153,10 @@ $Z_{F,\mathrm{A}}$is the *field wave impedance* of line A
 
 
 ### Phase constant of a transmission line
+$$
+\beta = \underbrace{\frac{\omega}{v}}_{\text{velocity form}} = \underbrace{\omega\sqrt{L'C'}}_{\text{per-unit-length form}} = \underbrace{\frac{\omega\sqrt{\varepsilon_r'}}{c_0}}_{\text{material-property form}} = \underbrace{\frac{2\pi}{\lambda}}_{\text{wavelength form}}
+$$
 
-$$\beta = \frac{\omega}{v} = \underbrace{\omega \sqrt{L' C'}}_{\text{per-unit-length form}} = \underbrace{\frac{\omega}{c_0 / \sqrt{\varepsilon_r'}} = \frac{\omega \sqrt{\varepsilon_r'}}{c_0}}_{\text{material-property form}}$$
 
 ### Attenuation constant of a low-loss transmission line
 
@@ -266,23 +273,47 @@ $$R_{ges} = R_{HF,innen} + R_{HF,au\ss en} $$
 
 ### Reflection coefficient at the load (antenna/termination side)
 
-$$r_A = \frac{Z_A - Z_\ell}{Z_A + Z_\ell}$$
+$$
+r_A = \frac{Z_A - Z_\ell}{Z_A + Z_\ell}
+$$
 
 ### Reflection coefficient at the generator (source side)
 
-$$r_G = \frac{R_i - Z_\ell}{R_i + Z_\ell}$$
+$$
+r_G = \frac{R_i - Z_\ell}{R_i + Z_\ell}
+$$
 
 ### Complex propagation constant
+For the calculatiion of $\alpha$ and $\beta$ you can use the formula from above. 
 
-$$\gamma = \alpha + j\beta$$
+$$
+\gamma = \alpha + j\beta
+$$
+
+unit: $1/m$ (per meter).
+
 
 ### Local reflection coefficient at position z
 
-$$r(z) = r_A\, e^{-2\gamma(\ell - z)}$$
+$$
+r(z) = r_A\, e^{-2\gamma(\ell - z)}
+$$
 
-### Forward-wave amplitude launched into the line
+unit: dimention less
 
-$$U_1^+ = \frac{2Z_\ell}{R_i + Z_\ell}\cdot\frac{1}{1 - r_G r_A e^{-2\gamma\ell}}\,U_G$$
+### Initial launched wave (voltage divider, no reflections yet). 
+$U_0$ the source voltage, $R_i$  the internal source resistance, $Z_\ell$ the line characteristic impedance.
+$$
+U_0^+ = \frac{Z_\ell}{R_i + Z_\ell}\, U_0
+$$
+
+### Total forward-wave amplitude on the line (steady state), with generator and load multiple reflections
+The forward wave on the line after all the back-and-forth reflections between the source and load have settled.
+Here $U_G$ = generator source voltage
+$$
+U_1^+ = \underbrace{\frac{2Z_\ell}{R_i + Z_\ell}}_{\text{initial launch}} \cdot \underbrace{\frac{1}{1 - r_G r_A e^{-2\gamma \ell}}}_{\text{multiple reflections}}\, U_G
+$$
+
 
 ### Active (real) power at position z (low-loss line)
 
@@ -302,12 +333,27 @@ $$f_n = \frac{n\, v_{ph}}{2\ell} = \frac{n\, c_0}{2\ell\sqrt{\varepsilon_r'}}$$
 
 ### Quality factor of the resonator
 
-$$Q_0 = \frac{\beta}{2\alpha}$$
+$$
+Q_0 = \frac{\beta}{2\alpha}
+$$
 
 ### Input impedance of a lossy line with any load (general line-transformation formula)
 the impedance you "see" looking into the input of a line, when the far end is terminated by a load $Z_A$
 
-$$Z_E = \frac{Z_A + Z_\ell\tanh(\gamma\ell)}{Z_\ell + Z_A\tanh(\gamma\ell)}\,Z_\ell$$
+where 
+$Z_E​$ = input impedance you see looking into the line
+
+$Z_A$= load at the far end
+
+$Z_\ell$ = characteristic impedance of the line
+
+$\beta = 2\pi/\lambda$ = phase constant, 
+
+$\ell$ = physical line length
+
+$$
+Z_E = \frac{Z_A + Z_\ell\tanh(\gamma\ell)}{Z_\ell + Z_A\tanh(\gamma\ell)}\,Z_\ell
+$$
 
 ### Input impedance of a short-circuited lossy line (shorted stub)
 
@@ -326,8 +372,45 @@ $$Z_E = Z_\ell\,\frac{1}{\tanh(\gamma\ell)}$$
 
 ### Input impedance of a lossless line with any load (line transformation, lossless form)
 
-$$Z_E = \frac{Z_A + jZ_\ell\tan(\beta\ell)}{Z_\ell + jZ_A\tan(\beta\ell)}\,Z_\ell$$ 
+$$
+Z_E = \frac{Z_A + jZ_\ell\tan(\beta\ell)}{Z_\ell + jZ_A\tan(\beta\ell)}\,Z_\ell
+$$ 
 
+## Shortcuts for lossless case (mostly asked)
+
+### Input impedance $(Z_E)$ when $\lambda/4$ length (lossless case) 
+$tan$ gets simplied 
+
+$$
+Z_E = Z_\ell \cdot \frac{j\ Z_\ell \tan(\beta \ell)}{j\ Z_A \tan(\beta \ell)} = \frac{Z_\ell^2}{Z_A}
+$$
+
+In case of the quarter wave transformer the following formuls is used to calculate the characteristic impedacne of line 
+
+$$Z_l = \sqrt{Z_s \cdot Z_A}$$
+
+$Z_s$ = source impedance
+
+$Z_ℓ​$ = the impedance the $\lambda/4$ section must have to make the load look like $Z_s$
+
+$Z_A$= load impedance (what's connected at the far end)
+
+
+### Shorted stub ($Z_A = 0$, any length, lossless)
+$$
+ Z_E = j\ Z_\ell \tan(\beta \ell)
+$$
+
+### Open stub, input impedance ($Z_A = \infty$, lossless case)
+
+$$
+Z_E = -j\ Z_\ell \cot(\beta\ell) = \frac{-j\ Z_\ell}{\tan(\beta\ell)}
+$$
+
+### Lossless lambda/2 case length of line
+
+The input impedance equals the load exactly. The half-wave line is impedance-invisible. Tan(\pie) = zero
+So on a lossy line, $Z_E \neq Z_A$. The line pulls the impedance slightly toward $Z_\ell$
 ### Voltage Standing Wave Ratio (VSWR)
 $$\text{VSWR} = s = \frac{|U(z)|_{max}}{|U(z)|_{min}} $$
 
@@ -339,3 +422,9 @@ $$|r_A| = \frac{\text{VSWR} - 1}{\text{VSWR} + 1} $$
 
 
 $$\text{VSWR} = \frac{1 + |r_A|}{1 - |r_A|}$$
+
+On a lossless line, $|r|$ is the same at every point along the line, so it makes no difference whether you use the load reflection 
+coefficient $|r_A|$(aussen) or the input one $|r_{E}|$ for VSWR
+Only the phase changes as you move along the line
+
+<img src="attachments/characteristics.png" width="600" alt="characteristics" />
