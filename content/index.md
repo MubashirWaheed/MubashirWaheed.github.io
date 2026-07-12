@@ -4,10 +4,13 @@ title: Mubashir Waheed
 
 
 
-Hi, I'm Mubashir Waheed.
+Hi,  Mubashir here
 
-I'm studying **Autonomy Technology** at Friedrich-Alexander University Erlangen-Nürnberg (FAU). This site is where I document what
-I'm learning, keep notes across different subjects, dump ideas, and track my German language journey.
+
+I'm studying Autonomy Technology at Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU). This site is where I document what I'm learning,
+ keep notes across subjects, dump ideas, and track my German language journey.The design is a work in progress, aber es passt schon.
+
+ 
 
 
 
