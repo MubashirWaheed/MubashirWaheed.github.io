@@ -4,7 +4,7 @@ title: Constant values
 
 ---
 
-$$μ_0​=4π×10−7 H/m$$, permeability of free space (vacuum permeability)
+$$μ_0​=4π×10^{−7} H/m$$, permeability of free space (vacuum permeability)
 
 
 $$\varepsilon_0 = 8.854 \times 10^{-12}\ \text{F/m}$$ permittivity of free space (vacuum permittivity)

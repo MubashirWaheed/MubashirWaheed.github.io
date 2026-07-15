@@ -6,10 +6,15 @@ date: 28-06-2026
 
 ### Toroid Inductance 
 
-$$L = \mu_0\ \mu_r\ \frac{N^2\ A}{l_m}$$,  area given by $$A = \pi\ r^2$$, circumference length $$l_m = 2\pi r_m$$
+$$L = \mu_0\ \mu_r\ \frac{N^2\ A}{l_m}$$,  area given by $$A = \pi\ r^2_{k}$$, circumference length $$l_m = 2\pi r_m$$
+
+$$
+L =  \mu_0 \mu_r \frac{N^2 \pi r_k^2}{2\pi r_m}
+$$
 
 $r_m​$ = mean radius (to the middle of the core ring)
 
+$r^2_{k}$ = cross-sectional radius of the coil tube
 
 
 ### Temperature coefficient ($TK_\mu$)

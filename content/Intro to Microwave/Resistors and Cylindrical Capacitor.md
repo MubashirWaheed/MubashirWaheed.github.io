@@ -8,7 +8,22 @@ date: 29 June 2026
 $$C'  = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\!\left(\frac{D_a}{D_i}\right)}$$ ; &nbsp; &nbsp; where $D_a$ outer diameter, $D_i$ inner
 
 
-$$C = \frac{2\pi \epsilon_0 \epsilon_r \ell}{\ln\!\left(\frac{D_a}{D_i}\right)}$$
+$$
+C = \frac{2\pi \epsilon_0 \epsilon_r \ell}{\ln\!\left(\frac{D_a}{D_i}\right)}
+$$
+
+### Capacitance of a Spherical Capacitor
+$$
+C = 2\pi \varepsilon_0 \varepsilon_r \frac{D_a \cdot D_i}{D_a - D_i}
+$$
+
+$D_a​$ = outer sphere diameter, $D_i$ = inner sphere diameter
+
+In terms of inner diameter 
+
+$$
+D_i = \frac{C \, D_a}{2\pi \varepsilon_0 \varepsilon_r D_a + C}
+$$
 
 ### Parasitic effects in real Capacitor 
 Lead inductance, contact transition resistance (or ohmic lead resistance), repolarization losses in the dielectric, or leakage currents in the dielectric.
@@ -21,7 +36,9 @@ where $D$ = center-to-center spacing between the two wires, $a$ = wire radius.
 
 ### Parallel Plate capacitor
 
-$$C' = \frac{\varepsilon_0\varepsilon_r \cdot w}{h}$$
+$$
+C' = \frac{\varepsilon_0\varepsilon_r \cdot w}{h}
+$$
 
 where $w$ = plate width, $h$ = separation between plates 
 
