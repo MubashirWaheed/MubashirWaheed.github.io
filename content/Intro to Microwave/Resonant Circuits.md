@@ -69,6 +69,8 @@ $Q_C$ means lower loss
 $$Q_C = \frac{1}{\omega R_s C} = \frac{1}{\tan\delta}$$
 
 ### Real Capacitor Modeled
+Capacitor, inductor and resistor in series
+
 - **Ideal capacitance $C$**: Represents the actual intended capacitance, the charge storage between the two plates separated by 
 dielectric.
 - **Series inductor**: represents inductance of current path through the component, mainly the leads, terminals, and geometry of 

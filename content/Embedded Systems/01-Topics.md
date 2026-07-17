@@ -1,0 +1,36 @@
+---
+title: 01 Topics List 
+---
+
+- Double Roof Model
+- Specification and Refinement
+- Design space and Optmization
+- Petri Net Modeling
+- Properties of Petri nets
+- Deadlocks
+- Specification of a Database System
+- Statecharts
+- Marked graphs
+- Synchronous Data Flow Graphs
+- Periodic Scheduling and Repetition Vector 
+- Consistency
+- Synchronous Languages
+- Robot Control 
+- Architectural Synthesis
+- Scheduling
+- Exploration of Cost and Latency
+- Algorithms and Complexity
+- Scheduling Algorithms
+- ASAP, ALAP and List Scheduling
+- Binding and Synthesis
+- Integer Linear Programming for Architectural Synthesis
+- Iterative Algorithms
+- Scheduling of Tasks in Operating Systems
+- EDF with data dependencies, non-periodic scheduling
+- LDF, non-periodic scheduling
+- Priority Inversion
+- EDD, non-periodic scheduling
+- Periodic scheduling with EDF
+- Periodic scheduling with static priorities, DM
+- Code generation for SDF graphs
+- Looped Schedules

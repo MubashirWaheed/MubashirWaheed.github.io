@@ -77,7 +77,9 @@ $$|r_1| = \frac{\text{distance from center to } z_1}{\text{radius of chart (cent
 
 By formula
 
-$$|r| = \left| \frac{z - 1}{z + 1} \right| = \left| \frac{Z - Z_0}{Z + Z_0} \right|$$
+$$
+|r| = \left| \frac{z - 1}{z + 1} \right| = \left| \frac{Z - Z_0}{Z + Z_0} \right|
+$$
 ### what is a quater wave transformer?
 $Z_1​$ is the characteristic impedance the λ/4 section must have for the match to work. It's the target value you design the physical line to hit,
 computed from:
@@ -133,5 +135,22 @@ technically we are moving towards the generator. We mark the point on the outer 
 or $y = \infty$ right edge which ever gives shorter path.
 
 Shorter legth = more bandwidth, lower loss
+
+### VSWR from reflection coefficient
+$s$ = standing wave ratio, $|\Gamma|$ = magnitude of reflection coefficient at the load
+
+$$
+s = \frac{1 + |\Gamma|}{1 - |\Gamma|}
+$$
+
+- voltage minimum in admitance sits on the right side of smith chart (always on the horizontal line)
+- voltage minimum in impedacne sits on the left side of smith chart (always on horizontal line)
+
+### Voltage maximum and current minimum from the VSWR
+where s= VSWR
+$$
+U_{max} = s\cdot U_{min} \qquad I_{min} = \frac{I_{max}}{s}
+$$ 
+
 
 ### Conversion of the conversion of the wavlength to rotational value for the smith chart?
