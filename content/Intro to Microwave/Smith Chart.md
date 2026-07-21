@@ -72,7 +72,7 @@ $$\theta = 0.21 \cdot 720° = 151°$$
 
 So rotate $0.21\lambda$ (about $151°$) clockwise toward the generator.S
 
-### Reflection Coefficient from Smith Chart 
+### Reflection Coefficient and Phase  from Smith Chart 
 $$|r_1| = \frac{\text{distance from center to } z_1}{\text{radius of chart (center to rim)}}$$
 
 By formula
@@ -80,7 +80,12 @@ By formula
 $$
 |r| = \left| \frac{z - 1}{z + 1} \right| = \left| \frac{Z - Z_0}{Z + Z_0} \right|
 $$
-### what is a quater wave transformer?
+
+For the **phase** read the angle at the rim. the phase is given by convection from $+180$ to $-180$. Read Clockwise
+
+### what is a Quater Wave Transformer?
+quarter-wave transmission line changes the **real part (resistance)** of the impedance, not the imaginary part.
+
 $Z_1​$ is the characteristic impedance the λ/4 section must have for the match to work. It's the target value you design the physical line to hit,
 computed from:
 
@@ -125,6 +130,9 @@ stub adds a pure susceptance $jb$ to the main line, moving you along a constant-
 
 ### When to use parallel short circuited vs parallel open circuited stub lines?
  
+Mark the reactance/suseptance value on the smith chart  of the componeent is si being replaced by the stub line then order to figureout which stub to use start from
+zero(left real part) and reach the imaginary value present on the rim do same but from the right side (clockwise) which ever has the shortest path we use that. 
+
 **Shorted shunt stub**  starts at $y = \infty$ (short = infinite admittance), right edge.
 
 **Open shunt stub**  starts at $y = 0$ (open = zero admittance), left edge.
@@ -134,7 +142,11 @@ suseptance value as component and we always start at the termination of the stub
 technically we are moving towards the generator. We mark the point on the outer rim(susceptance value) and start clockwise from $y=0$ left edge 
 or $y = \infty$ right edge which ever gives shorter path.
 
+If element(inductor or capacitor) is in parallel then convert to admiatnce to  find the normalized value in smith chart 
+
 Shorter legth = more bandwidth, lower loss
+
+A short-circuited or open-circuited lossless stub produces only the imaginary part (reactance in impedance, or susceptance in admittance) and no real part.
 
 ### VSWR from reflection coefficient
 $s$ = standing wave ratio, $|\Gamma|$ = magnitude of reflection coefficient at the load
@@ -152,5 +164,41 @@ $$
 U_{max} = s\cdot U_{min} \qquad I_{min} = \frac{I_{max}}{s}
 $$ 
 
+When moving from the element(capacitor, indctor)in stub line of certain length(eg 3.5) that movement is translated as tworads generated hence clockwise on smith chart
 
-### Conversion of the conversion of the wavlength to rotational value for the smith chart?
+You invert (go to admittance) only when you're combining a shunt element with something else in parallel, because parallel admittances add:
+$$y_{total​}=y_4​+y_{AP}$$
+
+**broadband as possible** (shortest transformation path)
+
+**Important:** Constant **$g (r)$** cicle changes only the **susceptance b**
+
+On the impedance only printed chart the **$g=1$** is only on the right side of the chart.
+
+
+### Voltage and current curve on one line
+
+On smith chart Voltage line always from the right side , current always from left side
+
+#### Impedance case (reading $z=r+jx$):
+
+Right crossing, high resistance (r>1): this is the voltage-maximum, current-minimum point. High impedance means for a given current the voltage is large → ∣U∣ max.
+
+Left crossing, low resistance (r<1): this is the voltage-minimum, current-maximum point. Low impedance → ∣U∣ min, ∣I∣ max.
+
+#### Admittance case (reading $y=g+jb$):
+
+Right crossing, high conductance ($g>1$): current-maximum, voltage-minimum (what we used, $y_0$).
+
+Left crossing, low conductance ($g<1$): current-minimum, voltage-maximum.
+<img src="volatge-curent.png" alt="volatge-curent" width="400"/>
+
+Current always on left and voltage always on right
+
+
+Understood constant Conductance(reactacne) circle, constant reactance arcs, constant VSWR circle(cenetr at the center of smith chart).
+
+Also there is no $2 \pi$ used in $v= f\lambda$ while calculating the wavelength
+
+
+# Cases where r=1 or g=1 circle used and when lambda/4 tranformer used the toplogy of circuit(series element)
