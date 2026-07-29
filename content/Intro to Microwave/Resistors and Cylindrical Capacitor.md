@@ -30,7 +30,9 @@ Lead inductance, contact transition resistance (or ohmic lead resistance), repol
 
 ### Two wire Line (Parallel wire/lecher line)
 
-$$C' = \frac{\pi\varepsilon_0\varepsilon_r}{\ln\left(\frac{D}{a} + \sqrt{\left(\frac{D}{2a}\right)^2 - 1}\right)} \approx \frac{\pi\varepsilon_0\varepsilon_r}{\ln\left(\frac{D}{a}\right)} \quad \text{for } D \gg a$$
+$$
+C' = \frac{\pi\varepsilon_0\varepsilon_r}{\ln\left(\frac{D}{a} + \sqrt{\left(\frac{D}{2a}\right)^2 - 1}\right)} \approx \frac{\pi\varepsilon_0\varepsilon_r}{\ln\left(\frac{D}{a}\right)} \quad \text{for } D \gg a
+$$
 
 where $D$ = center-to-center spacing between the two wires, $a$ = wire radius. 
 
@@ -44,7 +46,9 @@ where $w$ = plate width, $h$ = separation between plates
 
 ### Time between the maximum capacitive energy and the maximum inductive energy transfer
 
-$$\Delta t = \frac{T}{4} = \frac{1}{4f_{Res}}$$
+$$
+\Delta t = \frac{T}{4} = \frac{1}{4f_{Res}}
+$$
 
 ### Gemoteries of the Capacitor
 - Spherical Capacitor 
@@ -64,26 +68,40 @@ As a result, the component can no longer be described as a lumped component.
 ### Finding Current(max) or Voltage(max)  in LC ciruit 
 Max current between the LC ciruit is when there is resonacne and energy transfered from Capacitor to Inductor at resonance since the formula is 
 
-$$\frac{1}{2}L I_{max}^2 = \frac{1}{2}CU^2$$
+$$
+\frac{1}{2}L I_{max}^2 = \frac{1}{2}CU^2
+$$
 
-$$L I_{max}^2 = CU^2$$
+$$
+L I_{max}^2 = CU^2
+$$
 
-$$I_{max} = \sqrt{\frac{CU^2}{L}}$$
+$$
+I_{max} = \sqrt{\frac{CU^2}{L}}
+$$
 
 ### Capacitance of plate Capacitor
-$$C = \varepsilon_0\ \varepsilon_r\ \frac{A}{d}$$
+$$
+C = \varepsilon_0\ \varepsilon_r\ \frac{A}{d}
+$$
 
-$$C_{total} = (N-1)\ \epsilon_0\epsilon_r\ \frac{A^2}{d}$$ 
+$$
+C_{total} = (N-1)\ \epsilon_0\epsilon_r\ \frac{A^2}{d}
+$$ 
 
 where $d$ represent single layer thickness and number of layers $(N−1)$, it tells you the total capacitance of the parallel stack
 
 ### Dielectric Loss power Density Formula
-$$P_V = 2\pi f \epsilon_0 \epsilon_r'' E^2$$
-where E is electric field and P_v power loss density 
+$$
+P_V = 2\pi f \epsilon_0 \epsilon_r'' E^2
+$$
+where $E$ is electric field and $P_v$ power loss density 
 
 For a parallel-plate capacitor, $E$  relates to the applied voltage $U$ and the plate separation $d$ by:
 
-$$E = \frac{U}{d}$$
+$$
+E = \frac{U}{d}
+$$
 
 
 ### Equivalent Circuit Diagram(ECD) of Multilayer Plate Capacitor at High frequency
@@ -103,19 +121,23 @@ A real capacitor is not just an ideal $C$. At high frequencies, parasitic effect
 
 ### Full ECD
 
-$$Z(\omega) = \left(R_p \parallel R_{diel} \parallel \frac{1}{j\omega C}\right) + R_S + j\omega L_S$$
+$$
+Z(\omega) = \left(R_p \parallel R_{diel} \parallel \frac{1}{j\omega C}\right) + R_S + j\omega L_S
+$$
 
 
 ### Simplified ECD
 
 (valid since $R_p, R_{diel} \to \infty$ negligible in relevant range)
 
-$$Z(\omega) = R_S + j\omega L_S + \frac{1}{j\omega C}$$
+$$
+Z(\omega) = R_S + j\omega L_S + \frac{1}{j\omega C}
+$$
 
 
 Impedance frequncy graph shown with left point being capacitance since impedance decreases as frequency increases and right is inductacne as impedance increases with frequency
  
-<img src="attachments/Z_f_graph.png" width="400">
+<img src="attachments/Z_f_graph.png" width="700">
 
 ### Polarization 
 

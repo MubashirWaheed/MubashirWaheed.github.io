@@ -6,32 +6,42 @@ title:  Coaxial line
 
 ### Line (characteristic) impedance of a coaxial cable
 
-$$Z_\ell = \underbrace{60\ \Omega}_{\text{always}} \cdot \underbrace{\sqrt{\frac{\mu_r'}{\varepsilon_r'}}}_{\text{dielectric}} \cdot \underbrace{\ln\left(\frac{D_a}{D_i}\right)}_{\text{geometry}}$$
+$$
+Z_\ell = \underbrace{60\ \Omega}_{\text{always}} \cdot \underbrace{\sqrt{\frac{\mu_r'}{\varepsilon_r'}}}_{\text{dielectric}} \cdot \underbrace{\ln\left(\frac{D_a}{D_i}\right)}_{\text{geometry}}
+$$
 
 Three independent pieces: a constant, the material, the geometry
 
 
 $ε_r​$ (dielectric), $D$ (outer conductor inner diameter), $d$ (inner conductor outer diameter). $Z_0$ = impedance of free space
 
-$$Z_\ell = \sqrt{\frac{L'}{C'}} = \sqrt{\frac{\mu_0\mu_r'\ln^2\left(\frac{D_a}{D_i}\right)}{4\pi^2\varepsilon_0\varepsilon_r'}} = \frac{1}{2\pi}\cdot\sqrt{\frac{\mu_0\mu_r'}{\varepsilon_0\varepsilon_r'}}\cdot\ln\left(\frac{D_a}{D_i}\right) = \frac{Z_0}{2\pi}\sqrt{\frac{\mu_r'}{\varepsilon_r'}}\cdot\ln\left(\frac{D_a}{D_i}\right)$$
+$$
+Z_\ell = \sqrt{\frac{L'}{C'}} = \sqrt{\frac{\mu_0\mu_r'\ln^2\left(\frac{D_a}{D_i}\right)}{4\pi^2\varepsilon_0\varepsilon_r'}} = \frac{1}{2\pi}\cdot\sqrt{\frac{\mu_0\mu_r'}{\varepsilon_0\varepsilon_r'}}\cdot\ln\left(\frac{D_a}{D_i}\right) = \frac{Z_0}{2\pi}\sqrt{\frac{\mu_r'}{\varepsilon_r'}}\cdot\ln\left(\frac{D_a}{D_i}\right)
+$$
 
 When $\mu_r'$ is not given, assume $\mu_r' = 1$ mostly for non magnetic cases.
 
 ### Resistance per unit length of Coaxial cable 
 
-$$R' = \frac{1}{2\pi}\sqrt{\frac{\pi f \mu}{\sigma}}\left(\frac{1}{a} + \frac{1}{b}\right)$$
+$$
+R' = \frac{1}{2\pi}\sqrt{\frac{\pi f \mu}{\sigma}}\left(\frac{1}{a} + \frac{1}{b}\right)
+$$
 
 where $a$ = outer radius of inner conductor, $b$ inner radius of outer conductor
 
 ### Shunt Conductance per unit length $(G′)$ of Coaxial cable
 
-$$G' = \omega C' \tan\delta_\varepsilon = \frac{2\pi\omega\varepsilon_0\varepsilon_r'}{\ln\left(\frac{D_a}{D_i}\right)}\tan\delta_\varepsilon = \frac{2\pi\omega\varepsilon_0\varepsilon_r''}{\ln\left(\frac{D_a}{D_i}\right)} \quad \text{with } \varepsilon_r = \varepsilon_r' - j\varepsilon_r'' \text{ and } \tan\delta_\varepsilon = \frac{\varepsilon_r''}{\varepsilon_r'}$$
+$$
+G' = \omega C' \tan\delta_\varepsilon = \frac{2\pi\omega\varepsilon_0\varepsilon_r'}{\ln\left(\frac{D_a}{D_i}\right)}\tan\delta_\varepsilon = \frac{2\pi\omega\varepsilon_0\varepsilon_r''}{\ln\left(\frac{D_a}{D_i}\right)} \quad \text{with } \varepsilon_r = \varepsilon_r' - j\varepsilon_r'' \text{ and } \tan\delta_\varepsilon = \frac{\varepsilon_r''}{\varepsilon_r'}
+$$
 
 unit: Siemens per meter $(S/m)$.
 
 ### Capacitance per unit length of a coaxial cable
 
-$$C' = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{D}{d}\right)} = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{r_a}{r_i}\right)}$$
+$$
+C' = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{D}{d}\right)} = \frac{2\pi \varepsilon_0 \varepsilon_r}{\ln\left(\frac{r_a}{r_i}\right)}
+$$
 
 where $r_i​$ (or $d/2$): radius of the inner conductor
 $r_a$ (or $D/2$): inner radius of the outer conductor (shield)
@@ -40,33 +50,39 @@ unit: Farads per meter $(F/m)$.
 
 ### Inductance per unit length of coaxial cable
 
-$$L' = \frac{\mu_0 \mu_r}{2\pi} \ln\left(\frac{r_a}{r_i}\right)$$
+$$
+L' = \frac{\mu_0 \mu_r}{2\pi} \ln\left(\frac{r_a}{r_i}\right)
+$$
 
 
 ### Phase velocity (propagation velocity) (coaxial line and simple line)
 
 $$
-
 v_{ph} = \frac{1}{\sqrt{L'C'}} = \frac{1}{\sqrt{\varepsilon_0\varepsilon_r'\mu_0\mu_r'}} = \frac{c_0}{\sqrt{\varepsilon_r'\mu_r'}}
-
 $$
 unit: $m/s$
 ### Field wave impedance
 
-$$Z_F = \frac{Z_{F0}}{\sqrt{\varepsilon_r}} = \frac{120\pi\ \Omega}{\sqrt{\varepsilon_r}} = \frac{\sqrt{\mu_0/\varepsilon_0}}{\sqrt{\varepsilon_r}}$$
+$$
+Z_F = \frac{Z_{F0}}{\sqrt{\varepsilon_r}} = \frac{120\pi\ \Omega}{\sqrt{\varepsilon_r}} = \frac{\sqrt{\mu_0/\varepsilon_0}}{\sqrt{\varepsilon_r}}
+$$
 
 $Z_F​$ : field wave impedance of the medium filling the line
 
 ### Field wave impedance of free space (vacuum).
 
-$$Z_{F0} = \sqrt{\frac{\mu_0}{\varepsilon_0}} = 120\pi\ \Omega \approx 377\ \Omega$$
+$$
+Z_{F0} = \sqrt{\frac{\mu_0}{\varepsilon_0}} = 120\pi\ \Omega \approx 377\ \Omega
+$$
 
 
 so **general field wave impedance** is just this vacuum value divided by $\sqrt{\varepsilon_r}$
 
 ### Reflection factor at a junction between two lines:
 
-$$r_V = \frac{Z_{\ell,\mathrm{B}} - Z_{\ell,\mathrm{A}}}{Z_{\ell,\mathrm{B}} + Z_{\ell,\mathrm{A}}}$$
+$$
+r_V = \frac{Z_{\ell,\mathrm{B}} - Z_{\ell,\mathrm{A}}}{Z_{\ell,\mathrm{B}} + Z_{\ell,\mathrm{A}}}
+$$
 
 $rV​$ : reflection factor at the junction 
 
@@ -76,7 +92,9 @@ $Z_{\ell,\mathrm{A}}$ : characteristic impedance of the line the wave comes from
 
 ### Reflected power:
 
-$$P_r = P_0 \cdot |r_V|^2 \quad\Rightarrow\quad \frac{P_r}{P_0} = |r_V|^2$$
+$$
+P_r = P_0 \cdot |r_V|^2 \quad\Rightarrow\quad \frac{P_r}{P_0} = |r_V|^2
+$$
 
 $P_0​$ : incident power,
 
@@ -87,7 +105,9 @@ $|r_V|^2$ : fraction of power reflected (power reflects with the square of the r
 
 ### For no power reflection: the two line impedances must be equal (impedance matching).
 
-$$Z_{\ell,\mathrm{B}} \overset{!}{=} Z_{\ell,\mathrm{A}}$$
+$$
+Z_{\ell,\mathrm{B}} \overset{!}{=} Z_{\ell,\mathrm{A}}
+$$
 
 
 $D_{a,B​}$ : outer conductor (inner) diameter of line B (a = außen = outer)
@@ -105,7 +125,9 @@ Core idea: a transmission line shorted at both ends resonates when its total ele
 
 **Resonance Condition**
 
-$$\ell_A \sqrt{\varepsilon_{r,\mathrm{A}}} + \ell_B \overset{!}{=} \frac{\lambda_0}{2}$$
+$$
+\ell_A \sqrt{\varepsilon_{r,\mathrm{A}}} + \ell_B \overset{!}{=} \frac{\lambda_0}{2}
+$$
 
 $\ell_A,\ \ell_B$ : physical lengths of line sections A and B
 
@@ -118,12 +140,13 @@ $\sqrt{\varepsilon_r}$ : converts a physical length into an equivalent free-spac
 
 ### Short-circuited and open-circuited transmission line
 
-### Voltage profile on Coaxial cable
 
 
 ### Fields inside  coaxial cable
 
-$$\hat{E} = \frac{\hat{U}}{r \cdot \ln(a/b)} \qquad \hat{H} = \frac{\hat{I}}{2\pi r}$$
+$$
+\hat{E} = \frac{\hat{U}}{r \cdot \ln(a/b)} \qquad \hat{H} = \frac{\hat{I}}{2\pi r}
+$$
 
 
 $\hat{E},\ \hat{H}$ : peak (amplitude) field strengths
@@ -138,7 +161,9 @@ $a/b = D_a/D_i$ : ratio of outer to inner conductor diameter
 
 Base power formula: $$P = \frac{1}{2}\frac{\hat{U}^2}{Z_{\ell,\mathrm{A}}} = \frac{1}{2}\hat{I}^2 Z_{\ell,\mathrm{A}}$$
 
-$$\hat{U} = \sqrt{2 P \, Z_{\ell,\mathrm{A}}} \qquad \hat{I} = \sqrt{\frac{2P}{Z_{\ell,\mathrm{A}}}}$$
+$$
+\hat{U} = \sqrt{2 P \, Z_{\ell,\mathrm{A}}} \qquad \hat{I} = \sqrt{\frac{2P}{Z_{\ell,\mathrm{A}}}}
+$$
 
 Where $Z_{l,A}$ is characteristic impedance  of line A
 
@@ -171,59 +196,88 @@ Decomposed as $$α=α_R+α_G$$
 
 &nbsp; where $D_a$ outer conductor inner diameter, $D_i$ inner conductor diameter
 
-**Dielectric loss** $$\alpha_G = \frac{\omega}{2 c_0} \sqrt{\varepsilon_r' \mu_r'} \, \tan\delta_\varepsilon$$
+**Dielectric loss** 
+$$
+\alpha_G = \frac{\omega}{2 c_0} \sqrt{\varepsilon_r' \mu_r'} \, \tan\delta_\varepsilon
+$$
 
 **Combined**
-$$\alpha = \alpha_R + \alpha_G = \frac{1}{Z_0}\sqrt{\frac{\pi f\mu_0\varepsilon_r'}{\sigma_{Cu}}}\cdot\frac{1+\frac{D_a}{D_i}}{D_a\ln\left(\frac{D_a}{D_i}\right)} + \frac{\omega}{2c_0}\sqrt{\varepsilon_r'\mu_r'}\ \tan\delta_\varepsilon$$
+$$
+\alpha = \alpha_R + \alpha_G = \frac{1}{Z_0}\sqrt{\frac{\pi f\mu_0\varepsilon_r'}{\sigma_{Cu}}}\cdot\frac{1+\frac{D_a}{D_i}}{D_a\ln\left(\frac{D_a}{D_i}\right)} + \frac{\omega}{2c_0}\sqrt{\varepsilon_r'\mu_r'}\ \tan\delta_\varepsilon
+$$
 
 
-$$\text{Air-filled coax:}\quad \tan\delta_\varepsilon \approx 0 \;\Rightarrow\; \alpha_G = 0 \;\Rightarrow\; \alpha = \alpha_R$$
+$$
+\text{Air-filled coax:}\quad \tan\delta_\varepsilon \approx 0 \;\Rightarrow\; \alpha_G = 0 \;\Rightarrow\; \alpha = \alpha_R
+$$
 ### Attenuation (or gain) $A_{dB}$  expressed in decibels
 
-$$A_{dB} = 10 \cdot \log_{10}\left(\frac{P(l)}{P_0}\right)$$
+$$
+A_{dB} = 10 \cdot \log_{10}\left(\frac{P(l)}{P_0}\right)
+$$
 
 ### Power attenuation along a lossy transmission line
 
 Power of a forward wave decays as it travels down a lossy line:
 
-$$P(z) = P(0)\ e^{-2\alpha z}$$
+$$
+P(z) = P(0)\ e^{-2\alpha z}
+$$
 
-$$\frac{P(l)}{P_0} = e^{-2\alpha l}$$
+$$
+\frac{P(l)}{P_0} = e^{-2\alpha l}
+$$
 
 where $α:$ attenuation constant 
 
 Half of the injected power reaches the end would mean 
 
-$$\frac{P(z=\ell)}{P(z=0)} = e^{-2\alpha\ell} \overset{!}{=} \frac{1}{2}$$
+$$
+\frac{P(z=\ell)}{P(z=0)} = e^{-2\alpha\ell} \overset{!}{=} \frac{1}{2}
+$$
 
 A -20dB drop means you can find the power ratio and equate that in the above formula to find the length of the transmission line after whioch that drop will happen. Given that 
 you have found the attenuation constant in previous part.
 
 ### Finding where power of max power and minimal attenuation optimized equal   
 
-$$U_0 = E_D \cdot \frac{D_i}{2}\ln\left(\frac{D_a}{D_i}\right)$$
+$$
+U_0 = E_D \cdot \frac{D_i}{2}\ln\left(\frac{D_a}{D_i}\right)
+$$
 
 Attenuation constant different in two lines becuase of geomerty. find attenuation constant 
 
-$$P_{in,max} = \frac{1}{2}\frac{|U_0|^2}{Z_\ell^*} = \frac{1}{2}\cdot\frac{E_D^2\,\frac{D_i^2}{4}\ln^2\left(\frac{D_a}{D_i}\right)}{60\ \Omega\cdot\ln\left(\frac{D_a}{D_i}\right)} = \frac{E_D^2\,D_i^2\,\ln\left(\frac{D_a}{D_i}\right)}{8\cdot 60\ \Omega}$$
+$$
+P_{in,max} = \frac{1}{2}\frac{|U_0|^2}{Z_\ell^*} = \frac{1}{2}\cdot\frac{E_D^2\,\frac{D_i^2}{4}\ln^2\left(\frac{D_a}{D_i}\right)}{60\ \Omega\cdot\ln\left(\frac{D_a}{D_i}\right)} = \frac{E_D^2\,D_i^2\,\ln\left(\frac{D_a}{D_i}\right)}{8\cdot 60\ \Omega}
+$$
 
 You need to find how max power compare to attenunation optimized so divied them and get the factor
 
-$$\frac{P_{in,max,2}}{P_{in,max,1}} = \frac{E_D^2 D_a^2 / 4872.9\ \Omega}{E_D^2 D_a^2 / 2613.6\ \Omega} = \frac{2613.6}{4872.9} = 0.536$$
+$$
+\frac{P_{in,max,2}}{P_{in,max,1}} = \frac{E_D^2 D_a^2 / 4872.9\ \Omega}{E_D^2 D_a^2 / 2613.6\ \Omega} = \frac{2613.6}{4872.9} = 0.536
+$$
 
-$$P_{max}\,e^{-2\alpha_1 z} = (\text{some factor here eg 0.536})\,P_{max}\,e^{-2\alpha_2 z}$$ 
+$$
+P_{max}\,e^{-2\alpha_1 z} = (\text{some factor here eg 0.536})\,P_{max}\,e^{-2\alpha_2 z}
+$$ 
 Power factor cancels 
 
 $$e^{2(\alpha_2 - \alpha_1)z} = 0.536$$
 
-$$z = \frac{\ln(0.536)}{2(\alpha_2 - \alpha_1)} = 58.5\ \text{m}$$
+$$
+z = \frac{\ln(0.536)}{2(\alpha_2 - \alpha_1)} = 58.5\ \text{m}
+$$
 
 ### Minimum attenuation (minimizes conductor loss for a given outer radius)
-$$\frac{b}{a} \approx 3.591, \qquad Z_0 \approx 76.7\ \Omega \ \text{(air)}$$ 
+$$
+\frac{b}{a} \approx 3.591, \qquad Z_0 \approx 76.7\ \Omega \ \text{(air)}
+$$ 
 
 ### Maximum power capacity (maximizes power before dielectric breakdown for a given outer radius):
 
-$$\frac{b}{a} = \sqrt{e} \approx 1.649, \qquad Z_0 \approx 30\ \Omega \ \text{(air)}$$
+$$
+\frac{b}{a} = \sqrt{e} \approx 1.649, \qquad Z_0 \approx 30\ \Omega \ \text{(air)}
+$$
 
 Basically we adjust the ratio of inner($a$) and outer($b$) radius to have desired chacracteris impedance of coaxial cable for max 
 power or minimum attenuation. 
@@ -231,11 +285,15 @@ power or minimum attenuation.
 ### Rectangular Coaxial cable treadted as plate capacitor 
 Finding capacitacne of each side using 
 
-$$C = \varepsilon_0 \varepsilon_r \frac{A}{d}$$
+$$
+C = \varepsilon_0 \varepsilon_r \frac{A}{d}
+$$
 
 Rectangular Coaxial geometry Capacitance while ignoring corners
 
-$$C = \varepsilon_0 \varepsilon_r \frac{a \cdot l}{\frac{b - a}{2}}$$
+$$
+C = \varepsilon_0 \varepsilon_r \frac{a \cdot l}{\frac{b - a}{2}}
+$$
 
 Then multiplied by 4 to account for each side
 
@@ -247,27 +305,50 @@ $a$: inner side length of the square cross-section
 $b$: outer side length of the square cross-section
 
 ### DC Resistance of a Rectangular Conductor 
-General Formula:  $$R_{DC} = \frac{l}{\sigma \cdot A}$$
+General Formula:
+$$
+R_{DC} = \frac{l}{\sigma \cdot A}
+$$
 
-Inner: $$R_{DC,innen} = \frac{l}{\sigma \, a^2} $$
+Inner: 
+$$
+R_{DC,innen} = \frac{l}{\sigma \, a^2} 
+$$
 
-Outer: $$R_{DC,aussen} = \frac{l}{\sigma \left((b + 2D)^2 - b^2\right)}$$; &nbsp; where $D$ =wall thickness, $A=(b+2D)^2−b^2$
+Outer: 
+$$
+R_{DC,aussen} = \frac{l}{\sigma \left((b + 2D)^2 - b^2\right)}
+$$
+&nbsp; where $D$ =wall thickness, $A=(b+2D)^2−b^2$
 
 ### HF Resistance of Rectangular Conductor 
 
-General formula: $$R_{HF} = \frac{l}{\sigma \cdot A_{eff}}$$
+General formula: 
+$$
+R_{HF} = \frac{l}{\sigma \cdot A_{eff}}
+$$
 
-Inner Condductor: $$R_{HF,innen} = \frac{l}{\sigma \left(a^2 - (a - 2\delta)^2\right)} $$
+Inner Condductor: 
+$$
+R_{HF,innen} = \frac{l}{\sigma \left(a^2 - (a - 2\delta)^2\right)} 
+$$
 
-Outer Conductor: $$R_{HF,auss en} = \frac{l}{\sigma \left((b + 2D)^2 - (b + 2D - 2\delta)^2\right)}$$
+Outer Conductor: 
+$$
+R_{HF,auss en} = \frac{l}{\sigma \left((b + 2D)^2 - (b + 2D - 2\delta)^2\right)}
+$$
 
 ### Skin Depth
 
-$$\delta = \frac{1}{\sqrt{\pi \, f_0 \, \mu_0 \, \mu_r \, \sigma}}$$
+$$
+\delta = \frac{1}{\sqrt{\pi \, f_0 \, \mu_0 \, \mu_r \, \sigma}}
+$$
 
-$$R_{ges} = R_{HF,innen} + R_{HF,au\ss en} $$
+$$
+R_{ges} = R_{HF,innen} + R_{HF,au\ss en} 
+$$
 
-<img src="attachments/rectangular_coaxial.png" width="400"/>
+<img src="attachments/rectangular_coaxial.png" width="800"/>
 
 ## Course of Electrical Power Transmitted over line 
 
@@ -321,7 +402,9 @@ $$P_p(z) = \frac{|U_1^+|^2}{2Z_\ell}\, e^{-2\alpha z}\left(1 - |r_A|^2 e^{-4\alp
 
 
 ### Fully-combined power formula
-$$P_p(z) = \underbrace{\frac{|U_G|^2}{8Z_\ell}}_{\text{source constant}}\cdot\underbrace{\frac{|1 - r_G|^2}{|1 - r_G r_A e^{-2\gamma\ell}|^2}}_{\text{launch + multi-bounce}}\cdot\underbrace{\left(1 - |r_A|^2 e^{-4\alpha(\ell-z)}\right)}_{\text{reflection correction}}\cdot\underbrace{e^{-2\alpha z}}_{\text{forward decay}}$$
+$$
+P_p(z) = \underbrace{\frac{|U_G|^2}{8Z_\ell}}_{\text{source constant}}\cdot\underbrace{\frac{|1 - r_G|^2}{|1 - r_G r_A e^{-2\gamma\ell}|^2}}_{\text{launch + multi-bounce}}\cdot\underbrace{\left(1 - |r_A|^2 e^{-4\alpha(\ell-z)}\right)}_{\text{reflection correction}}\cdot\underbrace{e^{-2\alpha z}}_{\text{forward decay}}
+$$
 
 
 Formula gives you the electrical real (active) power flowing through the cable at any position $z$ along its length.
@@ -359,7 +442,9 @@ $$
 
 same $Z_E$ as above, but for the special case where the far end is a short circuit, so $Z_A = 0$
 
-$$Z_E = Z_\ell\tanh(\gamma\ell)$$
+$$
+Z_E = Z_\ell\tanh(\gamma\ell)
+$$
 
 
 ### Input impedance of a shorted lossy line, expanded into real and imaginary parts
@@ -368,7 +453,9 @@ $$Z_E = Z_\ell\,\frac{\tanh(\alpha\ell) + j\tan(\beta\ell)}{1 + j\tanh(\alpha\el
 
 ### Input impedance of an open-circuited lossy line (open stub)
 
-$$Z_E = Z_\ell\,\frac{1}{\tanh(\gamma\ell)}$$
+$$
+Z_E = Z_\ell\,\frac{1}{\tanh(\gamma\ell)}
+$$
 
 ### Input impedance of a lossless line with any load (line transformation, lossless form)
 
@@ -387,7 +474,9 @@ $$
 
 In case of the quarter wave transformer the following formuls is used to calculate the characteristic impedacne of line 
 
-$$Z_l = \sqrt{Z_s \cdot Z_A}$$
+$$
+Z_l = \sqrt{Z_s \cdot Z_A}
+$$
 
 $Z_s$ = source impedance
 
@@ -421,10 +510,15 @@ s=1 means perfectly matched, larger means more reflection.
 $$|r_A| = \frac{\text{VSWR} - 1}{\text{VSWR} + 1} $$
 
 
-$$\text{VSWR} = \frac{1 + |r_A|}{1 - |r_A|}$$
+$$
+\text{VSWR} = \frac{1 + |r_A|}{1 - |r_A|}
+$$
 
 On a lossless line, $|r|$ is the same at every point along the line, so it makes no difference whether you use the load reflection 
 coefficient $|r_A|$(aussen) or the input one $|r_{E}|$ for VSWR
 Only the phase changes as you move along the line
 
 <img src="attachments/characteristics.png" width="600" alt="characteristics" />
+
+
+### Voltage profile on Coaxial cable

@@ -124,5 +124,4 @@ $$
 v_{gr} = \left(\frac{d\beta(\omega)}{d\omega}\right)^{-1}
 $$
 
-
 I need to understand the $\omega$ less than and greater than cases

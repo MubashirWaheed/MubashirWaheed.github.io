@@ -406,6 +406,21 @@ The reason for writing these governing eqautions is to be able to draw the free 
 All five are the same statement: rate of change of what's stored equals net flow in. Newton's law is momentum accumulation, thermal is energy accumulation, fluid is mass 
 accumulation, Kirchhoff is charge and energy accounting.
 
+## Thermal Systems
+
+$$
+q_{out} = \frac{T - T_f}{R_{eq}}
+$$
+Where $q_{out}$ = heat flow rate escaping
+
+$R_{eq}$ the total series thermal resistance
+
+$$
+C\frac{dT}{dt} = q_{in} - \frac{T - T_f}{R_{eq}}
+$$
+
+$C$ is thermal capacitance , $T$ the body temperature 
+
 ## Fluid Dynamics Recipe for differential equation
 
 ### Conversion between mass flow rate and volume flow rate
@@ -521,6 +536,37 @@ $$
 - write spring mass and spring double mass equations in sheet
 - how to write state space represenatation of each system
 - Dc motor with load 
+
+#### Basic Concept 
+Basically figureout where is the enrgy, capacitance, mass, momentum is being stored and for that we write the differential equation. The general Storage balance is 
+
+$$
+\frac{dQ_{stored}}{dt} = \dot{q}_{in} - \dot{q}_{out}
+$$
+
+$q˙_{in},q˙{out}$: rates of flow in and out (current, mass flow rate, heat flow rate)
+
+After that write the resisatnce elemnets equation for the system. Resistance elements can be in series or parallel
+
+Example resistanc formula
+$$
+R = \frac{L}{kA}
+$$
+
+Following is most important it is applied to all in some way or form
+
+$$
+\text{flow} = \frac{\text{potential difference}}{\text{resistance}};
+
+\hspace{2em}
+
+q_{out} = \frac{1}{R_{eq}}(T - T_f);
+
+\hspace{2em}
+i = \frac{1}{R}(v_1 - v_2);
+$$
+
+
 
 I am learnig about the possible states for different system and hwo to form differential equations for thema and their converion to the State space representaion then differnet 
 forms 

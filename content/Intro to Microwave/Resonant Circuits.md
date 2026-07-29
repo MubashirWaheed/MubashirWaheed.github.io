@@ -27,10 +27,14 @@ reactances cancel in a loop, impedance goes to a minimum, current is maximum. Re
  currents cancel at a node, impedance goes to a maximum, source current is minimum. Anti-resonance = blocked path.
 
 ### Resonant Frequency
-$$\omega_0 = \frac{1}{\sqrt{LC}}, \qquad f_0 = \frac{1}{2\pi\sqrt{LC}}$$
+$$
+\omega_0 = \frac{1}{\sqrt{LC}}, \qquad f_0 = \frac{1}{2\pi\sqrt{LC}}
+$$
 
 ### Series Resonant Circuit 
-$$Z = R + j\omega L + \frac{1}{j\omega C} = R + j\left(\omega L - \frac{1}{\omega C}\right)$$
+$$
+Z = R + j\omega L + \frac{1}{j\omega C} = R + j\left(\omega L - \frac{1}{\omega C}\right)
+$$
 
 
 At resonance the imaginary part of impedance cancels:
@@ -39,7 +43,9 @@ At resonance the imaginary part of impedance cancels:
 - Behaves like a short-ish path at $f_0$, blocks DC
 
 ### Parallel Resonant Circuit 
-$$Y = \frac{1}{R} + j\omega C + \frac{1}{j\omega L} = \frac{1}{R} + j\left(\omega C - \frac{1}{\omega L}\right)$$
+$$
+Y = \frac{1}{R} + j\omega C + \frac{1}{j\omega L} = \frac{1}{R} + j\left(\omega C - \frac{1}{\omega L}\right)
+$$
 
 At resonance the imaginary part of admittance cancels:
 
@@ -47,12 +53,16 @@ At resonance the imaginary part of admittance cancels:
 - Peaks at $f_0$, shorts at DC
 
 ### Quality Factor Q
-$$Q = \frac{f_0}{\Delta f}$$
+$$
+Q = \frac{f_0}{\Delta f}
+$$
 
 $Δf$ = bandwidth, $Q$ = sharper/narrower resonance
 
 ### Series $Q$ 
-$$Q_{\text{series}} = \frac{\omega_0 L}{R} = \frac{1}{R}\sqrt{\frac{L}{C}}$$
+$$
+Q_{\text{series}} = \frac{\omega_0 L}{R} = \frac{1}{R}\sqrt{\frac{L}{C}}
+$$
 
 
 ### Parallel $Q$

@@ -45,7 +45,9 @@ The Smith chart rotates by **electrical length** (fraction of a wavelength $\ell
 
 **Step 1: Wavelength on the line** (the dielectric slows the wave, so include $\varepsilon_r$)
 
-$$\lambda = \frac{c}{f \sqrt{\varepsilon_r}}$$
+$$
+\lambda = \frac{c}{f \sqrt{\varepsilon_r}}
+$$
 
 where $c = 3 \times 10^8\ \text{m/s}$, $f$ = frequency, $\varepsilon_r$ = relative permittivity.
 

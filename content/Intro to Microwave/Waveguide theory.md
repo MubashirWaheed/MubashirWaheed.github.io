@@ -13,11 +13,15 @@ For any $H_{mn} (= TE)$ mode:
 
 ### General cutoff formula for every mode
 
-$$f_{c,mn} = \frac{c_0}{2\sqrt{\varepsilon_r}}\sqrt{\left(\frac{m}{a}\right)^2+\left(\frac{n}{b}\right)^2}$$
+$$
+f_{c,mn} = \frac{c_0}{2\sqrt{\varepsilon_r}}\sqrt{\left(\frac{m}{a}\right)^2+\left(\frac{n}{b}\right)^2}
+$$
 
 With magnetic material
 
-$$f_{c,mn} = \frac{c_0}{2 \sqrt{\mu_r \epsilon_r}} \sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2}$$
+$$
+f_{c,mn} = \frac{c_0}{2 \sqrt{\mu_r \epsilon_r}} \sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2}
+$$
 
 Plug in $m,n$ and you get any cutoff.
 
@@ -29,7 +33,9 @@ $H₁₀$ is fundamental and depends only on width $a$.
 
 ### α_D​ is the dielectric attenuation coefficient
 
-$$\alpha_D = \frac{k^2}{2\beta}\tan\delta_\varepsilon$$
+$$
+\alpha_D = \frac{k^2}{2\beta}\tan\delta_\varepsilon
+$$
 
 ### Guide wavelength
 
@@ -48,7 +54,9 @@ $λ_c​$: cutoff wavelength of the mode;
 $a$ width
 
 ### Cutoff wavelength (general, rectangular waveguide)
-$$\lambda_c = \frac{2}{\sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2}}$$
+$$
+\lambda_c = \frac{2}{\sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2}}
+$$
 
 ### Field wave impedance of a  H(magnetic) mode
 $$Z_{F,\text{TE}} = \frac{Z_F}{\sqrt{1 - \left(\frac{\lambda}{\lambda_c}\right)^2}} = Z_F \cdot \frac{\lambda_g}{\lambda}$$
@@ -67,7 +75,9 @@ $\lambda_c$ : cutoff wavelength of the mode
 
 Field wave impedance of a TM (E) mode:
 
-$$Z_{F,\text{TM}} = Z_F \cdot \sqrt{1 - \left(\frac{\lambda}{\lambda_c}\right)^2} = Z_F \cdot \frac{\lambda}{\lambda_g}$$
+$$
+Z_{F,\text{TM}} = Z_F \cdot \sqrt{1 - \left(\frac{\lambda}{\lambda_c}\right)^2} = Z_F \cdot \frac{\lambda}{\lambda_g}
+$$
 
 Same square-root factor as TE, but multiplying instead of dividing, so the E-mode impedance is lower than $Z_F$ (TE is higher). Use this if a problem switches to 
 $E_{11}$ or any E-mode.
@@ -76,23 +86,31 @@ $E_{11}$ or any E-mode.
 
 Wave cutoff number at any frequency and mode 
 
-$$k_{c,mn} = \sqrt{\left(\frac{m\pi}{a}\right)^2 + \left(\frac{n\pi}{b}\right)^2}$$
+$$
+k_{c,mn} = \sqrt{\left(\frac{m\pi}{a}\right)^2 + \left(\frac{n\pi}{b}\right)^2}
+$$
 
 It measures the waves total electromagnetic  activity in the medium
 
-$$k = \frac{2\pi}{\lambda} = \frac{2\pi f}{v} = \frac{\omega}{v} = \omega\sqrt{\mu\varepsilon}$$
+$$
+k = \frac{2\pi}{\lambda} = \frac{2\pi f}{v} = \frac{\omega}{v} = \omega\sqrt{\mu\varepsilon}
+$$
 
 For all non magnetic material eg plastic, air,glass, most metals eg copper the $u_r =$1 
 
 Connecting to 
 
-$$v = \frac{1}{\sqrt{\mu\varepsilon}} = \frac{1}{\sqrt{\mu_0\varepsilon_0}}\cdot\frac{1}{\sqrt{\mu_r\varepsilon_r}} = \frac{c_0}{\sqrt{\mu_r\varepsilon_r}}$$
+$$
+v = \frac{1}{\sqrt{\mu\varepsilon}} = \frac{1}{\sqrt{\mu_0\varepsilon_0}}\cdot\frac{1}{\sqrt{\mu_r\varepsilon_r}} = \frac{c_0}{\sqrt{\mu_r\varepsilon_r}}
+$$
 
 #### β — the propagation constant (inside the guide)
 
 This is the wave's actual phase advance per meter as it travels down the waveguide. 
 
-$$\beta = \sqrt{k^2 - k_c^2}$$
+$$
+\beta = \sqrt{k^2 - k_c^2}
+$$
 
 where $k$ is the wavenumber at the operating frequency at which we send the wave. 
 
@@ -125,7 +143,9 @@ Total attenuation of the wave equals the sum of the attenuation from each indepe
 wall loss depends on which mode you're using eg $H_{10}$
 
 ### Wave guide Wall Attenuation formula
-$$\alpha_{wand,\text{H10}} = \frac{R_\square}{Z_F}\cdot\frac{\Omega^2 + 2\dfrac{b}{a}}{b\,\Omega\sqrt{\Omega^2 - 1}}$$
+$$
+\alpha_{wand,\text{H10}} = \frac{R_\square}{Z_F}\cdot\frac{\Omega^2 + 2\dfrac{b}{a}}{b\,\Omega\sqrt{\Omega^2 - 1}}
+$$
 
 $$α_{wand},H_{10​}$$ — wall attenuation coefficient for the $H₁₀$ mode
 
@@ -136,27 +156,37 @@ $$R_\square = \frac{1}{\sigma\delta} = \sqrt{\frac{\pi f\mu_0\mu_r}{\sigma}}$$
 
 $Z_F​$ — field wave impedance of the medium filling the guide
 
-$$Z_F = \sqrt{\frac{\mu_0\mu_r}{\varepsilon_0\varepsilon_r}}$$
+$$
+Z_F = \sqrt{\frac{\mu_0\mu_r}{\varepsilon_0\varepsilon_r}}
+$$
 
 where $a$ = guide width, $b$ = guide height, $f$ =operationg frequency
 
 ### Skin depth 
-$$\delta = \frac{1}{\sqrt{\pi f\mu_0\mu_r\sigma}}$$
+$$
+\delta = \frac{1}{\sqrt{\pi f\mu_0\mu_r\sigma}}
+$$
 
 ### Inverted form for the conductivity 
 
-$$\sigma = \left(\frac{\Omega^2 + 2\dfrac{b}{a}}{\alpha_{wand,\text{H10}}\,b\,\Omega\sqrt{\Omega^2 - 1}}\right)^2\cdot \pi f\varepsilon_0\varepsilon_r$$
+$$
+\sigma = \left(\frac{\Omega^2 + 2\dfrac{b}{a}}{\alpha_{wand,\text{H10}}\,b\,\Omega\sqrt{\Omega^2 - 1}}\right)^2\cdot \pi f\varepsilon_0\varepsilon_r
+$$
 
 ### What is $\Omega$ 
 
 It's the operating frequency divided by the cutoff frequency
 
-$$\Omega = \frac{f_{\text{H10}}}{f_{c,\text{H10}}}$$
+$$
+\Omega = \frac{f_{\text{H10}}}{f_{c,\text{H10}}}
+$$
 
 ### Electric field magnitude in waveguide
 This formula takes a position $(x,y)$ inside the guide's cross-section and gives you back how strong the **electric field** is at that point.
 
-$$E_y(x,y) \sim \cos\left(\frac{m\pi}{a}x\right)\sin\left(\frac{n\pi}{b}y\right)$$
+$$
+E_y(x,y) \sim \cos\left(\frac{m\pi}{a}x\right)\sin\left(\frac{n\pi}{b}y\right)
+$$
 
 where $a$ = width wave guide, $b$ = wave guide height, $x$ = horizontal position, $y$ =vertical position
 
@@ -165,7 +195,9 @@ where $a$ = width wave guide, $b$ = wave guide height, $x$ = horizontal position
 $$P = \frac{ab}{4} \cdot \frac{|E_{y,\text{max}}|^2}{Z_{F,\text{H-mode}}}$$
 
 ### Phase and group velocity:
-$$v_{\text{ph}} = \frac{c_0}{\sqrt{1 - \left(\frac{\lambda}{\lambda_c}\right)^2}}, \qquad v_{\text{gr}} = c_0 \cdot \sqrt{1 - \left(\frac{\lambda}{\lambda_c}\right)^2}$$
+$$
+v_{\text{ph}} = \frac{c_0}{\sqrt{1 - \left(\frac{\lambda}{\lambda_c}\right)^2}}, \qquad v_{\text{gr}} = c_0 \cdot \sqrt{1 - \left(\frac{\lambda}{\lambda_c}\right)^2}
+$$
 
 Same $\sqrt{1 - (\lambda/\lambda_c)^2}$ factor again. Phase velocity is faster than $c_0$ (divides), group velocity is slower (multiplies). 
 

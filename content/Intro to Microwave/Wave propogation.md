@@ -65,9 +65,11 @@ $$n = \frac{c_0}{c_{\text{medium}}} = \sqrt{\mu_r \varepsilon_r}$$; &nbsp; For n
 n is the refractive index of medium
 
 ### Reflectvivity 
-Power reflectivity is the square of the field reflection coefficient:
+**Power reflectivity** is the square of the field reflection coefficient:
 
-$$\frac{P_{r\perp}}{P_{e\perp}} = \frac{|E_{r\perp}|^2}{|E_{e\perp}|^2} = |r_\perp|^2$$
+$$
+\frac{P_{r\perp}}{P_{e\perp}} = \frac{|E_{r\perp}|^2}{|E_{e\perp}|^2} = |r_\perp|^2
+$$
 
 The subscripts: $$P_{r\perp}$$  = reflected power of the perpendicular component, $$P_{e\perp}$$  = incident power of the perpendicular component, $$r_\perp$$
  = field reflection coefficient for perpendicular (s) polarization.
@@ -76,11 +78,15 @@ at Brewster angle, so $$r_\parallel = 0$$ (the parallel component does not refle
 
 ### Reflection cofficient for perpendicular polarization 
 
-$$r_\perp = \frac{\cos\alpha_B - \sqrt{\varepsilon_r - \sin^2\alpha_B}}{\cos\alpha_B + \sqrt{\varepsilon_r - \sin^2\alpha_B}}$$
+$$
+r_\perp = \frac{\cos\alpha_B - \sqrt{\varepsilon_r - \sin^2\alpha_B}}{\cos\alpha_B + \sqrt{\varepsilon_r - \sin^2\alpha_B}}
+$$
 
 we doing only perpendicular because at brewster angle only perfendicular component reflected and if we square the r we get the power.
 
-$$\frac{P_{r\perp}}{P_{e\perp}} = \left[\frac{\cos\alpha_B - \sqrt{\varepsilon_r - \sin^2\alpha_B}}{\cos\alpha_B + \sqrt{\varepsilon_r - \sin^2\alpha_B}}\right]^2 = 0{,}335$$
+$$
+\frac{P_{r\perp}}{P_{e\perp}} = \left[\frac{\cos\alpha_B - \sqrt{\varepsilon_r - \sin^2\alpha_B}}{\cos\alpha_B + \sqrt{\varepsilon_r - \sin^2\alpha_B}}\right]^2 = 0{,}335
+$$
 
 
 

@@ -35,11 +35,15 @@ it can be anything eg  $TK$ of inductane or capactance or reistance
 
 **General Linear Temperature Model**
 
-$$X(T) = X_N \left(1 + TK_X \cdot (T - T_N)\right)$$
+$$
+X(T) = X_N \left(1 + TK_X \cdot (T - T_N)\right)
+$$
 
 For capacitance 
 
-$$C(T) = C_N \left(1 + TK_C \cdot (T - T_N)\right)$$
+$$
+C(T) = C_N \left(1 + TK_C \cdot (T - T_N)\right)
+$$
 
 unit $1/°C$ or $1/°K$ regardless of the quanity we are using eg  $L`$, $C`$
 ### Loss tangent ($$tanδ$$):
@@ -68,20 +72,28 @@ $$\tan\delta = \omega R_s C = \frac{1}{\omega R_p C} = \frac{\epsilon''}{\epsilo
 
 ##### DC and HF Resistance (wire)
 
-$$R_{\text{DC}} = \dfrac{\rho\ell}{\pi r^2} = \dfrac{\ell}{\sigma\pi r^2} = \dfrac{4\ell}{\sigma\pi D^2}$$
+$$
+R_{\text{DC}} = \dfrac{\rho\ell}{\pi r^2} = \dfrac{\ell}{\sigma\pi r^2} = \dfrac{4\ell}{\sigma\pi D^2}
+$$
 
-$$R_{\text{HF}} = \dfrac{\rho\ell}{2\pi r\delta} = \dfrac{\ell}{2\pi r\sigma\delta} = \dfrac{\ell}{\pi D\sigma\delta} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r\sigma}}{2\pi r\sigma} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r\sigma}}{\pi D\sigma} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r/\sigma}}{\pi D}$$
+$$
+R_{\text{HF}} = \dfrac{\rho\ell}{2\pi r\delta} = \dfrac{\ell}{2\pi r\sigma\delta} = \dfrac{\ell}{\pi D\sigma\delta} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r\sigma}}{2\pi r\sigma} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r\sigma}}{\pi D\sigma} = \dfrac{\ell\sqrt{\pi f\mu_0\mu_r/\sigma}}{\pi D}
+$$
 
 where $\sigma =$ material conductivity , $\rho =$ material resistivity, $r =$  wire radius, $D =$ wire diameter
 
 
 ### Quality factor($Q$) and Skin depth
 
-$$\delta = \sqrt{\frac{\rho}{\pi\ f\ \mu_0\ \mu_r}} = \frac{1}{\sqrt{\pi\ f\ \mu_0\ \mu_r\ \sigma}}$$
+$$
+\delta = \sqrt{\frac{\rho}{\pi\ f\ \mu_0\ \mu_r}} = \frac{1}{\sqrt{\pi\ f\ \mu_0\ \mu_r\ \sigma}}
+$$
 
 Skin depth can also be written with angular frequncy 
 
-$$\delta = \sqrt{\frac{2\ \rho}{\omega\ \mu}} = \sqrt{\frac{2}{\omega\ \mu\ \sigma}}$$
+$$
+\delta = \sqrt{\frac{2\ \rho}{\omega\ \mu}} = \sqrt{\frac{2}{\omega\ \mu\ \sigma}}
+$$
 
 **Important**: Copper is essentially non-magnetic so for copper wire use the permeability of free space:
 
@@ -107,19 +119,29 @@ Quality factor of circuit instead of indivual elements(inductor and capacitor) c
 
 #### Series RLC 
 
-$$Q_{\text{series}} = \frac{X_L}{R} = \frac{2\pi f_{\text{res}} L}{R_c+R_L+R_{\text{Load}}}$$
+$$
+Q_{\text{series}} = \frac{X_L}{R} = \frac{2\pi f_{\text{res}} L}{R_c+R_L+R_{\text{Load}}}
+$$
 
-$$Q_{\text{series}} = \frac{X_C}{R} = \frac{1}{2\pi f_{\text{res}} C (R_c+R_L+R_{\text{Load}})}$$
+$$
+Q_{\text{series}} = \frac{X_C}{R} = \frac{1}{2\pi f_{\text{res}} C (R_c+R_L+R_{\text{Load}})}
+$$
 
 #### Parallel RLC (loss element $R_{P}$, or admittance $Y_p=1/R_p$
 
-$$Q_{\text{parallel}} = \frac{R_{\text{P}}}{X_L} = \frac{1}{2\pi f L \cdot Y_{\text{P}}}$$
+$$
+Q_{\text{parallel}} = \frac{R_{\text{P}}}{X_L} = \frac{1}{2\pi f L \cdot Y_{\text{P}}}
+$$
 
-$$Q_{\text{parallel}} = \frac{R_{\text{P}}}{X_C} = R_{\text{P}} \cdot 2\pi f_{\text{res}} C = \frac{2\pi f_{\text{res}} C}{Y_{\text{P}}}$$
+$$
+Q_{\text{parallel}} = \frac{R_{\text{P}}}{X_C} = R_{\text{P}} \cdot 2\pi f_{\text{res}} C = \frac{2\pi f_{\text{res}} C}{Y_{\text{P}}}
+$$
 
 Reactance $X_L$ is the part of inductor where energy is stored hence in the numerator for the quality factor formula 
 
-$$X_L = 2\pi f_{res} L$$
+$$
+X_L = 2\pi f_{res} L
+$$
 
 
 At $f_{res}$ energy stored in inductor and capacitor is same hence we only take one reatance(in this case of inductor) 
@@ -130,7 +152,9 @@ Quality factor of the *ideal* LC is inifnity because no resistance(energy loss).
 
 Using this formula we can figureout the turns on coil required for system adn load impedance
 
-$$\frac{Z_1}{Z_2} = n^2 = \left(\frac{N_1}{N_2}\right)^2$$
+$$
+\frac{Z_1}{Z_2} = n^2 = \left(\frac{N_1}{N_2}\right)^2
+$$
 
 
 ### (Transformer) — Coupling Factor, Mutual Inductance & Leakage Flux
@@ -166,21 +190,28 @@ Point of transformer: the transformer changes how the load "looks" from the sour
 
 #### Reflected impedance (load seen from the primary side)
 
-$$Z_{source} = ü² · Z_{load} = (N1/N2)² · Z_{load}$$
-
+$$
+Z_{source} = ü² · Z_{load} = (N1/N2)² · Z_{load}
+$$
 
 #### Maximum Power Transfer in Transformer (source sees a matached load)
 
-$$Z_1 = R_i$$
+$$
+Z_1 = R_i
+$$
 
 #### Solving for the required secondary-side load:
 
 
-$$Z_{load} = \frac{Z_{source}}{\ddot{u}^2} = \frac{R_{load_i}}{(N_1/N_2)^2} = R_i\cdot\left(\frac{N_2}{N_1}\right)^2$$
+$$
+Z_{load} = \frac{Z_{source}}{\ddot{u}^2} = \frac{R_{load_i}}{(N_1/N_2)^2} = R_i\cdot\left(\frac{N_2}{N_1}\right)^2
+$$
 
 #### Transformer Turns Ratio from Winding Inductances
 
-$$\ddot{u} = \frac{N_1}{N_2} = \frac{\sqrt{L_1}}{\sqrt{L_2}} = \sqrt{\frac{L_1}{L_2}}$$
+$$
+\ddot{u} = \frac{N_1}{N_2} = \frac{\sqrt{L_1}}{\sqrt{L_2}} = \sqrt{\frac{L_1}{L_2}}
+$$
 
 ### Ideal Transformer: The Three Idealizing Assumptions
 An ideal transformer bundles three idealizations: perfect coupling ($k=1$, no leakage), no losses, and infinite inductance 
@@ -191,7 +222,9 @@ An ideal transformer bundles three idealizations: perfect coupling ($k=1$, no le
 
 Magnetic reluctance is the opposition a magnetic circuit offers to the establishment of magnetic flux
 
-$$R_m = \frac{\ell}{\mu_0 \mu_r A}$$
+$$
+R_m = \frac{\ell}{\mu_0 \mu_r A}
+$$
 
 
 A magnetic circuit is formed when you wind a current-carrying wire (coil) around a ferromagnetic core, creating a closed loop path that guides 
@@ -213,7 +246,7 @@ of core
 
 $$\mu_{r,eff} = \frac{\mu_r\,(\ell_{Fe} + \ell_S)}{\ell_{Fe} + \mu_r \ell_S}$$; &nbsp; &nbsp; made $\mu_{r,eff}$ the subject;
 
-$$ \ell_{Fe} = 2\pi r_m - \ell_S$$
+$$\ell_{Fe} = 2\pi r_m - \ell_S$$
 
 inductance directly propaartional to the relative p[ermeability so  use $\mu_{r,eff}$ to find new overall induatce with air and core.
 
@@ -271,7 +304,8 @@ parallel connection. That is why $C$  sits in parallel with $L$, not in series f
 order to model the resistance of wire we put it in series with parallel elements (capacitor and inductor)
 
 
-**Series resonant circuit vs paralrl resonant circuit **
-In parraltrl resonant circuit at rsonacne resiatcen increase (max)
+**Series resonant circuit vs parallel resonant circuit**:
+
+In parrallel resonant circuit at rsonancne resistance increase (max)
 
 
