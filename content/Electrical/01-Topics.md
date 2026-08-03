@@ -21,7 +21,7 @@ title: 01-List of Topics
 - Fourier Series
 - Circuit Response Analysis
 - Fourier Analysis of Triangular Wave
-- SIgnal Characteristics of Triangular Wave 
+- Signal Characteristics of Triangular Wave 
 - Bipolar Rectangular Wave through an RC Low-Pass Filter
 - Laplace Transform
 - Network Analysis

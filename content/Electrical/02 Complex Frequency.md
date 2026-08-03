@@ -272,3 +272,21 @@ compare the degrees of the numerator and denominator polynomials
 - **Numerator degree > denominator degree** → $\underline{Z} \to \infty$ as $\underline{s} \to \infty$ → **pole at infinity**.
 - **Numerator degree < denominator degree** → $\underline{Z} \to 0$ as $\underline{s} \to \infty$ → **zero at infinity**.
 - **Degrees equal** → $\underline{Z} \to$ a finite constant → **neither** (no pole or zero at infinity).
+
+## Finding a pole or zero at infinity
+
+A pole is where $Z \to \infty$; a zero is where $Z \to 0$. To check what happens at infinity, look at the leading (highest) powers of $\underline{s}$ on top and bottom, since only those matter as $\underline{s} \to \infty$:
+
+$$
+Z(\underline{s}) \sim \underline{s}^{\,\deg(\text{num}) - \deg(\text{den})}
+$$
+
+- **Numerator degree > denominator degree** → top outruns bottom → $Z \to \infty$ → **pole at infinity**.
+- **Numerator degree < denominator degree** → bottom wins → $Z \to 0$ → **zero at infinity**.
+- **Equal degrees** → $Z \to$ constant → neither.
+
+Example: $Z_b \sim \dfrac{\underline{s}^4}{\underline{s}^3} = \underline{s} \to \infty$, so pole at infinity.
+
+Keep two things separate: "at infinity" is *where* (very high frequency, far end of the $j\omega$ axis); "pole/zero" is *what* the impedance does there (blows up / vanishes).
+
+Shortcut for LC functions: whichever polynomial has one extra root has its leftover critical point at infinity. Physically, a pole at infinity means the network looks like a series inductor at high frequency ($\underline{Z}_L = \underline{s}L \to \infty$). Always mark the infinity point at the top of the axis so the pole-zero alternation check runs all the way up.
