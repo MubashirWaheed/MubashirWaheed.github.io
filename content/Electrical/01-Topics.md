@@ -18,9 +18,9 @@ title: 01-List of Topics
 	- Complex Frequency Analysis
 	- Lossless LC Special Case 
 - Fourier Transform 
-- Fourier Series
-- Circuit Response Analysis
-- Fourier Analysis of Triangular Wave
+- Fourier Series (harmonic coefficients, half wave symmetry/even/odd signals, ripple effect)
+- Circuit Response Analysis (distortion factor, efffetive values of current/voltage, active/apparent/reactive power )
+- Fourier Analysis of Triangular Wave  (sin-cose/amplitude phase/complex Representation)
 - Signal Characteristics of Triangular Wave 
 - Bipolar Rectangular Wave through an RC Low-Pass Filter
 - Laplace Transform
