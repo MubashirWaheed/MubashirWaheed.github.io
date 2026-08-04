@@ -21,3 +21,7 @@ The design is a work in progress, aber es passt schon.
 - [GitHub](https://github.com/MubashirWaheed)
 - [Stack Overflow](https://stackoverflow.com/users/10108729/mubashir-waheed)
 - [LinkedIn](https://www.linkedin.com/in/mubashirwaheed/)
+
+
+<p align="center"><em>A lifelong pursuit: escape the hesar of time and space</em></p>
+
