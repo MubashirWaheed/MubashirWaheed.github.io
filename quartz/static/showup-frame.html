@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; padding: 0; background: transparent;
+    font-family: -apple-system, "Source Sans Pro", system-ui, sans-serif; color: #2b2b2b; }
+  [data-theme="dark"] body { color: #d4d4d4; }
+  #root { --su-empty: #e5e5e5; font-size: 0.9rem; }
+  [data-theme="dark"] #root { --su-empty: #393639; }
+  .su-years { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .su-year { padding: 3px 10px; border-radius: 5px; border: 1px solid rgba(128,128,128,0.35);
+    background: transparent; cursor: pointer; font-size: 0.8rem; color: inherit; font-variant-numeric: tabular-nums; }
+  .su-year:hover { border-color: rgba(128,128,128,0.7); }
+  .su-year.active { background: #284b63; color: #fff; border-color: transparent; }
+  [data-theme="dark"] .su-year.active { background: #7b97aa; }
+  .su-track { margin-bottom: 1.6rem; }
+  .su-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+  .su-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .su-name { font-weight: 600; }
+  .su-stat { font-size: 0.75rem; opacity: 0.6; }
+  .su-grid { display: flex; gap: 4px; }
+  .su-wd { display: flex; flex-direction: column; gap: 3px; padding-top: 16px; }
+  .su-wdlabel { height: 12px; font-size: 0.6rem; line-height: 12px; opacity: 0.5; width: 22px; }
+  .su-colswrap { overflow-x: auto; }
+  .su-months { display: flex; gap: 3px; height: 14px; }
+  .su-month { width: 12px; font-size: 0.6rem; opacity: 0.5; white-space: nowrap; }
+  .su-cols { display: flex; gap: 3px; }
+  .su-col { display: flex; flex-direction: column; gap: 3px; }
+  .su-cell { width: 12px; height: 12px; border-radius: 2px; cursor: default; position: relative; }
+  .su-cell.su-blank { background: transparent !important; }
+  .su-legend { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+  .su-legitem { display: inline-flex; align-items: center; gap: 4px; }
+  .su-legswatch { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+  .su-leglabel { font-size: 0.68rem; opacity: 0.6; }
+  .su-log { margin-top: 1.4rem; }
+  .su-log h3 { margin-bottom: 0.4rem; font-size: 1rem; }
+  .su-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .su-table th { text-align: left; opacity: 0.55; font-weight: 600; padding: 4px 8px; border-bottom: 1px solid rgba(128,128,128,0.25); }
+  .su-table td { padding: 4px 8px; border-bottom: 1px solid rgba(128,128,128,0.12); vertical-align: top; }
+  .su-table td:first-child { white-space: nowrap; opacity: 0.7; font-variant-numeric: tabular-nums; }
+  .su-tip { position: fixed; z-index: 999; background: #1f2933; color: #fff; padding: 5px 9px;
+    border-radius: 5px; font-size: 0.75rem; max-width: 260px; pointer-events: none; opacity: 0; transition: opacity 0.1s; }
+  .su-err { opacity: 0.6; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div id="root"><div class="su-err">Loading tracker...</div></div>
+<script>
+(function () {
+  "use strict";
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const WD = ["Mon","","Wed","","Fri","",""];
+  function keyOf(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");return `${y}-${m}-${day}`;}
+  function level(v,t){if(!v)return 0;if(v>=t[3])return 4;if(v>=t[2])return 3;if(v>=t[1])return 2;return 1;}
+  function shade(hex,lvl){if(lvl===0)return "var(--su-empty)";const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);const tt=[0.78,0.55,0.3,0][lvl-1];const mix=c=>Math.round(c+(255-c)*tt);return `rgb(${mix(r)},${mix(g)},${mix(b)})`;}
+
+  function render(root, data) {
+    const byDate = {};
+    (data.entries||[]).forEach(e => byDate[e.date] = e);
+    const nowYear = new Date().getFullYear();
+    let maxYear = nowYear;   // top of the tab range: current year, or later if you've logged ahead
+    let minYear = nowYear;
+    (data.entries||[]).forEach(e => { const y = parseInt(e.date.slice(0,4),10); if (y<minYear) minYear=y; if (y>maxYear) maxYear=y; });
+    const years = []; for (let y=maxYear; y>=minYear; y--) years.push(y);
+
+    let tip = document.querySelector(".su-tip");
+    if (!tip){ tip=document.createElement("div"); tip.className="su-tip"; document.body.appendChild(tip); }
+
+    function daysForYear(year){
+      const first=new Date(year,0,1), last=new Date(year,11,31);
+      const gs=new Date(first); gs.setDate(gs.getDate()-((first.getDay()+6)%7));
+      const ge=new Date(last); ge.setDate(ge.getDate()+(6-((last.getDay()+6)%7)));
+      const out=[]; for(let d=new Date(gs); d<=ge; d.setDate(d.getDate()+1)) out.push({date:new Date(d), inYear:d.getFullYear()===year});
+      return out;
+    }
+    function heatmap(track, days, year){
+      const wrap=document.createElement("div"); wrap.className="su-track";
+      let total=0, active=0;
+      days.forEach(({date,inYear})=>{ if(!inYear)return; const e=byDate[keyOf(date)]; const v=e?e[track.key]:0; if(v){active++; total+=track.key==="gym"?1:v;} });
+      let streak=0;
+      if(year===nowYear){ const t=new Date(); t.setHours(0,0,0,0); for(let d=new Date(t);;d.setDate(d.getDate()-1)){ const e=byDate[keyOf(d)]; if(e&&e[track.key])streak++; else break; } }
+      const head=document.createElement("div"); head.className="su-head";
+      head.innerHTML=`<span class="su-dot" style="background:${track.color}"></span>`+
+        `<span class="su-name">${track.label}</span>`+
+        (year===nowYear?`<span class="su-stat">${streak}d streak</span>`:"")+
+        `<span class="su-stat">${active} days`+(track.key==="gym"?"":` \u00b7 ${total} ${track.unit}`)+`</span>`;
+      wrap.appendChild(head);
+      const grid=document.createElement("div"); grid.className="su-grid";
+      const wdcol=document.createElement("div"); wdcol.className="su-wd";
+      WD.forEach(w=>{const c=document.createElement("div"); c.className="su-wdlabel"; c.textContent=w; wdcol.appendChild(c);});
+      grid.appendChild(wdcol);
+      const cols=document.createElement("div"); cols.className="su-cols";
+      const monthRow=document.createElement("div"); monthRow.className="su-months";
+      let week=null, lastMonth=-1;
+      days.forEach(({date,inYear},idx)=>{
+        if(idx%7===0){ week=document.createElement("div"); week.className="su-col"; cols.appendChild(week);
+          const lbl=document.createElement("div"); lbl.className="su-month"; const m=date.getMonth();
+          if(inYear&&m!==lastMonth){lbl.textContent=MONTHS[m]; lastMonth=m;} monthRow.appendChild(lbl); }
+        const cell=document.createElement("div"); cell.className="su-cell";
+        if(!inYear){ cell.classList.add("su-blank"); week.appendChild(cell); return; }
+        const e=byDate[keyOf(date)]; const val=e?e[track.key]:0;
+        cell.style.background=shade(track.color, level(val, track.thresholds));
+        const ds=date.toLocaleDateString(undefined,{weekday:"short",year:"numeric",month:"short",day:"numeric"});
+        cell.dataset.tip=e&&e.note?`${ds} \u2014 ${e.note}`:`${ds} \u2014 nothing logged`;
+        cell.addEventListener("mouseenter",()=>{tip.textContent=cell.dataset.tip; tip.style.opacity="1";});
+        cell.addEventListener("mousemove",ev=>{tip.style.left=(ev.clientX+12)+"px"; tip.style.top=(ev.clientY+12)+"px";});
+        cell.addEventListener("mouseleave",()=>{tip.style.opacity="0";});
+        week.appendChild(cell);
+      });
+      const cw=document.createElement("div"); cw.className="su-colswrap"; cw.appendChild(monthRow); cw.appendChild(cols);
+      grid.appendChild(cw); wrap.appendChild(grid);
+      wrap.appendChild(legend(track));
+      return wrap;
+    }
+
+    // Small "what the shades mean" key, built from the track's own thresholds.
+    function legend(track){
+      const wrap=document.createElement("div"); wrap.className="su-legend";
+      const t=track.thresholds;
+      let steps;
+      if (track.key==="gym"){
+        // binary track: just none / went
+        steps=[{lvl:0,label:"Didn't go"},{lvl:4,label:"Went"}];
+      } else {
+        const u=track.unit;
+        steps=[
+          {lvl:0,label:"0"},
+          {lvl:1,label:`${t[0]}\u2013${t[1]-1} ${u}`},
+          {lvl:2,label:`${t[1]}\u2013${t[2]-1} ${u}`},
+          {lvl:3,label:`${t[2]}\u2013${t[3]-1} ${u}`},
+          {lvl:4,label:`${t[3]}+ ${u}`}
+        ];
+      }
+      steps.forEach(s=>{
+        const item=document.createElement("span"); item.className="su-legitem";
+        const sw=document.createElement("span"); sw.className="su-legswatch";
+        sw.style.background=shade(track.color, s.lvl);
+        const lb=document.createElement("span"); lb.className="su-leglabel"; lb.textContent=s.label;
+        item.appendChild(sw); item.appendChild(lb); wrap.appendChild(item);
+      });
+      return wrap;
+    }
+    function logTable(year){
+      const wrap=document.createElement("div"); wrap.className="su-log";
+      const h=document.createElement("h3"); h.textContent="Log \u2014 "+year; wrap.appendChild(h);
+      const tbl=document.createElement("table"); tbl.className="su-table";
+      tbl.innerHTML="<thead><tr><th>Date</th><th>Note</th></tr></thead>";
+      const tb=document.createElement("tbody");
+      (data.entries||[]).filter(e=>e.date.slice(0,4)===String(year)).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,15).forEach(e=>{
+        const tr=document.createElement("tr"); const t1=document.createElement("td"); t1.textContent=e.date;
+        const t2=document.createElement("td"); t2.textContent=e.note||""; tr.appendChild(t1); tr.appendChild(t2); tb.appendChild(tr);
+      });
+      tbl.appendChild(tb); wrap.appendChild(tbl); return wrap;
+    }
+    const tabs=document.createElement("div"); tabs.className="su-years";
+    const body=document.createElement("div");
+    function draw(year){ body.innerHTML=""; const days=daysForYear(year);
+      (data.tracks||[]).forEach(t=>body.appendChild(heatmap(t,days,year))); body.appendChild(logTable(year));
+      [...tabs.children].forEach(b=>b.classList.toggle("active", b.textContent===String(year))); }
+    years.forEach(y=>{ const btn=document.createElement("button"); btn.className="su-year"; btn.textContent=y;
+      btn.addEventListener("click",()=>draw(y)); tabs.appendChild(btn); });
+    root.innerHTML=""; root.appendChild(tabs); root.appendChild(body); draw(nowYear);
+  }
+
+  function reportHeight(){
+    const h = document.documentElement.scrollHeight;
+    if (window.parent) window.parent.postMessage({ suHeight: h }, "*");
+  }
+
+  function boot(payload){
+    const root=document.getElementById("root");
+    try {
+      const data = typeof payload==="string" ? JSON.parse(payload) : payload;
+      if (!data || !Array.isArray(data.tracks)) throw new Error("no tracks array");
+      render(root, data);
+      setTimeout(reportHeight, 50);
+    } catch(e){
+      root.innerHTML = '<div class="su-err">Could not read tracker data: '+e.message+'</div>';
+      reportHeight();
+    }
+  }
+
+  // Read the data straight from the parent page's fenced code block.
+  // Same-origin (both served from your site), so parent DOM is accessible.
+  function readFromParent(){
+    try {
+      const pdoc = window.parent.document;
+      // match parent theme
+      const th = pdoc.documentElement.getAttribute("saved-theme");
+      if (th) document.documentElement.setAttribute("data-theme", th);
+      const blocks = pdoc.querySelectorAll("pre code, code");
+      for (const b of blocks){
+        const txt = (b.textContent||"").trim();
+        if (txt.charAt(0) !== "{") continue;
+        try { const obj = JSON.parse(txt); if (obj && Array.isArray(obj.tracks)){
+          // hide the raw block in the parent so only graphs show
+          const pre = b.closest("pre"); if (pre) pre.style.display="none";
+          return obj;
+        } } catch(_){}
+      }
+    } catch(e){ return { __err: e.message }; }
+    return null;
+  }
+
+  function start(){
+    const data = readFromParent();
+    if (data && data.__err){ document.getElementById("root").innerHTML='<div class="su-err">Cannot read parent ('+data.__err+')</div>'; reportHeight(); return; }
+    if (!data){ document.getElementById("root").innerHTML='<div class="su-err">Tracker data block not found on page.</div>'; reportHeight(); return; }
+    boot(data);
+  }
+  if (document.readyState !== "loading") start();
+  else document.addEventListener("DOMContentLoaded", start);
+})();
+</script>
+</body>
+</html>
