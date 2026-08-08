@@ -2,6 +2,11 @@
 
 // put your custom CSS here!
 
+// Hide the date + reading-time line on the Showing Up tracker page only
+body[data-slug="reps/showing-up"] .content-meta {
+  display: none;
+}
+
 
 @media print {
   // Hide everything that isn't the article
