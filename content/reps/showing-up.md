@@ -19,7 +19,8 @@ title: Showing Up
     { "key": "language", "label": "Language", "unit": "min", "color": "#4a7f4a", "thresholds": [1, 20, 40, 60] }
   ],
   "entries": [
-    { "date": "2026-08-08", "study": 120, "gym": 1, "language": 30, "note": "Fourier Analysis. Gym. German 30m. Worked on the website tracker." }
+    { "date": "2026-08-08", "study": 120, "gym": 1, "language": 30, "note": "Fourier Analysis. Gym. German 30m. Worked on the website tracker." },
+    { "date": "2026-08-09", "study": 200, "gym": 0, "language": 15, "note": "Completed React assessment. German 15m. Completed Fourier Analysis."}
   ]
 }
 ```
