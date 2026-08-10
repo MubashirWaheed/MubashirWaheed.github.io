@@ -47,6 +47,10 @@ is or identity is given for the integrla and we get the signal in frequency doma
 
 ## Fourier Series 
 
+
+The input can be any shape (eg Square wave (bipolar), Sinusoidal, Triangular wave, Sawtooth wave, Pulse train (rectangular, unipolar)), but to write it as a Fourier series 
+it must be periodic . If it's not periodic, you use the Fourier transform instead.
+
 ### Fundamental frequncy 
 Fundamental frequncy is always the reciprocal of period It sets the repetition rate of the signal. If 
 $f_0=100 $Hz, the entire pattern repeats 100 times per second, regardless of how complex the shape within one period is.
@@ -369,18 +373,22 @@ $$
 u(t) = c_0 + \sum_{k=1}^{\infty} c_k\cos(k\omega t - \varphi_k)
 $$
 
+$$
+a_k = c_k\cos(\varphi_k), \qquad b_k = c_k\sin(\varphi_k)
+$$
+
 **DC** 
 $$
-c0​=a0​
+c_0​=a_0​
 $$
  
-**Amplitude c_k :**
+**Amplitude $c_k$ :**
 $$
 c_k = \sqrt{a_k^2 + b_k^2}
 $$
 
 
-**Phase φ_k**
+**Phase $φ_k$**
 
 $$
 \varphi_k = \arctan\!\left(\frac{b_k}{a_k}\right)
@@ -391,3 +399,144 @@ $$
 $$
 u(t) = \sum_{k=-\infty}^{\infty} d_k\, e^{jk\omega t}
 $$
+
+
+$$
+d_k = \frac{1}{T}\int_{-T/2}^{T/2} u(t)\,\mathrm{e}^{-\mathrm{j}k\omega t}\ \mathrm{d}t
+$$
+
+For dc part we put $k=0$
+
+$$
+d_0 = \frac{1}{T}\int_{-T/2}^{T/2} u(t)\cdot 1\ \mathrm{d}t = \frac{1}{T}\int_{-T/2}^{T/2} u(t)\ \mathrm{d}t
+$$
+
+For positive harmonics $(k>0)$:
+
+$$
+d_k = \frac{a_k - \mathrm{j}b_k}{2}
+$$
+
+For negative harmonics $(k<0)$:
+$$
+d_{-k} = \frac{a_k + \mathrm{j}b_k}{2} = d_k^{*}
+$$
+
+
+### Derivatives and Integrals for finding the constants value ($a_k$, $b_k$) 
+
+| Function $f(t)$ | Derivative $f'(t)$ | Integral $\int f(t)\ \mathrm{d}t$ |
+|---|---|---|
+| $\sin(t)$ | $\cos(t)$ | $-\cos(t) + C$ |
+| $\cos(t)$ | $-\sin(t)$ | $\sin(t) + C$ |
+| $\tan(t)$ | $\sec^2(t)$ | $-\ln\lvert\cos(t)\rvert + C$ |
+
+### With an inner constant $a$ (e.g. $a = k\omega$)
+
+| Function | Derivative | Integral |
+|---|---|---|
+| $\sin(at)$ | $a\cos(at)$ | $-\dfrac{\cos(at)}{a} + C$ |
+| $\cos(at)$ | $-a\sin(at)$ | $\dfrac{\sin(at)}{a} + C$ |
+| $\tan(at)$ | $a\sec^2(at)$ | $-\dfrac{\ln\lvert\cos(at)\rvert}{a} + C$ |
+
+## Integration by Parts
+
+$$\int f(t)\,g'(t)\ \mathrm{d}t = f(t)\,g(t) - \int f'(t)\,g(t)\ \mathrm{d}t$$
+
+
+Definite version:
+
+$$\int_a^b f(t)\,g'(t)\ \mathrm{d}t = \Big[f(t)\,g(t)\Big]_a^b - \int_a^b f'(t)\,g(t)\ \mathrm{d}t$$
+
+
+| Symbol | Meaning | What you do with it |
+|---|---|---|
+| $f(t)$ | first factor | differentiate it $\rightarrow f'(t)$ |
+| $g'(t)$ | second factor (given in the integral) | integrate it $\rightarrow g(t)$ |
+
+Pick $f$ to be the factor that gets simpler when differentiated, and $g'$ to be the factor you can integrate.
+
+### Even Signal: Halving the Integration Range
+
+Even function $(u(−t)=u(t)u(−t)=u(t)$, symmetric about the vertical axis): the two halves contribute equally, so
+
+$$
+\int_{-T/2}^{T/2} u(t)\ \mathrm{d}t = 2\int_0^{T/2} u(t)\ \mathrm{d}t
+$$
+
+
+## Signal Characteristic Quantities
+
+| Quantity | Symbol | Definition | Meaning |
+|---|---|---|---|
+| DC component | $\bar{U}$ | $\dfrac{1}{T}\int_{-T/2}^{T/2} u(t)\ \mathrm{d}t$ | average value of the signal |
+| Rectified mean | $\overline{\lvert U\rvert}$ | $\dfrac{1}{T}\int_{-T/2}^{T/2} \lvert u(t)\rvert\ \mathrm{d}t$ | average of the absolute signal |
+| RMS value | $U_{\text{eff}}$ | $\sqrt{\dfrac{1}{T}\int_{-T/2}^{T/2} u^2(t)\ \mathrm{d}t}$ | equivalent DC voltage for the same average power |
+| AC component | $u_{\text{ac}}(t)$ | $u(t) - \bar{U}$ | signal with the DC part removed |
+
+**Even-signal shortcut.** If the signal is symmetric about the vertical axis (an even function, $u(-t) = u(t)$), each integral over one period can be halved: integrate from $0$ to $T/2$ and multiply by $2$.
+
+$$\int_{-T/2}^{T/2} u(t)\ \mathrm{d}t = 2\int_{0}^{T/2} u(t)\ \mathrm{d}t$$
+
+This applies to $\bar{U}$, $\overline{\lvert U\rvert}$, and $U_{\text{eff}}$, since $\lvert u(t)\rvert$ and $u^2(t)$ are also even.
+
+## Key Relations
+
+| Relation | Formula | What it says |
+|---|---|---|
+| RMS split | $U_{\text{eff}}^2 = \bar{U}^2 + U_{\text{eff,ac}}^2$ | total power $=$ DC power $+$ AC power |
+| Crest factor | $\xi = \dfrac{\hat{U}_{\text{ac}}}{U_{\text{eff,ac}}}$ | peak of AC vs its RMS |
+| Form factor | $F = \dfrac{U_{\text{eff}}}{\overline{\lvert U\rvert}}$ | RMS of full signal vs rectified mean |
+| Distortion factor | $k = \dfrac{U_{\text{harm,eff}}}{U_{\text{eff,ac}}}$ | share of AC RMS held in harmonics above the fundamental |
+| AC RMS | $U_{\text{eff,ac}}$ | $\sqrt{U_{\text{eff}}^2 - \bar{U}^2}$ | RMS of the signal after DC removal |
+| Harmonic RMS | $U_{\text{harm,eff}}$ | $\sqrt{U_{\text{eff,ac}}^2 - U_{1,\text{eff}}^2}$ | RMS of all harmonics above the fundamental |
+
+
+### General definition (works for every signal)
+
+ $$
+\hat{U}_{\text{ac}} = \max_t\ \lvert u(t) - \bar{U}\rvert
+$$
+
+This always works, for any waveform shape, because of what each piece does:
+
+1. $u(t) - \bar{U}$ removes the DC level, sliding the whole waveform up or down so it is centered on zero.
+2. $\lvert \cdot \rvert$ takes the absolute value, so both the **upward bumps** and the **downward dips** count as positive distances from zero.
+3. $\max_t$ picks the single largest of those distances over one period.
+
+### Finding the fundamental RMS $U_{1,eff}$
+	
+$$
+\hat{U}_1 = \sqrt{a_1^2 + b_1^2}
+$$
+
+### Convert peak to RMS
+RMS value of any sinusoid is its peak divided by $\sqrt{2}$
+$$
+U_{1,\text{eff}} = \frac{\hat{U}_1}{\sqrt{2}}
+$$
+
+
+### Finding total RMS $U_{eff}$
+there are two ways integral and using Sum-of-harmonics route. we use the 2nd when we know dc and amplitudes
+
+$$ 
+U_{\text{eff}} = \sqrt{\bar{U}^2 + \sum_{k=1}^{N}\left(\frac{\hat{U}_k}{\sqrt{2}}\right)^2} = \sqrt{\bar{U}^2 + \frac{1}{2}\sum_{k=1}^{N}\hat{U}_k^2}
+$$
+
+
+### harmonics table:
+
+| Symbol | Which harmonic | Frequency |
+|---|---|---|
+| $\hat{U}_1$ | 1st = fundamental | $\omega$ |
+| $\hat{U}_2$ | 2nd harmonic | $2\omega$ |
+| $\hat{U}_k$ | general $k$-th | $k\omega$ |
+
+### peak amplitude formula:
+
+$$
+\hat{U}_k = \sqrt{a_k^2 + b_k^2}
+$$
+
+to be continued
