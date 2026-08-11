@@ -20,7 +20,9 @@ title: Showing Up
   ],
   "entries": [
     { "date": "2026-08-08", "study": 120, "gym": 1, "language": 30, "note": "Fourier Analysis. Gym. German 30m. Worked on the website tracker." },
-    { "date": "2026-08-09", "study": 200, "gym": 0, "language": 15, "note": "Completed React assessment. German 15m. Completed Fourier Analysis."}
+    { "date": "2026-08-09", "study": 200, "gym": 0, "language": 15, "note": "Completed React assessment. German 15m. Completed Fourier Analysis."},
+    {"date": "2026-08-10", "study": 240, "gym": 0, "language": 15, "note": "Laplace"} 
+      
   ]
 }
 ```
