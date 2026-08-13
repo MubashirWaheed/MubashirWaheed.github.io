@@ -15,3 +15,6 @@ Running list of things I want to build and explore.
 
 ## RF / Signals
 - [ ] RF interference and jamming analysis (study)
+
+## AESA Radar 
+- [ ] Understanding how active electronically scanned array (AESA) works 
