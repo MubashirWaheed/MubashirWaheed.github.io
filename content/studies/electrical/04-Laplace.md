@@ -112,14 +112,18 @@ after $t=0$
 ### Final Value Theorem
 
 $$
-\lim_{t \to \infty} f(t) = \lim_{s \to 0} s F(s)
+\lim_{t \to \infty} f(t) = \lim_{s \to 0} \; \underbrace{s\,F(s)}_{\text{multiply by } s \text{ FIRST}}
 $$
+
+- **Do not forget the $s$.** You always multiply $F(s)$ by $s$ *before* taking the limit. The $s$ comes from the theorem, not from $F(s)$ itself.
+
+**Order of operations:** multiply by $s$ → cancel the common $s$ → then set $s \to 0$.
 
 Valid only if the limit exists, i.e. all poles of $s F(s)$ have negative real part.
 
 
 Important rule 
-when applying the first value theorm and function turns into undeterminant state $∞/∞$ we first simplify 
+when applying the final value theorm and function turns into undeterminant state $∞/∞$ we first simplify 
 
 $$
 \lim_{s \to \infty} \frac{s^2}{s^2 + \omega_0^2} = 1
