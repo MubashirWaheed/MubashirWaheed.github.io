@@ -23,7 +23,9 @@ title: Showing Up
     { "date": "2026-08-09", "study": 200, "gym": 0, "language": 15, "note": "Completed React assessment. German 15m. Completed Fourier Analysis."},
     { "date": "2026-08-10", "study": 240, "gym": 0, "language": 15, "note": "Laplace"},
     { "date": "2026-08-11", "study": 60,  "gym": 0, "language": 20, "note": "short on time because of work"},
-    { "date": "2026-08-13", "study": 240, "gym":0, "language": 0, "note": "Network analysis. No time for gym or German." }          
+    { "date": "2026-08-13", "study": 240, "gym":0, "language": 0, "note": "Network analysis. No time for gym or German." },
+    { "date": "2026-08-14", "study": 90, "gym":0, "language": 0, "note": " Network Linear ODE" }
+
   ]
 }
 ```

@@ -255,9 +255,6 @@ $$
 $$
 
 
-
-# Test 
-
 ## Solving a 2nd-Order Homogeneous ODE (Characteristic Equation Method)
 
 Use this whenever the differential equation is homogeneous (right-hand side = 0), like the pre-charged RLC circuit.
@@ -365,6 +362,13 @@ $$
 
 **Second IC** (slope), $\left.\frac{du_C}{dt}\right|_0 = 0$. Differentiate, then set $t=0$:
 
+Differentiate the follwoing equation using the product rule and equate to zero since slope 
+zero at the start  $(t=0)$ and find the $k_2$
+
+$$
+u_C(t) = e^{-\sigma t}\left(k_1\cos\omega_d t + k_2\sin\omega_d t\right)
+$$ 
+
 $$
 \left.\frac{du_C}{dt}\right|_0 = -k_1\sigma + k_2\omega_d = 0 \quad\Rightarrow\quad k_2 = \frac{k_1\sigma}{\omega_d} = \frac{U\sigma}{\omega_d}
 $$
@@ -407,3 +411,44 @@ Also a decaying oscillation, as expected.
 
 ### The method in one line
 Guess $e^{st}$ → characteristic quadratic → solve for poles → if complex, write $e^{-\sigma t}(k_1\cos\omega_d t + k_2\sin\omega_d t)$ → fix $k_1,k_2$ from the two ICs.
+
+
+## Idea  of differential equation 
+
+A linear ODE of order 𝑛 has exactly n independent solutions, and the general solution is a weighted sum of them.
+
+Second-order means $𝑛=2$, so you need two independent solutions. Call them $𝑢_1$ and $𝑢_2$
+	
+$$
+u(t) = k_1 u_1 + k_2 u_2
+$$
+
+The two weights $𝑘_1$,$𝑘_2$ are unknowns you'll pin down at the very end using two initial conditions
+
+$$
+e^{j\omega_d t} = \cos\omega_d t + j\sin\omega_d t
+e^{-j\omega_d t} = \cos\omega_d t - j\sin\omega_d t
+$$
+
+$$
+e^{j\omega_d t} + e^{-j\omega_d t} = 2\cos\omega_d t + \underbrace{(j\sin - j\sin)}_{= 0} = 2\cos\omega_d t
+$$
+
+$$
+u_1 = e^{-\sigma t}e^{j\omega_d t}, \quad u_2 = e^{-\sigma t}e^{-j\omega_d t}
+$$
+
+These are correct solutions, but they contain $$, the imaginary unit. That's a problem: the voltage across your capacitor is a real,
+ measurable number. You can't hand an engineer an answer with $j$ in it. You need real functions.
+
+The superposition theorem says any combination 
+$𝐴𝑢_1 + 𝐵𝑢_2$  is also a valid solution, for any numbers 
+𝐴 and 𝐵 you like. So you have total freedom to pick A and B.
+
+$$
+u_C(t) = A\,u_1 + B\,u_2
+$$
+
+$$
+u_1 + u_2 = e^{-\sigma t}\big[(\cos + j\sin) + (\cos - j\sin)\big] = e^{-\sigma t}\cdot 2\cos\omega_d t
+$$
