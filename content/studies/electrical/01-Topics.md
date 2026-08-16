@@ -25,7 +25,7 @@ title: 01-List of Topics
 - Bipolar Rectangular Wave through an RC Low-Pass Filter
 - Laplace Transform
 - Network Analysis
-	- Balancing process with a coil (Laplace domain)
+	- Balancing process(transient behaviour) with a coil (Laplace domain)
 	- Transient behavior of a heavily damped RLC circuit
 	- The damped series resonant circuit
 	- Balancing process with a coil

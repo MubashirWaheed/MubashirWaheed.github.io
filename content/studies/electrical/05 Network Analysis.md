@@ -438,7 +438,7 @@ $$
 u_1 = e^{-\sigma t}e^{j\omega_d t}, \quad u_2 = e^{-\sigma t}e^{-j\omega_d t}
 $$
 
-These are correct solutions, but they contain $$, the imaginary unit. That's a problem: the voltage across your capacitor is a real,
+These are correct solutions, but they contain , the imaginary unit. That's a problem: the voltage across your capacitor is a real,
  measurable number. You can't hand an engineer an answer with $j$ in it. You need real functions.
 
 The superposition theorem says any combination 
@@ -452,3 +452,325 @@ $$
 $$
 u_1 + u_2 = e^{-\sigma t}\big[(\cos + j\sin) + (\cos - j\sin)\big] = e^{-\sigma t}\cdot 2\cos\omega_d t
 $$
+
+## Characteristic Time
+
+Every circuit with energy storage (capacitors, inductors) has a built-in speed. Left to itself, it doesn't respond instantly and it doesn't take forever, it settles or 
+oscillates over some particular stretch of time. That stretch is the characteristic time. It's the circuit's natural clock: the timescale on which its own physics plays out.
+
+For circuits that decay (RC, RL), the characteristic time is how long the circuit takes to substantially settle after a disturbance. It's usually called the time constant, 
+symbol $τ$. After about one $τ$, a charging capacitor has covered roughly 63% of its journey; after a few 
+$τ$, it's essentially done.
+
+For circuits that oscillate (LC), the characteristic time is how long one bit of the ringing takes, one radian of the oscillation. It's the reciprocal of the natural frequency 
+$ω_0$	​
+
+## Time Normalization Rules (Circuit Analysis)
+Normalizing means measuring time in units of the circuit's own natural timescale, so component constants fold away and you work with clean dimensionless numbers.
+
+Define the normalized time, substitute, solve, then denormalize:
+
+$$
+t_n = \frac{t}{\tau} \quad\Longleftrightarrow\quad t = t_n\,\tau
+$$
+
+## The three characteristic times
+
+| Circuit | Characteristic time $\tau$ | Why (physical meaning) |
+|---------|---------------------------|------------------------|
+| RC | $\tau = RC$ | Time constant of the decay. Bigger $R$ slows the current, bigger $C$ needs more charge, both make settling slower. Response goes like $e^{-t/RC}$. |
+| RL | $\tau = \dfrac{L}{R}$ | Time constant of the decay. Bigger $L$ makes current more sluggish, bigger $R$ settles it faster. Response goes like $e^{-Rt/L}$. |
+| LC | $\tau = \sqrt{LC}$ | No resistor to dissipate, so it oscillates instead of decaying. This is the time per radian of the ringing, the reciprocal of the natural frequency $\omega_0 = 1/\sqrt{LC}$. |
+
+## Procedure (exam checklist)
+
+| Step | Action |
+|------|--------|
+| 1 | Identify the storage components: L and C? R and C? R and L? |
+| 2 | Pick $\tau$ from the table (or derive it by units). |
+| 3 | Define $t_n = t/\tau$; substitute $t = t_n\,\tau$ everywhere. |
+| 4 | Solve the problem with clean dimensionless numbers. |
+| 5 | Multiply $\tau$ back in at the end to recover real seconds and amperes. |
+
+
+The branch that produces the ringing, the oscillation you're solving for, contains only $L$ and $C$.$R$ is not in that loop. The natural frequency of the thing that oscillates is
+therefore set by $L$ and $C$
+
+$$
+\omega_0 = \frac{1}{\sqrt{LC}} \quad\Rightarrow\quad \tau = \sqrt{LC}
+$$
+
+
+## Denormalizing a Time Function (the two-edit rule)
+
+### The plain fact
+
+To take a normalized time answer back to real time, do these two edits, every single time:
+
+1. Replace every $t_n$ with $\dfrac{t}{\sqrt{LC}}$
+2. Multiply the whole expression by $\dfrac{1}{\sqrt{LC}}$
+
+Both edits always. You never skip edit 2. They come as a pair (this pairing is the expansion/compression theorem, just do both and you have applied it).
+
+### The rule as a transform pair
+
+$$
+i_C(t_n) \;\longrightarrow\; \frac{1}{\sqrt{LC}}\,i_C\!\left(\frac{t}{\sqrt{LC}}\right)
+$$
+
+Left side is what you have (normalized). Right side is the answer: same function, argument changed to $t/\sqrt{LC}$, and a $\frac{1}{\sqrt{LC}}$ stuck in front. Nothing else to decide.
+
+
+## General version (any normalization factor)
+
+If time was normalized by a characteristic time $\tau$ (so $t_n = t/\tau$), then denormalize using the **expansion and compression theorem** (also called the time-scaling property of the Laplace transform):
+
+$$
+f(t_n) \;\longrightarrow\; \frac{1}{\tau}\,f\!\left(\frac{t}{\tau}\right)
+$$
+
+This is the theorem in its general form $f(at) \;\multimap\; \frac{1}{a}F(s/a)$ applied with $a = 1/\tau$. For this problem $\tau = \sqrt{LC}$. (For RC circuits $\tau = RC$, for RL circuits $\tau = L/R$.)
+
+
+
+## Worked example (the capacitor current)
+
+Start from the normalized answer:
+
+$$
+i_C(t_n) = U_0 C\,\sin t_n \sum_{k=0}^{\infty}\Big[\varepsilon(t_n - 4\pi k) - \varepsilon(t_n - 2\pi(2k+1))\Big]
+$$
+
+Edit 1: swap every $t_n \to t/\sqrt{LC}$.
+
+Edit 2: multiply by $\frac{1}{\sqrt{LC}}$, which only changes the front constant:
+
+$$
+U_0 C \cdot \frac{1}{\sqrt{LC}} = U_0\,\frac{C}{\sqrt{LC}} = U_0\sqrt{\frac{C}{L}}
+$$
+
+(Simplification: $\frac{C}{\sqrt{LC}} = \frac{C}{\sqrt{L}\sqrt{C}} = \frac{\sqrt{C}}{\sqrt{L}} = \sqrt{\frac{C}{L}}$.)
+
+Result (real-time current):
+
+$$
+i_C(t) = U_0\sqrt{\frac{C}{L}}\,\sin\frac{t}{\sqrt{LC}} \sum_{k=0}^{\infty}\left[\varepsilon\!\left(\frac{t}{\sqrt{LC}} - 4\pi k\right) - \varepsilon\!\left(\frac{t}{\sqrt{LC}} - 2\pi(2k+1)\right)\right]
+$$
+
+## Caveat for the front factor
+
+The $\frac{1}{\sqrt{LC}}$ factor is always the same, but it merges with whatever constant sits out front, so the final constant differs per quantity. For the current it made 
+$U_0\sqrt{C/L}$; for the voltage $u_C$ the front constant is different, so the same $\frac{1}{\sqrt{LC}}$ combines into a different final constant. The edits are identical each 
+time; only the surrounding constant changes.
+
+
+# Normalizing a Time Function (concise)
+
+## The two edits (real → normalized)
+
+To normalize a real-time function $f(t)$ into $f(t_n)$:
+
+1. Replace every $t$ with $t_n\,\tau$  (from $t = t_n\tau$)
+2. Multiply the whole expression by $\tau$
+
+As a pair:
+
+$$f(t) \;\longrightarrow\; \tau\, f(t_n\,\tau)$$
+
+For this circuit $\tau = \sqrt{LC}$, so $f(t) \longrightarrow \sqrt{LC}\; f(t_n\sqrt{LC})$.
+
+## Normalize vs denormalize (mirror image)
+
+| Direction | Argument edit | Amplitude edit |
+|-----------|--------------|----------------|
+| Normalize (real → normalized) | $t \to t_n\tau$ | $\times\ \tau$ |
+| Denormalize (normalized → real) | $t_n \to t/\tau$ | $\times\ \frac{1}{\tau}$ |
+
+Both use the **expansion and compression theorem**. The amplitude factors are reciprocals, so normalizing then denormalizing gives $\times 1$ (safety check).
+
+## In practice: normalize in Laplace instead
+
+You rarely normalize in the time domain. The standard workflow normalizes in Laplace (just a variable swap, no amplitude factor):
+
+| Step | Action | Domain |
+|------|--------|--------|
+| Normalize | swap $s \to s_n/\tau$ | Laplace |
+| Solve + inverse transform | get $f(t_n)$ | normalized time |
+| Denormalize | $t_n \to t/\tau$, then $\times \frac{1}{\tau}$ | real time |
+
+$$
+t_n = \omega_0\, t = \frac{1}{\sqrt{LC}}\cdot t = \frac{t}{\sqrt{LC}}
+$$
+we can use $\omega$ instead of explicitly the $1/\sqrt{LC}$
+
+## Resonant Period LC circuit 
+For any LC circuit, the resonant (natural) period is always
+
+$$
+T_{res} = \frac{2\pi}{\omega_0} = 2\pi\sqrt{LC}
+$$
+
+This depends only on the components, not on how you drive the circuit. So yes, it's always true for an ideal LC circuit,
+
+## Derive Period 
+"Drive" refers to the external source pushing the circuit, here, the square-wave voltage $u(t)$. Anything forcing the circuit from outside is the "drive" or "excitation."
+
+The drive period $T$ is simply the period of that source, how long one full ON-OFF cycle of the square wave takes.
+
+So there are two separate periods,
+
+
+| Period | Symbol | Set by | Value |
+|--------|--------|--------|-------|
+| Natural / resonant period | $T_{res}$ | the circuit ($L$, $C$) | $2\pi\sqrt{LC}$, fixed |
+| Drive period | $T$ | the source (you) | whatever the square wave uses |
+
+When the drive period equals the resonant period, you get resonance: energy keeps accumulating in the circuit and the oscillation grows larger every cycle
+
+If $T = T_{res} = 2\pi\sqrt{LC}$, the ON window (half the drive period) lasts $\pi\sqrt{LC}$, which is **half** the natural oscillation. So the source switches off exactly when 
+the oscillation is halfway through, at the moment the capacitor voltage is at its **peak** (maximum stored energy), not back at zero.
+
+## Resonance Test (drive vs natural period)
+
+$$
+\frac{T}{T_{res}} = \frac{T}{2\pi\sqrt{LC}}
+$$
+
+- Ratio $= 1$ (drive period = natural period) → **resonance** (energy builds up, oscillation grows each cycle).
+- Ratio $= 2$ (or other non-1) → **off-resonance** (clean reset each cycle, constant amplitude).
+
+Natural (resonant) period, always: $T_{res} = 2\pi\sqrt{LC}$.
+
+## Equivalent physical test
+
+ON window $= T/2$ (50% duty square wave). Voltage peaks at half the natural period, $T_{res}/2$.
+
+- Resonance when switch-off lands at the voltage peak: $\dfrac{T}{2} = \dfrac{T_{res}}{2}$, i.e. $T = 2\pi\sqrt{LC}$.
+
+## Worked example (the two cases from H2.4)
+
+Natural period: $T_{res} = 2\pi\sqrt{LC}$.
+
+**Case e:** $T = 2\pi\sqrt{LC}$
+
+$$
+\frac{T}{T_{res}} = \frac{2\pi\sqrt{LC}}{2\pi\sqrt{LC}} = 1 \;\Rightarrow\; \textbf{resonance}
+$$
+
+ON window $= T/2 = \pi\sqrt{LC} = $ half the natural period → switch-off at the peak → builds up.
+
+**Case d:** $T = 4\pi\sqrt{LC}$
+
+$$
+\frac{T}{T_{res}} = \frac{4\pi\sqrt{LC}}{2\pi\sqrt{LC}} = 2 \;\Rightarrow\; \text{off-resonance}
+$$
+
+ON window $= T/2 = 2\pi\sqrt{LC} = $ full natural period → switch-off at zero → clean reset.
+
+### Exam steps: is the circuit at resonance?
+
+1. Natural period: $T_{res} = 2\pi\sqrt{LC}$
+2. Divide the given drive period by it: ratio $= T / T_{res}$
+3. Interpret:
+   - ratio $= 1$ → **resonance**, energy builds up (drive always in phase)
+   - ratio = decimal (non-integer) → **off-resonance**, drive drifts in and out of phase, no sustained buildup
+
+
+### Why the drive switches at the half-period
+
+The current in an $LC$ oscillation reverses direction every **half-period**:
+
+$$
+\frac{T_0}{2} = \pi\sqrt{LC}, \qquad T_0 = 2\pi\sqrt{LC}
+$$
+
+**The one rule:** the drive must never push *against* the current (opposing it removes energy). It only adds energy during the half-cycle when the current flows *with* it. The next half-cycle the current reverses, so the drive must adapt, and there are two valid ways:
+
+- **Bipolar drive** ($+U_0 \leftrightarrow -U_0$): flips direction each half-period, so the push always lines up with the current.
+- **Unipolar drive** ($U_0 \leftrightarrow 0$, our case): turns **off** during the unfavorable half-cycle instead of opposing. The oscillation coasts on its stored energy; the source switches back on for the next favorable half-cycle.
+
+$$
+\text{ON: current flows with source} \Rightarrow \text{energy added}
+$$
+
+$$
+\text{OFF: current reversed} \Rightarrow \text{no opposing push, energy preserved}
+$$
+
+Either way the switching happens every half-period ($\pi\sqrt{LC}$), because that is how often the phase flips from favorable to unfavorable. This is why the on/off times in the solution march along at half-period spacing (the $4\pi k$ and $2\pi(2k+1)$ terms).
+
+**Swing analogy (unipolar):** you can only push, not pull. Push while the swing moves away (adds energy), let go while it swings back (push zero, don't block it). You never oppose it, so it builds up. The "let go" is the source turning off.
+
+Yes, for pushing energy in, the source (voltage) must be lined up with the current, not the capacitor voltage. The reason is that power is source-voltage times current
+
+
+## RLC Damping Cases
+
+Poles: $s_{1,2} = -\sigma \pm \sqrt{\sigma^2 - \omega_0^2}$, where $\sigma = \frac{R}{2L}$ (damping) and $\omega_0 = \frac{1}{\sqrt{LC}}$ (natural frequency).
+
+| Condition | Discriminant $\sigma^2 - \omega_0^2$ | Poles | Case (technical name) | Solution form |
+|-----------|:---:|-----------|-----------------------|---------------|
+| $\sigma > \omega_0$ | $> 0$ | two distinct real | **Overdamped** (aperiodischer Fall) | $A\,e^{s_1 t} + B\,e^{s_2 t}$ |
+| $\sigma = \omega_0$ | $= 0$ | one repeated real | **Critically damped** = aperiodic limit (aperiodischer Grenzfall) | $(A + Bt)\,e^{-\sigma t}$ |
+| $\sigma < \omega_0$ | $< 0$ | complex conjugate | **Underdamped** (Schwingfall) | $e^{-\sigma t}(A\cos\omega_d t + B\sin\omega_d t)$ |
+
+- **Overdamped:** strong damping wins, slow smooth decay, no oscillation.
+- **Critically damped:** exact balance, fastest return with no overshoot (the $t$ term is the giveaway).
+- **Underdamped:** weak damping, oscillates and rings while decaying.
+
+### Damping σ depends on the circuit (not always R/2L)
+
+General rule: write the characteristic equation as $s^2 + 2\sigma s + \omega_0^2 = 0$,
+then $\sigma = \frac{1}{2}(\text{coeff of } s)$, $\omega_0 = \sqrt{\text{constant term}}$.
+
+- **Series RLC:** $s^2 + \frac{R}{L}s + \frac{1}{LC} = 0 \Rightarrow \sigma = \frac{R}{2L}$
+  (bigger $R$ = more damping)
+- **Parallel RLC:** $s^2 + \frac{1}{RC}s + \frac{1}{LC} = 0 \Rightarrow \sigma = \frac{1}{2RC}$
+  (bigger $R$ = LESS damping)
+
+$\omega_0 = \frac{1}{\sqrt{LC}}$ in both. Only $\sigma$ changes with topology.
+Always re-derive $\sigma$ from YOUR characteristic equation, don't assume R/2L.
+
+
+### Harmonic vs transient (from pole location)
+
+Rule: the pole location tells you the behavior.
+
+| Denominator | Poles | Label | Time function |
+|-------------|-------|-------|---------------|
+| $s^2 + \omega_0^2$ | $\pm j\omega_0$ (imaginary) | **Harmonic** | $\cos\omega_0 t, \sin\omega_0 t$ (oscillates, never dies) |
+| $R + sL$ (i.e. $s + \frac{R}{L}$) | $-\frac{R}{L}$ (real neg.) | **Transient** | $e^{-\frac{R}{L}t}$ (decays away) |
+
+- Imaginary poles → no decay → steady oscillation → harmonic (steady-state).
+- Negative real pole → decays → temporary → transient (startup, dies out).
+- The partial fraction groups poles by type, so each fraction = one behavior.
+
+
+Purely imaginary poles (no real part, so no decay) mean pure oscillation.
+$$
+\frac{As + B}{s^2 + \omega_0^2} \;\longleftrightarrow\; \cos\omega_0 t, \sin\omega_0 t
+$$
+
+Solving 
+$$s^2= −ω_0^{2}$$
+$$
+s = \pm\sqrt{-\omega_0^2}
+$$
+$$
+\sqrt{-\omega_0^2} = \sqrt{-1}\cdot\sqrt{\omega_0^2}
+$$
+
+$$
+s = \pm\,j\,\omega_0
+$$
+
+
+### Pole location → time behavior
+
+| Denominator form | Poles | Behavior | Time function |
+|------------------|-------|----------|---------------|
+| $s^2 + \omega^2$ | $\pm j\omega$ (imaginary) | **Harmonic** (oscillates, never decays) | $\cos\omega t,\ \sin\omega t$ |
+| $s + a\ (a>0)$ | $-a$ (real negative) | **Transient** (decays away) | $e^{-a t}$ |
+| $(s+\sigma)^2 + \omega_d^2$ | $-\sigma \pm j\omega_d$ (complex) | **Damped oscillation** (both: rings while decaying) | $e^{-\sigma t}\cos\omega_d t,\ e^{-\sigma t}\sin\omega_d t$ |
+
+**Reading the poles:** the real part controls decay (negative = dies out, zero = lasts forever), the imaginary part controls oscillation (nonzero = sin/cos). Imaginary-only → pure oscillation; real-only → pure decay; both → damped oscillation.

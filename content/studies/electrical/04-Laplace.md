@@ -11,9 +11,6 @@ F(s) = \int_0^\infty f(t)\,e^{-st}\,dt
 $$
 
 
-
-
-
 ## Fourier vs Laplace: Input and Output Domains
 $$
 e^{-st} = e^{-(\sigma + j\omega)t} = \underbrace{e^{-\sigma t}}_{\text{decay/growth}} \cdot \underbrace{e^{-j\omega t}}_{\text{oscillation}}
@@ -93,7 +90,10 @@ $$
 | Multiply by $t$ | $t\, f(t)$ | $-\dfrac{d}{ds} F(s)$ |
 | Convolution | $(f * g)(t)$ | $F(s)\, G(s)$ |
 
-take note in multiplicity we are multiplying with the $t$ variable and not with constant 
+**Importnat:** Time shift and frequency shift. In laplace domain if a function is being multipled with the exponential this results in time shift in time domain and to write that
+we attach unit step function with function and inverse is true for the frequncy shift 
+
+Take note in multiplicity we are multiplying with the $t$ variable and not with constant 
 
 ## Special Theorems (Limit Rules)
 
@@ -297,6 +297,17 @@ $$
 The one-line takeaway: **time-domain denormalization is a simple rename; s-domain denormalization is a rule with a scaling factor you must not forget.**
 
 
+### Which column applies? (read this in the exam)
+
+The choice depends on **what you start from**:
+
+- **Start from a time function** $g(t_n)$ and just want it in real time → **time-domain column**: plain rename $t_n \to \omega_0 t$, no factor.
+- **Start from a transform** $G(s_n)$ and inverse-transform to real time → **s-domain column**: the scaling factor is unavoidable, it falls out of the transform.
+
+**For the resonant-circuit problem (H2.4): use the s-domain column.** You start from $I_C(s_n)$ and transform out of it, so the amplitude factor $\frac{1}{\sqrt{LC}}$ must be included. That factor is what turns $U_0 C$ into $U_0\sqrt{C/L}$. Skipping it gives the wrong amplitude.
+
+One-line rule: **if a Laplace transform is involved anywhere in the trip, the factor comes along; a pure symbol-rename has no factor.**
+
 ## Exponential Times a Signal = Frequency Shift (NOT a separate factor)
 
 When a signal is multiplied by an exponential $e^{-at}$, that exponential is a **frequency shift**, not a separate piece to transform on its own.
@@ -445,3 +456,58 @@ No shift (argument is plain $t$): the step is effectively ignored, you just use 
 Shift by $a$ (argument is $(t−a)$): the step signals the delay, so you add 
 $e^{−as}$
 
+## Inverse Transform via the Shift Theorem (sin with shifted arguments)
+
+### Starting point (what we transform back to time)
+
+$$
+I_C(s_n) = \frac{U_0 C}{s_n^2 + 1}\sum_{k=0}^{\infty}\left(e^{-s_n\cdot 4\pi k} - e^{-s_n\cdot 2\pi(2k+1)}\right)
+$$
+
+Goal: get $i_C(t_n)$. The $e^{-s_n\cdot a}$ factors are time shifts, handle them with the **shift theorem**.
+
+### The shift theorem
+
+$$
+e^{-s\,a}\,F(s) \;\longleftrightarrow\; \varepsilon(t-a)\,f(t-a)
+$$
+
+An $e^{-s\cdot a}$ factor delays $f(t)$ by $a$ and switches it on at $t=a$. The exponent $a$ moves inside as $t-a$.
+
+### Step 1: Base transform (where sin comes from)
+
+$$
+\frac{1}{s^2 + 1} \;\longleftrightarrow\; \sin t
+$$
+
+So before shifting, the function is $\sin t_n$.
+
+### Step 2: Each exponential shifts the sine
+
+The exponent drops inside the sin as $t_n - a$:
+
+$$
+e^{-s_n\cdot a} \;\Rightarrow\; \varepsilon(t_n - a)\,\sin(t_n - a)
+$$
+
+Applied to both exponents ($a = 4\pi k$ and $a = 2\pi(2k+1)$).
+
+### Step 3: Time-domain result
+
+$$
+i_C(t_n) = U_0 C\sum_{k=0}^{\infty}\Big[\varepsilon(t_n - 4\pi k)\sin(t_n - 4\pi k) - \varepsilon(t_n - 2\pi(2k+1))\sin(t_n - 2\pi(2k+1))\Big]
+$$
+
+### Step 4: Simplify (sine has period $2\pi$)
+
+All shifts are multiples of $2\pi$, so $\sin(t_n - 2\pi m) = \sin t_n$. Every sine collapses to $\sin t_n$ and pulls out front; shifts survive only in the steps:
+
+$$
+i_C(t_n) = U_0 C\,\sin t_n\sum_{k=0}^{\infty}\Big[\varepsilon(t_n - 4\pi k) - \varepsilon(t_n - 2\pi(2k+1))\Big]
+$$
+
+### Summary
+- **sin** from $\frac{1}{s^2+1} \leftrightarrow \sin t$
+- **argument inside sin** from the exponent of $e^{-s\cdot a}$ ($a \to t-a$)
+- **step $\varepsilon(t-a)$** because a delayed function is off until $t=a$
+- shifts that are multiples of $2\pi$ vanish from the sine, stay in the steps
