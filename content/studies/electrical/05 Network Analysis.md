@@ -221,6 +221,12 @@ $$
 
 **Order check:** 2 energy elements ($L$ and $C$) → highest derivative is 2nd → second-order equation. Falls out automatically.
 
+## Behavior of the components in DC steady state:
+
+- The inductance $L$  acts as a short circuit $(u_L=0)$.
+- The capacitance $C$ acts as an open circuit $(i_C=0)$.
+so in a steady circuit state current doesn't pass through the capacitor since capacitor acting as open circuit and inductor act as short circuit 
+so current passing through the inductor
 
 ## Initial Conditions (IC) — cheat sheet
 
@@ -238,7 +244,9 @@ Number of ICs = number of energy elements = order of the differential equation.
 - **1st IC (value):** read the capacitor voltage (or inductor current) directly at $t=0$.
 - **2nd IC (slope):** get it from the element law, using the "can't jump" current/voltage.
 
-$$\frac{du_C}{dt}\bigg|_0 = \frac{i_C(0)}{C} \qquad \frac{di_L}{dt}\bigg|_0 = \frac{u_L(0)}{L}$$
+$$
+\frac{du_C}{dt}\bigg|_0 = \frac{i_C(0)}{C} \qquad \frac{di_L}{dt}\bigg|_0 = \frac{u_L(0)}{L}
+$$
 
 $|$ means evaluated at and zero next to it means at $t=0$
 
@@ -472,6 +480,10 @@ Define the normalized time, substitute, solve, then denormalize:
 
 $$
 t_n = \frac{t}{\tau} \quad\Longleftrightarrow\quad t = t_n\,\tau
+$$
+
+$$
+t_\mathrm{n} = \frac{t}{\tau} \quad\Longleftrightarrow\quad s_\mathrm{n} = s\,\tau = s\sqrt{LC}
 $$
 
 ## The three characteristic times
@@ -774,3 +786,282 @@ $$
 | $(s+\sigma)^2 + \omega_d^2$ | $-\sigma \pm j\omega_d$ (complex) | **Damped oscillation** (both: rings while decaying) | $e^{-\sigma t}\cos\omega_d t,\ e^{-\sigma t}\sin\omega_d t$ |
 
 **Reading the poles:** the real part controls decay (negative = dies out, zero = lasts forever), the imaginary part controls oscillation (nonzero = sin/cos). Imaginary-only → pure oscillation; real-only → pure decay; both → damped oscillation.
+## When to Expand sin/cos with the Addition Theorem
+
+**Trigger:** a sinusoid with a constant phase inside, $\sin(\omega_0 t + \alpha)$ or $\cos(\omega_0 t + \alpha)$, that you need to Laplace transform.
+
+**Why it's needed:** the Laplace table only has clean $\sin\omega_0 t$ and $\cos\omega_0 t$. The $+\alpha$ inside blocks a direct lookup.
+
+### Steps
+
+1. **Spot the constant phase** inside the sine/cosine ($+\alpha$, a fixed number, not a function of $t$).
+2. **Apply the addition theorem** with $a = \omega_0 t$, $b = \alpha$:
+   $$\sin(\omega_0 t + \alpha) = \sin\omega_0 t\cos\alpha + \cos\omega_0 t\sin\alpha$$
+3. **Treat $\cos\alpha$ and $\sin\alpha$ as constants** (just numbers, since $\alpha$ is fixed).
+4. **Read off two table-ready terms:** (number)$\times\sin\omega_0 t$ and (number)$\times\cos\omega_0 t$.
+5. **Transform each** using the standard table entries.
+
+### Worked example
+
+Signal: $u_{in}(t) = \varepsilon(t)\,U_0\sin(\omega_0 t + \alpha)$
+
+**Step 1-3, expand:**
+
+$$
+u_{in}(t) = \varepsilon(t)\,U_0\big[\cos\alpha\,\sin\omega_0 t + \sin\alpha\,\cos\omega_0 t\big]
+$$
+
+**Step 4, two clean terms** (with constant weights $\cos\alpha$, $\sin\alpha$):
+
+$$
+u_{in}(t) = U_0\cos\alpha\cdot\underbrace{\sin\omega_0 t}_{\text{table}} + U_0\sin\alpha\cdot\underbrace{\cos\omega_0 t}_{\text{table}}
+$$
+
+**Step 5, transform each:**
+
+$$
+U_{in}(s) = U_0\cos\alpha\cdot\frac{\omega_0}{s^2+\omega_0^2} + U_0\sin\alpha\cdot\frac{s}{s^2+\omega_0^2}
+$$
+
+$$
+= U_0\,\frac{\omega_0\cos\alpha + s\sin\alpha}{s^2+\omega_0^2}
+$$
+
+### Do NOT confuse with the shift theorem
+- Shift theorem needs $\omega_0(t-a)$ in **both** the sine and the step $\varepsilon(t-a)$ (a real time delay).
+- Here the $+\alpha$ is **inside the sine only**; the step is still $\varepsilon(t)$, not shifted.
+- Shift inside the sine $\neq$ time delay → shift theorem does **not** apply, use the addition theorem.
+
+
+## Making the circuit reach steady state instantly
+
+**Goal:** eliminate the transient so the circuit jumps straight to steady state when the switch closes, no startup wobble.
+
+**How:** in the partial-fraction form, set the coefficient of the transient term to zero. The transient is the term whose pole has a **negative real part** (e.g. $s_3 = -\frac{R}{L}$, the $\frac{C}{R+sL}$ fraction). Zeroing it leaves only the harmonic (steady-state) part.
+
+**How to identify each part:**
+- **Harmonic (keep):** poles on the imaginary axis, real part $= 0$, denominator $s^2 + \omega_0^2$. This is the lasting oscillation.
+- **Transient (remove):** pole with negative real part, denominator $s + a$ ($a>0$). This decays as $e^{-at}$ and is what we cancel.
+
+**Condition:** find the value (e.g. the switch-on phase $\alpha$, or a component value) that makes the transient coefficient $C = 0$. At that setting the transient never appears and the circuit is instantly at steady state.
+
+$$
+\underbrace{\frac{As+B}{s^2+\omega_0^2}}_{\text{harmonic, keep}} + \underbrace{\frac{C}{R+sL}}_{\text{transient, remove}}
+$$
+
+**Note**: $ω_0$ just names wherever the imaginary-axis poles happen to sit, $s=±jω0$
+
+## Sinusoidal Signals by Envelope Shape
+
+All are a sine carrier switched on at $t = 0$ by the unit step $\varepsilon(t)$, shaped by an envelope $a(t)$.
+
+| Type | Time-Domain Equation | Envelope $a(t)$ | Laplace Transform $U(s)$ |
+|---|---|---|---|
+| **Constant** (horizontal line) | $u(t) = A\,\sin(\omega t)\,\varepsilon(t)$ | $A$ | $\dfrac{A\,\omega}{s^2 + \omega^2}$ |
+| **Linear** (growing ramp) | $u(t) = a\,t\,\sin(\omega t)\,\varepsilon(t)$ | $a\,t$ | $\dfrac{2 a\,\omega\, s}{(s^2 + \omega^2)^2}$ |
+| **Exponential decaying** (damped) | $u(t) = A\,e^{-\delta t}\,\sin(\omega t)\,\varepsilon(t)$ | $A\,e^{-\delta t}$ | $\dfrac{A\,\omega}{(s + \delta)^2 + \omega^2}$ |
+| **Exponential growing** | $u(t) = A\,e^{+\delta t}\,\sin(\omega t)\,\varepsilon(t)$ | $A\,e^{+\delta t}$ | $\dfrac{A\,\omega}{(s - \delta)^2 + \omega^2}$ |
+
+**Symbols:** $A$ amplitude, $a$ envelope slope (V per unit time), $\delta$ damping/growth coefficient ($\delta > 0$), $\omega$ angular frequency, $\varepsilon(t)$ unit step (signal starts at $t=0$).
+
+**Key relationships:**
+
+- The exponential cases follow from the constant case by the shift theorem: multiplying by $e^{\mp \delta t}$ in time shifts $s \to s \pm \delta$ in the Laplace domain.
+- The linear case follows from the $t$-multiplication rule $\mathcal{L}\{t\,f(t)\} = -\dfrac{d}{ds}F(s)$ applied to the constant case.
+
+**Display equations:**
+
+$$
+u_\text{const}(t) = A\,\sin(\omega t)\,\varepsilon(t)
+$$
+
+$$
+u_\text{lin}(t) = a\,t\,\sin(\omega t)\,\varepsilon(t)
+$$
+
+$$
+u_\text{dec}(t) = A\,e^{-\delta t}\,\sin(\omega t)\,\varepsilon(t)
+$$
+
+$$
+u_\text{grow}(t) = A\,e^{+\delta t}\,\sin(\omega t)\,\varepsilon(t)
+$$
+
+## Finding the Decay / Growth Constant $\delta$
+
+The exponential envelope is $a(t) = A\,e^{-\delta t}$ (decay) or $A\,e^{+\delta t}$ (growth). Read $\delta$ off the envelope by comparing two peak heights at two times.
+
+| Field | Content |
+|---|---|
+| **What** | Decay/growth constant $\delta$ of an exponential envelope |
+| **Envelope** | $a(t) = A\,e^{-\delta t}$ (decay) or $A\,e^{+\delta t}$ (growth) |
+| **Read from graph** | Two envelope peak heights $a(t_1)$, $a(t_2)$ at times $t_1 < t_2$ |
+| **Formula** | $\delta = \dfrac{1}{t_2 - t_1}\,\ln\!\left(\dfrac{a(t_1)}{a(t_2)}\right)$ |
+| **Shortcut** | $\delta = \dfrac{1}{\tau}$, where $\tau$ is the time the envelope falls to $A/e$ |
+| **Units** | $\text{s}^{-1}$ (reciprocal time) |
+| **Sign** | Envelope shrinking, decay ($-\delta$); envelope rising, growth ($+\delta$) |
+
+## Finding the Phase Angle That Removes a Transient
+
+To force a transient term to vanish, set its coefficient to zero and solve for $\varphi$. The coefficient of each real pole is found by the cover-up method.
+
+Given:
+
+$$
+F(s) = \frac{6\left(s\sin\varphi + \sqrt{5}\cos\varphi\right)}{(s^2+5)(s+2)(s+3)} = \underbrace{\frac{A}{s+2} + \frac{B}{s+3}}_{\text{transient (real poles, decays)}} + \underbrace{\frac{Ds+E}{s^2+5}}_{\text{harmonic (complex pair, oscillates)}}
+$$
+
+**Coefficient A** (multiply by $(s+2)$, set $s = -2$; the $(s+2)$ cancels):
+
+$$
+A = \frac{6\left(-2\sin\varphi + \sqrt{5}\cos\varphi\right)}{((-2)^2+5)(-2+3)} = \frac{6\left(-2\sin\varphi + \sqrt{5}\cos\varphi\right)}{9}
+$$
+
+Setting $A \stackrel{!}{=} 0$:
+
+$$
+-2\sin\varphi + \sqrt{5}\cos\varphi = 0 \quad\Rightarrow\quad \tan\varphi = \frac{\sqrt{5}}{2}
+$$
+
+**Coefficient B** (multiply by $(s+3)$, set $s = -3$; the $(s+3)$ cancels):
+
+$$
+B = \frac{6\left(-3\sin\varphi + \sqrt{5}\cos\varphi\right)}{((-3)^2+5)(-3+2)} = \frac{6\left(-3\sin\varphi + \sqrt{5}\cos\varphi\right)}{-14}
+$$
+
+Setting $B \stackrel{!}{=} 0$:
+
+$$
+-3\sin\varphi + \sqrt{5}\cos\varphi = 0 \quad\Rightarrow\quad \tan\varphi = \frac{\sqrt{5}}{3}
+$$
+
+**Conclusion:** the two conditions $\tan\varphi = \frac{\sqrt{5}}{2}$ and $\tan\varphi = \frac{\sqrt{5}}{3}$ cannot hold at once, so no single $\varphi$ removes both transients. With $\varphi$ as the only free parameter, the network cannot jump directly into steady state for $t > 0$.
+
+
+## Drawing the Laplace-Domain Circuit at t = 0 (from Steady State)
+
+**Core idea:** The plain impedances $sL$ and $\frac{1}{sC}$ assume zero stored energy. If an inductor carries current or a capacitor holds voltage at $t=0$, you must add an initial-condition source. That stored energy is what drives the circuit after switching.
+
+**Step 1: Get initial conditions from steady state (t < 0)**
+DC steady state: inductor = short, capacitor = open. Read off $i_L(0)$ and $u_C(0)$. They cannot jump, so they carry into $t>0$.
+
+**Step 2: Replace each element**
+
+Inductor:
+
+$$
+U_L(s) = sL\;I_L(s) - L\;i_L(0)
+$$
+
+$$
+I_L(s) = \frac{U_L(s)}{sL} + \frac{i_L(0)}{s}
+$$
+
+Capacitor:
+
+$$
+I_C(s) = sC\;U_C(s) - C\;u_C(0)
+$$
+
+$$
+U_C(s) = \frac{I_C(s)}{sC} + \frac{u_C(0)}{s}
+$$
+
+**Step 3: Switched-off sources** — current source = open, voltage source = short. Only the IC generators remain.
+
+## Source Type and Placement
+
+| Element | Impedance | Series form | Parallel form |
+|---|---|---|---|
+| Inductor L | $sL$ | series **voltage source** $L\;i_L(0)$ | parallel **current source** $\dfrac{i_L(0)}{s}$ |
+| Capacitor C | $\dfrac{1}{sC}$ | series **voltage source** $\dfrac{u_C(0)}{s}$ | parallel **current source** $C\;u_C(0)$ |
+
+**How to pick the form:** Write the element's basic s-domain equation. Reads as a voltage equation, use a voltage source in series. Reads as a current equation, use a current source in parallel. The other form is the same equation solved for the opposite variable.
+
+**Sign note:** the IC source drives in the same direction as the original stored current/voltage. Watch the sign of the $-L\;i_L(0)$ and $-C\;u_C(0)$ terms when setting polarity, or the direction of your solved current comes out flipped.
+
+**Unit check:** $L\;i_L(0)$ is V·s (voltage in s-domain), $\frac{i_L(0)}{s}$ is a current; $\frac{u_C(0)}{s}$ is a voltage, $C\;u_C(0)$ is a current.
+
+
+## Current-voltage relationships of the components in the Laplace domain (Transformer)
+<img src="transformer-circuit.png" alt="transformer-circuit" width=400/>
+
+<img src="transformer-cricuit-converted.png" alt="transformer-circuit-converted" width=400 height=220 />
+
+**Step 1: Capacitor (C)**
+
+From $i_C = C\,\frac{du_C}{dt}$, transformed with initial voltage $u_C(0) = U_0$:
+
+$$
+I_C = sC\,U_C - C\,U_0
+$$
+
+Solved for the voltage:
+
+$$
+U_C = \frac{I_C}{sC} + \frac{U_0}{s}
+$$
+
+**Step 2: Resistor (R)**
+
+Ohm's law, no initial value:
+
+$$
+U_R = R\,I_R
+$$
+
+**Step 3: Transformer primary (L1)**
+
+Self term plus mutual term, with initial currents:
+
+$$
+U_1 = sL_1\left(I_1 - \frac{i_{L_1}(0)}{s}\right) + sM\left(I_2 - \frac{i_{L_2}(0)}{s}\right)
+$$
+
+**Step 4: Transformer secondary (L2)**
+
+$$
+U_2 = sM\left(I_1 - \frac{i_{L_1}(0)}{s}\right) + sL_2\left(I_2 - \frac{i_{L_2}(0)}{s}\right)
+$$
+
+**Step 5: Insert initial values from b)**
+
+Both inductor currents start at zero, $i_{L_1}(0) = i_{L_2}(0) = 0$, so the generators drop out:
+
+$$
+U_1 = sL_1 I_1 + sM I_2
+$$
+
+$$
+U_2 = sM I_1 + sL_2 I_2
+$$
+
+**Step 6: Tight-coupling condition**
+
+For a tightly coupled transformer, $k = 1$, so:
+
+$$
+M = \sqrt{L_1 L_2}
+$$
+
+This produces the $\sqrt{L_1 L_2}$ factor in the result for $U_R(s)$ in part d).
+
+
+# Laplace-domain units (quick reference)
+
+| Quantity | Time domain | Laplace domain |
+|----------|-------------|----------------|
+| Voltage | $\text{V}$ | $\text{V}\cdot\text{s}$ |
+| Current | $\text{A}$ | $\text{A}\cdot\text{s}$ |
+| Variable $s$ | — | $1/\text{s}$ |
+| Resistance $R$ | $\Omega$ | $\Omega$ |
+| Inductor $sL$ | — | $\Omega$ |
+| Capacitor $1/sC$ | — | $\Omega$ |
+
+**Rule:** to get the Laplace unit of a signal, multiply the time-domain unit by $s$ (seconds).
+- voltage: $\text{V} \rightarrow \text{V}\cdot\text{s}$
+- current: $\text{A} \rightarrow \text{A}\cdot\text{s}$
+
+**Impedances stay in $\Omega$** (all three: $R$, $sL$, $1/sC$). They're voltage/current ratios, always ohms.
+
+I believe I have covered the topic comprehensively

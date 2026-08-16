@@ -74,6 +74,13 @@ $$
 | $e^{-at}\cos(\omega_0 t)$ | $\dfrac{s+a}{(s+a)^2 + \omega_0^2}$ | $\operatorname{Re}(s) > -a$ |
 | $e^{-at}\sin(\omega_0 t)$ | $\dfrac{\omega_0}{(s+a)^2 + \omega_0^2}$ | $\operatorname{Re}(s) > -a$ |
 
+### Trick for conversion
+$$
+\frac{1}{s^2+\omega_0^2} = \frac{1}{\omega_0}\cdot\frac{\omega_0}{s^2+\omega_0^2}
+$$
+$$
+\frac{1}{s^2+\omega_0^2} \;\longleftrightarrow\; \frac{1}{\omega_0}\sin\omega_0 t
+$$
 
 ## Table 2: Operational Rules (Properties)
 
