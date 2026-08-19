@@ -26,7 +26,9 @@ title: Showing Up
     { "date": "2026-08-13", "study": 240, "gym": 0, "language": 0, "note": "Network analysis. No time for gym or German." },
     { "date": "2026-08-14", "study": 90,  "gym": 0, "language": 0, "note": " Network Linear ODE" },
     { "date": "2026-08-15", "study": 360, "gym": 0, "language": 20, "note": "Circuit Analysis, Anki deck for language"},
-    { "date": "2026-08-16", "study": 360, "gym": 0, "language": 0, "note": "Completed Circuit Analysis" }
-  ]
+    { "date": "2026-08-16", "study": 360, "gym": 0, "language": 0, "note": "Completed Circuit Analysis" },
+    { "date": "2026-08-17", "study": 45,  "gym": 0, "language": 0, "note": "Bode plot started"},
+    { "date": "2026-08-18", "study": 300, "gym": 0, "langauge": 0, "note": "completed Bode Plot and started Non Linear Network"}  
+ ]
 }
 ```
