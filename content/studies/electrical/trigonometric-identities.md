@@ -33,3 +33,9 @@ $$
 $$
 \sin(t - 2\pi m) = \sin t \quad(\text{any integer } m)
 $$
+
+
+## Same but shifted
+$$
+\cos(x) = \sin\left(x + \frac{\pi}{2}\right)
+$$
