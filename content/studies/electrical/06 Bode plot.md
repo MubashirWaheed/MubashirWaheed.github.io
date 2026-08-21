@@ -330,3 +330,31 @@ $$
 $$
 \frac{1}{s} \quad\longleftrightarrow\quad \varepsilon(t)
 $$
+
+
+## Root vs. Corner Frequency (the sign confusion)
+
+When you set numerator or denominator to zero, you get a **negative root**, but the **corner frequency on the Bode plot is its magnitude (positive)**. These are two different quantities, don't mix them up:
+
+| Quantity | What it is | Sign | Example (from $s + 10^3$) |
+|---|---|---|---|
+| **Root** | Where numerator/denominator $= 0$ (location in the $s$-plane) | Negative | $s = -10^3$ |
+| **Corner frequency $\omega_c$** | Break point on the Bode plot (how fast the signal oscillates) | Positive | $\omega_c = \lvert -10^3 \rvert = 10^3$ |
+
+
+
+Setting numerator/denominator to zero gives a **negative root**, but the **corner frequency on the Bode plot is its positive magnitude**. Same factor, two different quantities.
+
+For a factor $(s + a)$ with $a > 0$:
+
+$$\text{root at } s = -a \quad\Longrightarrow\quad \omega_c = \lvert -a \rvert = a$$
+
+
+The root is always negative, the corner always its positive magnitude. This flip happens on every pole and zero, it's normal.
+
+Example, $G(s) = \dfrac{\frac{s}{10^3} + 1}{\frac{s}{1} + 1}$:
+
+- Numerator $= 0 \Rightarrow \frac{s}{10^3} = -1 \Rightarrow s = -10^3 \Rightarrow$ zero at $\omega_c = 10^3$
+- Denominator $= 0 \Rightarrow \frac{s}{1} = -1 \Rightarrow s = -1 \Rightarrow$ pole at $\omega_c = 1$
+
+The corner frequency is just the number **under** the $s$ in each factor (read it off directly). The root is negative, the corner is its positive magnitude, and this flip happens on every pole and zero.
