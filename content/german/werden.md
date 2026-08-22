@@ -116,3 +116,168 @@ Why they feel redundant: because every sentence needs both at once. Take the pas
 - Das Haus wird gebaut. → passive, present
 - Das Haus wurde gebaut. → passive, past
 - Das Haus ist gebaut worden. → passive, perfect
+
+# Uses of **werden**
+
+| # | Use | Structure | Example |
+|---|---|---|---|
+| **1** | Become | `werden + adjective/noun` | Ich **werde müde**. |
+| **2** | Become — Perfekt | `sein + geworden` | Ich **bin müde geworden**. |
+| **3** | Passive — Present | `werden + Partizip II` | Das Essen **wird gekocht**. |
+| **4** | Passive — Perfekt | `sein + Partizip II + worden` | Das Essen **ist gekocht worden**. |
+| **5** | Future — Futur I | `werden + Infinitiv` | Ich **werde kochen**. |
+| **6** | Future Passive | `werden + Partizip II + werden` | Das Essen **wird gekocht werden**. |
+| **7** | Konjunktiv II | `würde + Infinitiv` | Ich **würde kochen**. |
+| **8** | Konjunktiv II Passive | `würde + Partizip II + werden` | Das Essen **würde gekocht werden**. |
+
+## 1. werden = become
+
+**Structure:** `werden + adjective/noun`
+
+> Ich **werde müde**.  
+> = I am becoming tired.
+
+> Er **wird Arzt**.  
+> = He becomes a doctor.
+
+---
+
+## 2. werden = become — Perfekt
+
+**Structure:** `sein + geworden`
+
+> Ich **bin müde geworden**.  
+> = I became tired.
+
+> Sie **ist Ärztin geworden**.  
+> = She became a doctor.
+
+**werden → geworden**
+
+---
+
+## 3. Passive — Present
+
+**Structure:** `werden + Partizip II`
+
+> Das Essen **wird gekocht**.  
+> = The food is being cooked.
+
+> Das Auto **wird repariert**.  
+> = The car is being repaired.
+
+Here, **werden** is the passive auxiliary.
+
+---
+
+## 4. Passive — Präteritum
+
+**Structure:** `wurde/wurden + Partizip II`
+
+> Das Essen **wurde gekocht**.
+>
+> = The food was cooked.
+
+> Das Auto **wurde repariert**.
+>
+> = The car was repaired.
+
+> Das Anwesen **wurde renoviert**.
+>
+> = The property was renovated.
+
+Here, **wurde/wurden** is the **Präteritum form of `werden`** used as the passive auxiliary.
+
+**Important:**  
+`wurde + Partizip II` = **Passive in Präteritum**
+
+---
+
+## 5. Passive — Perfekt
+
+**Structure:** `sein + Partizip II + worden`
+
+> Das Essen **ist gekocht worden**.  
+> = The food was/has been cooked.
+
+> Das Auto **ist repariert worden**.  
+> = The car was/has been repaired.
+
+**Important:** Use **worden**, not **geworden**.
+
+---
+
+## 6. Passive with Modal Verbs
+
+**Structure:** `Modalverb (conjugated) + Partizip II + werden (infinitive)`
+
+> Das Auto **muss repariert werden**.  
+> = The car must be repaired.
+
+> Das Essen **kann gekocht werden**.  
+> = The food can be cooked.
+
+The modal is conjugated; `werden` stays in the infinitive at the end.
+
+## 7. Future — Futur I
+
+**Structure:** `werden + Infinitiv`
+
+> Ich **werde morgen arbeiten**.  
+> = I will work tomorrow.
+
+> Sie **wird nach Berlin fahren**.  
+> = She will go to Berlin.
+
+Here, **werden** means **will**.
+
+---
+
+## 8. Future Passive
+
+**Structure:** `werden + Partizip II + werden`
+
+> Das Essen **wird gekocht werden**.  
+> = The food will be cooked.
+
+> Das Auto **wird repariert werden**.  
+> = The car will be repaired.
+
+**Important:** `gekocht` is Partizip II because this is passive.  
+The final `werden` makes it future.
+
+werden → Future Passive action eg closing of door
+
+---
+
+## 9. Konjunktiv II
+
+**Structure:** `würde + Infinitiv`
+
+> Ich **würde kochen**.  
+> = I would cook.
+
+> Ich **würde nach Deutschland gehen**.  
+> = I would go to Germany.
+
+> Was **würdest du machen**?  
+> = What would you do?
+
+Used for hypothetical situations, wishes, suggestions, and polite statements.
+
+### Example:
+
+> **Wenn ich mehr Geld hätte, würde ich ein Auto kaufen.**  
+> = If I had more money, I would buy a car. 
+
+---
+
+## 10. Konjunktiv II Passive
+
+**Structure:** `würde + Partizip II + werden`
+
+> Das Auto **würde repariert werden**.  
+> = The car would be repaired.
+
+> Das Essen **würde gekocht werden**.  
+> = The food would be cooked.
