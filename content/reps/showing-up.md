@@ -31,7 +31,11 @@ title: Showing Up
     { "date": "2026-08-18", "study": 300, "gym": 0, "langauge": 0, "note": "completed Bode Plot and started Non Linear Network"},
     { "date": "2026-08-19", "study": 360, "gym": 0, "language": 0, "note": "non linear circuits"},
     { "date": "2026-08-21", "study": 450, "gym": 0, "language": 0, "note": "op amps and started bridge circuits"},
-    { "date": "2026-08-22", "study": 0,   "gym": 0, "language": 180, "note": "usage of werden and Anki deck"}
+    { "date": "2026-08-22", "study": 0,   "gym": 0, "language": 180, "note": "usage of werden and Anki deck"},
+    { "date": "2026-08-24", "study": 240, "gym": 0, "language": 20, "note": "started signal theory"},
+    { "date": "2026-08-25", "study": 240, "gym": 0, "language": 20, "note": "convolution in signal theory"},
+    { "date": "2026-08-26", "study": 0,   "gym": 0, "language": 240, "note": "created Anki cards for german language"},
+    { "date": "2026-08-27", "study": 0,   "gym": 0, "language": 180, "note": "language"}
  ]
 }
 ```
