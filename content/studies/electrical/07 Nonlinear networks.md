@@ -493,3 +493,18 @@ A stable operating point is like a ball in a valley: nudge it, and it rolls back
 The two rising branches of the N-curve are valleys (stable). The falling middle branch is the hilltop (unstable). So the circuit can physically 
 rest on the rising parts, but it can never actually sit on the falling part, even if it's mathematically an operating point, the moment it tries, 
 a tiny fluctuation knocks it off.
+
+## The habit to build
+
+For any $t → ∞$ question, redraw the circuit with capacitors replaced by open circuits and inductors replaced by short circuits, then solve the 
+resulting resistive network.
+
+
+### Rule for simplification
+$$
+a^{-x} = \frac{1}{a^{x}}
+$$
+
+$$
+e^{-t/\tau} = \frac{1}{e^{t/\tau}}
+$$

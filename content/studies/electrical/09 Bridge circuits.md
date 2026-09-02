@@ -29,7 +29,9 @@ $$R_x = \frac{R_2 R_3}{R_4}$$
 
 **Imaginary part** gives the unknown inductance:
 
-$$L_x = R_2 R_3 C_4$$
+$$
+L_x = R_2 R_3 C_4
+$$
 
 ## Loss Factor (tan δ) — Inductors and Capacitors
 
@@ -60,3 +62,74 @@ $$
 $$
 R_x = \underbrace{\omega}_{\text{depends on } f}\, L_x\, \underbrace{\tan\delta_x}_{\text{also depends on } f}
 $$
+
+# Linearity and Linearization
+
+## 1. Rule for Linearity
+
+A relation $y = f(x)$ is linear if it can be written as
+
+$$
+y = k \cdot x
+$$
+
+where $k$ contains **only constants**, no $x$. (With a constant offset, $y = kx + d$, the relation is strictly *affine*, but engineers usually call it linear since the slope stays constant.)
+
+### Quick visual test
+
+Look at the input variable $x$ and ask:
+
+| # | Question | If yes |
+|---|----------|--------|
+| 1 | Does $x$ appear in a denominator? | not linear |
+| 2 | Is $x$ squared, rooted, or inside $\sin$, $\exp$, $\ln$? | not linear |
+| 3 | Is $x$ multiplied by another variable (not a constant)? | not linear |
+
+Linear means: $x$ appears **once, to the first power, in the numerator only**.
+
+### Numerical test (if unsure)
+
+Double the input. If the output does not exactly double, the relation is nonlinear.
+
+### Example
+
+$$
+\Delta R_X = \frac{2R_1 U_D}{U_E - U_D} \quad \Rightarrow \quad \text{nonlinear} \ (U_D \text{ also in denominator})
+$$
+
+$$
+\Delta R_X = \frac{2R_1}{U_E}\, U_D \quad \Rightarrow \quad \text{linear} \ (\text{slope } 2R_1/U_E)
+$$
+
+## 2. Recipe for Linearizing
+
+Given an assumption of the form "small quantity $\ll$ large quantity":
+
+**Step 1.** Locate where the small quantity sits in a **sum** with the large one.
+
+**Step 2.** Factor the large quantity out, so the small one appears only as a dimensionless ratio $u$:
+
+$$
+U_E - U_D = U_E\left(1 - \frac{U_D}{U_E}\right), \qquad u = \frac{U_D}{U_E} \ll 1
+$$
+
+**Step 3.** Delete the ratio (set the bracket to 1). What remains is the linear result.
+
+$$
+\Delta R_X = \frac{2R_1 U_D}{U_E}\cdot\frac{1}{1-u} \;\approx\; \frac{2R_1 U_D}{U_E}
+$$
+
+**Step 4.** Report the relative error by dividing approximate by exact and subtracting 1:
+
+$$
+f = \frac{y_{\text{approx}}}{y_{\text{exact}}} - 1 = \frac{U_E - U_D}{U_E} - 1 = -\frac{U_D}{U_E}
+$$
+
+Common factors cancel, leaving the error expressed in the small ratio itself.
+
+### Standard approximations for $|u| \ll 1$
+
+$$\frac{1}{1-u} \approx 1+u \qquad \frac{1}{1+u} \approx 1-u \qquad (1+u)^n \approx 1+nu$$
+
+$$e^{u} \approx 1+u \qquad \ln(1+u) \approx u \qquad \sin u \approx u \qquad \cos u \approx 1-\tfrac{u^2}{2}$$
+

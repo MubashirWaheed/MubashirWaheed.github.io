@@ -15,11 +15,79 @@ voltage source (Thévenin) or a parallel current source (Norton), as shown in th
 | Capacitor | $\dfrac{1}{sC}$ | voltage $\dfrac{u_C(0)}{s}$ | current $C\;u_C(0)$ |
 
 
+Default: voltage source in series, that is L·i_L(0⁺) next to the impedance sL.
+Reason: most exam problems are solved with mesh analysis, and mesh analysis needs voltages
+
+$$
+u_L(t) = L\frac{di_L}{dt} \quad \circ\!\!-\!\!\bullet \quad U_L(s) = sL\ I_L(s) - L\ i_L(0^-)
+$$
+
+$$
+u_C(t) = \frac{1}{C}\int_0^t i_C\,d\tau + u_C(0^-)
+\quad \circ\!\!-\!\!\bullet \quad
+U_C(s) = \frac{I_C(s)}{sC} + \frac{u_C(0^-)}{s}
+$$
+
 <img src="/attachments/lcircuit.png" alt="laplace circuit" />
 
 
 ## Writing Transfer Function $G(s)$
 
+I have one question while writing the transfer function equation using the mesh equations how do we combine the terms eg by current or by the 
+elements eg becuase sometimes there are two currnets passing through an element that is being shared in two loops. 
+Answer: To solve, you need each equation in the form coefficient times I₁ plus coefficient times I₂ equals source.
+
+There are two ways in which the transfer function can be written 
+- by voltage divider rule 
+- mesh loop method
+
+
+Important detail while writing the loop equation using the mesh loop method we have to account for the sign of the currnet in the loop for each 
+element. In order to write correct sign for each current passing through each elment in each loop. write seprately and then combine. 
+
+example 
+<img src="attachments/lapalce=network.png" width=400 />
+
+here inductor and capacitor are being shared by both loops which means both currents $I_1$ and $I_2$ pass through them.
+We take the clockwise direction for each loop and while writing the equaiton one we write volatge drop across each element by each currnet 
+seprately and then combine. This makes tracking signs relatively easy
+
+note that no when we write the 2nd loop equatioin we take the I2 clockwise positive while in the previous equation we took $I_1$ postive and 
+opposition to it $(I_2)$ as negative
+
+
+## Loop equation 1 (left mesh)
+
+Written term by term, with $I_1$ positive and $I_2$ opposing:
+
+
+$$
+I_1 R_1 + I_1 sL - I_2 sL + \frac{I_1}{sC} - \frac{I_2}{sC} = U_e(s)
+$$
+
+Now factor the shared terms:
+
+$$
+I_1 R_1 + (I_1 - I_2)\,sL + \frac{I_1 - I_2}{sC} = U_e(s) \qquad \text{(eq. 1)}
+$$
+
+The right-hand side is $U_e(s)$ because this mesh contains the source.
+
+## Loop equation 2 (right mesh)
+
+Now $I_2$ is the positive clockwise current and $I_1$ is the one opposing it in the shared branch. Note how the roles swap compared to eq. 1:
+
+$$
+I_2 R_2 + \frac{I_2}{sC} - \frac{I_1}{sC} + I_2 sL - I_1 sL = 0
+$$
+
+Factored:
+
+$$
+I_2 R_2 + (I_2 - I_1)\,sL + \frac{I_2 - I_1}{sC} = 0 \qquad \text{(eq. 2)}
+$$
+
+now we can combine 
 - Write the circuit equations (mesh or node method).
 - Figure out which variables to eliminate. For $G(s)$ we only want input and output voltage, so the currents get removed.
 
@@ -43,6 +111,10 @@ $$
 $$
 U_L(s) = sL\,I(s) \qquad I_C(s) = sC\,U(s)
 $$
+
+While writing the loop equations if there is source current is present take into accocunt that current as it passes through the element (inductor
+or capacitor). while simplifying before subsition make sure to remove the fractions by multiplying denominiator element with eqaution and then 
+substituting.  
 
 ### Worked example (the RLC circuit)
 
@@ -1065,3 +1137,40 @@ This produces the $\sqrt{L_1 L_2}$ factor in the result for $U_R(s)$ in part d).
 **Impedances stay in $\Omega$** (all three: $R$, $sL$, $1/sC$). They're voltage/current ratios, always ohms.
 
 I believe I have covered the topic comprehensively
+
+### Energy stored in a capacitor
+$$
+W_C(t) = \frac{1}{2} C \ u_C^2(t)
+$$
+
+### Energy stored in an inductor
+$$
+W_L(t) = \frac{1}{2} L \ i_L^2(t)
+$$
+While simplifying the circuit we say we repalced the inductor with a wire take not it doesn't mean that the enrgy of the indtor becaome zero.
+"Short" means zero voltage, not zero energy. An inductor's energy lives in its current $(½·L·i²)$, so a shorted inductor carrying $I₀$ is fully 
+loaded, not empty.
+
+## What counts as an "essential" initial condition
+
+Only the state variables of the network, meaning one quantity per energy storage element:
+
+- voltage across each capacitor
+- current through each inductor
+
+because of the formula 
+
+$$
+i_C(t) = C\ \frac{du_C(t)}{dt}, \qquad u_L(t) = L\ \frac{di_L(t)}{dt}
+$$
+
+---
+## Following needs to be updated in the network analysis notes
+- rules for the drawing of the circuit in laplace domain from the steady state needs ot be updated(placement of currnet and voltage sources)
+- inital current and volatages of circuit after having been in a steady state (inductor acts as short and capacitor open)
+- Rules for setting up the network equation in case the transformer(coupling because of it) present
+- important that presence of the current source in the tranformer question in network analysis (writing mesh equations with the current source
+presence)
+- KCL and KVL combined for current source presence 
+
+https://www.studocu.com/de/document/friedrich-alexander-universitat-erlangen-nurnberg/grundlagen-der-elektrotechnik-iii/uebungsblaetter-ubung/5369959?sid=48804a83-918b-45da-8eca-75e9ce92cec51788390912

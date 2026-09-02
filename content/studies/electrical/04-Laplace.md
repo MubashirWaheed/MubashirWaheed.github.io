@@ -69,6 +69,7 @@ $$
 | $t^n$ | $\dfrac{n!}{s^{n+1}}$ | $\operatorname{Re}(s) > 0$ |
 | $e^{-at}$ | $\dfrac{1}{s+a}$ | $\operatorname{Re}(s) > -a$ |
 | $t\, e^{-at}$ | $\dfrac{1}{(s+a)^2}$ | $\operatorname{Re}(s) > -a$ |
+| $t^n e^{-at}$ | $\dfrac{n!}{(s+a)^{n+1}}$ | $\operatorname{Re}(s) > -a$ |
 | $\cos(\omega_0 t)$ | $\dfrac{s}{s^2 + \omega_0^2}$ | $\operatorname{Re}(s) > 0$ |
 | $\sin(\omega_0 t)$ | $\dfrac{\omega_0}{s^2 + \omega_0^2}$ | $\operatorname{Re}(s) > 0$ |
 | $e^{-at}\cos(\omega_0 t)$ | $\dfrac{s+a}{(s+a)^2 + \omega_0^2}$ | $\operatorname{Re}(s) > -a$ |
@@ -518,3 +519,151 @@ $$
 - **argument inside sin** from the exponent of $e^{-s\cdot a}$ ($a \to t-a$)
 - **step $\varepsilon(t-a)$** because a delayed function is off until $t=a$
 - shifts that are multiples of $2\pi$ vanish from the sine, stay in the steps
+
+## Circuit analysis with Laplace: initial conditions and switches
+
+While writing the laplace transform of the output signal of the linear cirucit(inductor/capacitor present) make sure to include the initial 
+condition current or voltage which we get after having converted the derivatives of current, voltage into laplace domain while writing the 
+mesh equations of the cicrcuit. Also note since for most of the question laplace domain only deal with $t > 0$ and if the switch is opened at 
+$t = 0^+ $so we ignore it and make mesh around it. 
+
+<img src="attachments/network-loops.png" width=400 />
+
+
+## Initial Conditions in the s-Domain: Equivalent Circuit Models for L and C
+
+When transforming a circuit into the Laplace domain, the energy already stored in an inductor or capacitor at $t = 0$ does not disappear. It appears as an extra independent source next to the element's impedance. Each element has two equivalent models, and you pick whichever matches your analysis method.
+
+### The four models
+
+| Element | Impedance | Series form (for mesh analysis) | Parallel form (for nodal analysis) |
+|---|---|---|---|
+| Inductor | $sL$ | voltage source $L\ i_L(0)$ in series | current source $\dfrac{i_L(0)}{s}$ in parallel |
+| Capacitor | $\dfrac{1}{sC}$ | voltage source $\dfrac{u_C(0)}{s}$ in series | current source $C\ u_C(0)$ in parallel |
+
+Symbols:
+- $sL$: inductor impedance in the s-domain
+- $1/(sC)$: capacitor impedance in the s-domain
+- $i_L(0)$: inductor current immediately before switching, in amperes
+- $u_C(0)$: capacitor voltage immediately before switching, in volts
+
+### Where the models come from
+
+**Inductor element law, transformed**
+
+$$
+U_L(s) = sL\ I_L(s) - L\ i_L(0)
+\qquad\Longleftrightarrow\qquad
+I_L(s) = \frac{U_L(s)}{sL} + \frac{i_L(0)}{s}
+$$
+
+Solved for voltage, the initial condition adds as a **voltage**, so it sits in series. Solved for current, it adds as a **current**, so it sits in parallel.
+
+**Capacitor element law, transformed**
+
+$$
+U_C(s) = \frac{I_C(s)}{sC} + \frac{u_C(0)}{s}
+\qquad\Longleftrightarrow\qquad
+I_C(s) = sC\ U_C(s) - C\ u_C(0)
+$$
+
+Same logic: a sum of voltages along a branch means series, a sum of currents into a node means parallel.
+
+### Reading the symbols
+
+A quick way to tell a voltage source from a current source without memorising the table:
+
+- lowercase $u$ in the expression means it is a **voltage** source
+- lowercase $i$ in the expression means it is a **current** source
+- multiplying or dividing by $L$, $C$, or $s$ only rescales it, it never changes the type
+
+Unit check confirms it. In the s-domain a voltage carries $\mathrm{V}\cdot\mathrm{s}$ and a current carries $\mathrm{A}\cdot\mathrm{s}$:
+
+$$
+[L\ i_L(0)] = \mathrm{H}\cdot\mathrm{A} = \mathrm{V}\cdot\mathrm{s}, \qquad
+\left[\frac{i_L(0)}{s}\right] = \mathrm{A}\cdot\mathrm{s}
+$$
+
+$$
+\left[\frac{u_C(0)}{s}\right] = \mathrm{V}\cdot\mathrm{s}, \qquad
+[C\ u_C(0)] = \mathrm{F}\cdot\mathrm{V} = \mathrm{C} = \mathrm{A}\cdot\mathrm{s}
+$$
+
+### Why series pairs with voltage and parallel with current
+
+An ideal voltage source holds its terminal voltage regardless of current, so only a **series** element can make that voltage change with load. An ideal current source holds its current regardless of voltage, so only a **parallel** element can divert part of that current. This is why a source in series is always a voltage source and a source in parallel is always a current source.
+
+The two forms convert into each other by the usual source transformation:
+
+$$
+I_N = \frac{U_{th}}{Z}, \qquad U_{th} = I_N\ Z, \qquad Y = \frac{1}{Z}
+$$
+
+Check: $L\ i_L(0)$ divided by $sL$ gives $i_L(0)/s$, and $\dfrac{u_C(0)}{s}$ divided by $\dfrac{1}{sC}$ gives $C\ u_C(0)$. The two models of each element are genuinely the same thing.
+
+### Choosing a form in practice
+
+- **Mesh analysis** wants every branch as impedance plus series voltage source, giving $\mathbf{Z}\ \mathbf{i} = \mathbf{v}$
+- **Nodal analysis** wants every branch as admittance plus parallel current source, giving $\mathbf{Y}\ \mathbf{v} = \mathbf{i}$
+
+Mixing the two forms in one drawing is not wrong, it just costs an extra source transformation before you can set up the matrix.
+
+### Polarity, the part that costs marks
+
+- The inductor's series source $L\ i_L(0)$ drives current in the **same direction** as $i_L(0)$, and the parallel source $i_L(0)/s$ points in that same direction.
+- The capacitor's series source $u_C(0)/s$ has its plus terminal on the **plate that was positive** at $t = 0$; the parallel source $C\ u_C(0)$ pushes current into that same plate.
+
+### Finding the initial values
+
+Both $i_L(0)$ and $u_C(0)$ come from the DC steady state **before** switching, where the inductor is a short circuit and the capacitor is an open circuit. They carry across the switching instant unchanged, since inductor current and capacitor voltage cannot jump:
+
+$$
+i_L(0^+) = i_L(0^-), \qquad u_C(0^+) = u_C(0^-)
+$$
+
+Everything else in the circuit (resistor voltages, source currents) may jump freely at $t = 0$.
+
+## s-Domain Models of L and C with Initial Conditions
+
+**Important details**
+
+A source in **series** is always a **voltage** source, paired with an impedance. A source in **parallel** is always a **current** source, paired with an admittance. There is no other combination, because a series element cannot change a current source's current and a parallel element cannot change a voltage source's voltage.
+
+Each storage element therefore has **two** equivalent models, and the stored energy always shows up as an extra source:
+
+- **Inductor**: either $sL$ in parallel with a current source $i_L(0)/s$, or $sL$ in series with a voltage source $L\ i_L(0)$. Either way it represents the **initial current**.
+- **Capacitor**: either $1/(sC)$ in series with a voltage source $u_C(0)/s$, or $1/(sC)$ in parallel with a current source $C\ u_C(0)$. Either way it represents the **initial voltage**.
+
+Pick the parallel forms for nodal analysis and the series forms for mesh analysis.
+
+
+## s-Domain Models of L and C with Initial Conditions
+
+**Lookup (memorise this, skip the rest in the exam)**
+
+| Element | Impedance | Nodal (parallel) | Mesh (series) |
+|---|---|---|---|
+| $L$ | $sL$ | $\parallel$ current source $\dfrac{i_L(0)}{s}$ | in series with voltage source $L\ i_L(0)$ |
+| $C$ | $\dfrac{1}{sC}$ | $\parallel$ current source $C\ u_C(0)$ | in series with voltage source $\dfrac{u_C(0)}{s}$ |
+
+**Three rules that regenerate the whole table**
+
+1. Series source is always a **voltage** source. Parallel source is always a **current** source.
+2. Lowercase letter tells you the type: $i_L(0)$ gives a current source, $u_C(0)$ gives a voltage source. Multiply by the impedance to convert one into the other.
+3. Nodal wants parallel everywhere, mesh wants series everywhere.
+
+**Polarity**
+
+Both inductor sources point in the direction of $i_L(0)$. Both capacitor sources push toward the plate that was positive at $t = 0$.
+
+**Initial values**
+
+From DC steady state before switching: $L$ is a short, $C$ is an open. Then $i_L(0^+) = i_L(0^-)$ and $u_C(0^+) = u_C(0^-)$.
+
+## Standard Workflow: Time Domain → Laplace → Time Domain
+
+**Important detail:** when the transfer function is given (it is always in the Laplace domain) and the input signal is given in the time domain
+, and we have to find the output signal, we proceed as follows. First convert the time-domain input signal into the Laplace domain using the 
+correspondence table. Then multiply it by the transfer function. Then do a partial fraction decomposition of the resulting fraction, so that the 
+individual terms match the entries in the table and can be transformed back into the time domain.
+
