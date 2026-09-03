@@ -36,8 +36,8 @@ title: Showing Up
     { "date": "2026-08-25", "study": 240, "gym": 0, "language": 20, "note": "convolution in signal theory"},
     { "date": "2026-08-26", "study": 0,   "gym": 0, "language": 240, "note": "created Anki cards for german language"},
     { "date": "2026-08-27", "study": 0,   "gym": 0, "language": 180, "note": "language"},
-    { "date": "2026-09-1",  "study": 0,   "gym": 0, "language": 120, "note": "Anki deck"},
-    { "date": "2026-09-2",  "study": 360, "gym": 0  "language": 15,  "note": "Get 3 Laplace, Network Analysis"}
+    { "date": "2026-09-01", "study": 0,   "gym": 0, "language": 120, "note": "Anki deck"},
+    { "date": "2026-09-02", "study": 360, "gym": 0, "language": 15,  "note": "Get 3 Laplace, Network Analysis"}
  ]
 }
 ```
